@@ -113,16 +113,19 @@ namespace Next_Level
             myGrid.RowDefinitions.Add(rows[1]);
             myGrid.RowDefinitions.Add(rows[2]);
 
+            //кнопка ответить
             Button answer = new Button();
             answer.Content = "Reply";
             answer.Foreground = SetColor("#00541F");
 
+            //имя пользователя
             TextBlock textName = new TextBlock();
             textName.Text = userName;
             textName.Foreground = SetColor("#B4B4B4");
             textName.Margin = new Thickness(10, 0, 0, 0);
             textName.FontSize = 20;
 
+            //текст отзыва
             TextBlock feed = new TextBlock();
             feed.Margin = new Thickness(10);
             feed.Text = commentText;
@@ -131,6 +134,7 @@ namespace Next_Level
             feed.Margin = new Thickness(10, 0, 0, 0);
             feed.FontSize = 15;
 
+            //время
             TextBlock currentDate = new TextBlock();
             currentDate.Margin = new Thickness(10);
             currentDate.Text = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
@@ -140,31 +144,36 @@ namespace Next_Level
             currentDate.FontSize = 12;
             currentDate.VerticalAlignment = VerticalAlignment.Center;
 
+           ///ДОБАВЛЕНИЕ В ГРИД
+
+            //фото
             Grid grid1 = new Grid();
             grid1.Margin = new Thickness(5);
             grid1.Background = SetColor("#B4B4B4");
+            Grid.SetRowSpan(grid1, 2);
+            myGrid.Children.Add(grid1);
 
+            //имя пользователя
             Grid.SetRow(textName, 0);
             Grid.SetColumn(textName, 1);
             Grid.SetColumnSpan(textName, 2);
+            myGrid.Children.Add(textName);
 
+            //отзыв
             Grid.SetRow(feed, 1);
             Grid.SetColumn(feed, 1);
             Grid.SetColumnSpan(feed, 3);
-
-            Grid.SetRowSpan(grid1, 2);
-            Grid.SetRow(answer, 2);
-
-
-            Grid.SetColumn(answer, 1);
-            Grid.SetColumn(currentDate, 3);
-
-
-            myGrid.Children.Add(textName);
-            myGrid.Children.Add(currentDate);
-            myGrid.Children.Add(grid1);
             myGrid.Children.Add(feed);
+
+            //кнопка ответить
+            Grid.SetRow(answer, 2);
+            Grid.SetColumn(answer, 1);
             myGrid.Children.Add(answer);
+
+            //текущая дата
+            Grid.SetColumn(currentDate, 3);
+            myGrid.Children.Add(currentDate);
+            
             return myGrid;
         }
 
