@@ -1,0 +1,105 @@
+﻿<Window x:Class="Next_Level.Pages.Sign_in"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Next_Level.Pages"
+        mc:Ignorable="d"
+         Title="SignUp" Height="600" Width="400" WindowStyle="None"
+         Background="#181A1B" Icon="/Assets/Icons/Logo.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#181A1B" MouseDown="Grid_MouseDown">
+            <Button HorizontalAlignment="Right" Content="X" Width="30" Height="30" Foreground="White" Click="Button_Close" Background="#181A1B" FontSize="20" FontFamily="Microsoft JhengHei" />
+            <Button HorizontalAlignment="Right" Margin="0 0 30 0" Content="-" Width="30" Height="30" Click="Button_Minimize" Foreground="White" Background="#181A1B" FontSize="20" FontFamily="Microsoft JhengHei"/>
+        </Grid>
+        <Border Padding="10" VerticalAlignment="Center" Background="#222526" CornerRadius="15" Grid.Row="1"  MouseDown="Border_MouseDown" Margin="10 0 10 0">
+            <StackPanel>
+                <TextBlock Margin="0 0 0 20" FontSize="30" Foreground="White" Text="Sign Up" TextAlignment="Center"/>
+
+                <Border x:Name="LoginBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
+                        <TextBlock x:Name="textLogin" MouseDown="textLogin_MouseDown" Text="Login" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                        <TextBox x:Name="Login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                    </Grid>
+                </Border>
+                <TextBlock x:Name="LoginError" Visibility="Collapsed" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="0 0 0 20"/>
+
+                <Border BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
+                        <TextBlock x:Name="textName" MouseDown="textName_MouseDown" Text="Name" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                        <TextBox x:Name="userName" TextChanged="txtName_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
+                        <TextBlock x:Name="textSurname" MouseDown="textSurname_MouseDown" Text="Surname" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                        <TextBox x:Name="userSurname" TextChanged="txtSurname_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                    </Grid>
+                </Border>
+                <Border x:Name="EmailBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
+                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                        <TextBox x:Name="userEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                    </Grid>
+                </Border>
+                
+                <TextBlock x:Name="EmailError" Visibility="Collapsed" Text="Email is exist" FontSize="13" Foreground="DarkRed" Margin="0 0 0 20"/>
+                <TextBlock x:Name="EmailError2" Visibility="Collapsed" Text="Isn't email" FontSize="13" Foreground="DarkRed" Margin="0 0 0 20"/>
+                <Border x:Name="PasswordBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
+                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1" TextInput="textPassword_TextInput"  DataContextChanged="textPassword_DataContextChanged"/>
+                        <PasswordBox x:Name="userPassword" PasswordChanged="userPassword_PasswordChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                    </Grid>
+                </Border>
+                <TextBlock x:Name="PasswordError" Visibility="Collapsed" Text="Password isn't strong" FontSize="13" Foreground="DarkRed" Margin="0 0 0 5"/>
+                
+                <Border Padding="10" Margin="5 0 5 20" VerticalAlignment="Center" Background="#181A1B" CornerRadius="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="Characters" Foreground="#6B6D6D" Text="-Password must contain at least 8 characters" Grid.Row="0"/>
+                        <TextBlock x:Name="Number" Foreground="#6B6D6D" Text="-Password must contain at least one number" Grid.Row="1"/>
+                        <TextBlock x:Name="Special" Foreground="#6B6D6D" Text="-Password must contain at least one special character" Grid.Row="2"/>
+                        <TextBlock x:Name="Capital" Foreground="#6B6D6D" Text="-Password must contain at least one capital letter" Grid.Row="3"/>
+                    </Grid>
+                </Border>
+                <Button x:Name="createAccount" Content="Sign Up" Click="createAccount_Click" Style="{StaticResource mainButton}" Margin="0 0 0 5"/>
+                <TextBlock x:Name="FieldsEmpty" Visibility="Collapsed" TextAlignment="Center" Text="Fields is empty" FontSize="13" Foreground="DarkRed" Margin="0 0 0 5"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
