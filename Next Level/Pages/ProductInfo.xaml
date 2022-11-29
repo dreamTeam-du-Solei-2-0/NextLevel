@@ -75,12 +75,13 @@
                             <ColumnDefinition Width="240*"/>
                         </Grid.ColumnDefinitions>
                         <!--<TextBlock Width="800" VerticalAlignment="Top" HorizontalAlignment="Left" Height="300" x:Name="Coments" Foreground="White" Grid.ColumnSpan="2"></TextBlock>-->
-                        <ScrollViewer Grid.ColumnSpan="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Margin="12,0,0,0">
-                            <StackPanel Width="600" VerticalAlignment="Top"  Height="300" x:Name="Coments" Background="{DynamicResource SecundaryBlackColor}" Grid.ColumnSpan="2"></StackPanel>
+                        <ScrollViewer VerticalAlignment="Top" Height="300"   Grid.ColumnSpan="2">
+                            <StackPanel x:Name="Coments" Background="{DynamicResource SecundaryBlackColor }"/>
                         </ScrollViewer>
+                        
 
-                       
-                       
+
+
                         <TextBox SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
          VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"/>
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="send" Content="Send" Height="83" Width="92" Click="send_Click" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryBlackColor}" Grid.Column="1"></Button>

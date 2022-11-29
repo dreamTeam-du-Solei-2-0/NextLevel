@@ -82,6 +82,7 @@ namespace Next_Level
         {
             //string text = File.ReadAllText("C:\\Users\\dsgnrr\\Desktop\\feed.txt");
             Grid myGrid = new Grid();
+            myGrid.Margin = new Thickness(5);
             myGrid.Height = 150;
             myGrid.Background = SetColor("#1F1F1F");
             //myGrid.ShowGridLines = true;
@@ -174,8 +175,8 @@ namespace Next_Level
                 if (string.IsNullOrEmpty(ComW.Text))
                 {
                     MessageBox.Show("Is Empty");
-
                 }
+
                 else
                 {
                     //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
