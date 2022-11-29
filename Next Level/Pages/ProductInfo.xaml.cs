@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Next_Level
@@ -80,11 +81,11 @@ namespace Next_Level
         }
         Grid CreateGrid(string userName, string commentText)
         {
-            //string text = File.ReadAllText("C:\\Users\\dsgnrr\\Desktop\\feed.txt");
+            //тело отзыва
             Grid myGrid = new Grid();
-            myGrid.Margin = new Thickness(5);
             myGrid.Height = 150;
             myGrid.Background = SetColor("#1F1F1F");
+            myGrid.Margin = new Thickness(5);
             //myGrid.ShowGridLines = true;
 
             RowDefinition[] rows = new RowDefinition[3];
@@ -101,7 +102,7 @@ namespace Next_Level
 
             columns[0].Width = new GridLength(110);
             columns[1].Width = new GridLength(100);
-            columns[3].Width = new GridLength(100);
+            columns[3].Width = new GridLength(120);
 
             myGrid.ColumnDefinitions.Add(columns[0]);
             myGrid.ColumnDefinitions.Add(columns[1]);
@@ -132,11 +133,12 @@ namespace Next_Level
 
             TextBlock currentDate = new TextBlock();
             currentDate.Margin = new Thickness(10);
-            currentDate.Text = "date";
+            currentDate.Text = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
             currentDate.Foreground = SetColor("#B4B4B4");
             currentDate.TextWrapping = TextWrapping.Wrap;
             currentDate.Margin = new Thickness(10, 0, 0, 0);
-            currentDate.FontSize = 15;
+            currentDate.FontSize = 12;
+            currentDate.VerticalAlignment = VerticalAlignment.Center;
 
             Grid grid1 = new Grid();
             grid1.Margin = new Thickness(5);
@@ -152,9 +154,14 @@ namespace Next_Level
 
             Grid.SetRowSpan(grid1, 2);
             Grid.SetRow(answer, 2);
+
+
             Grid.SetColumn(answer, 1);
+            Grid.SetColumn(currentDate, 3);
+
 
             myGrid.Children.Add(textName);
+            myGrid.Children.Add(currentDate);
             myGrid.Children.Add(grid1);
             myGrid.Children.Add(feed);
             myGrid.Children.Add(answer);
