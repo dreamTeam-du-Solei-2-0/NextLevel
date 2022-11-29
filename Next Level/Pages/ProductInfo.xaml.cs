@@ -65,12 +65,99 @@ namespace Next_Level
             }
             else
             {
-                Coments.Text += $"\n{user.Name}\n{ComW.Text}";
-            
+                //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
+                Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
+
             }
             
             ComW.Clear();
 
+        }
+
+        Brush SetColor(string hex)
+        {
+            return (Brush)(new BrushConverter().ConvertFrom(hex));
+        }
+        Grid CreateGrid(string userName, string commentText)
+        {
+            //string text = File.ReadAllText("C:\\Users\\dsgnrr\\Desktop\\feed.txt");
+            Grid myGrid = new Grid();
+            myGrid.Height = 150;
+            myGrid.Background = SetColor("#1F1F1F");
+            //myGrid.ShowGridLines = true;
+
+            RowDefinition[] rows = new RowDefinition[3];
+            for (int i = 0; i < rows.Length; i++)
+                rows[i] = new RowDefinition();
+
+            ColumnDefinition[] columns = new ColumnDefinition[4];
+            for (int i = 0; i < columns.Length; i++)
+                columns[i] = new ColumnDefinition();
+
+            rows[0].Height = new GridLength(25);
+            rows[1].Height = new GridLength(100);
+            rows[2].Height = new GridLength(25);
+
+            columns[0].Width = new GridLength(110);
+            columns[1].Width = new GridLength(100);
+            columns[3].Width = new GridLength(100);
+
+            myGrid.ColumnDefinitions.Add(columns[0]);
+            myGrid.ColumnDefinitions.Add(columns[1]);
+            myGrid.ColumnDefinitions.Add(columns[2]);
+            myGrid.ColumnDefinitions.Add(columns[3]);
+
+            myGrid.RowDefinitions.Add(rows[0]);
+            myGrid.RowDefinitions.Add(rows[1]);
+            myGrid.RowDefinitions.Add(rows[2]);
+
+            Button answer = new Button();
+            answer.Content = "Reply";
+            answer.Foreground = SetColor("#00541F");
+
+            TextBlock textName = new TextBlock();
+            textName.Text = userName;
+            textName.Foreground = SetColor("#B4B4B4");
+            textName.Margin = new Thickness(10, 0, 0, 0);
+            textName.FontSize = 20;
+
+            TextBlock feed = new TextBlock();
+            feed.Margin = new Thickness(10);
+            feed.Text = commentText;
+            feed.Foreground = SetColor("#B4B4B4");
+            feed.TextWrapping = TextWrapping.Wrap;
+            feed.Margin = new Thickness(10, 0, 0, 0);
+            feed.FontSize = 15;
+
+            TextBlock currentDate = new TextBlock();
+            currentDate.Margin = new Thickness(10);
+            currentDate.Text = "date";
+            currentDate.Foreground = SetColor("#B4B4B4");
+            currentDate.TextWrapping = TextWrapping.Wrap;
+            currentDate.Margin = new Thickness(10, 0, 0, 0);
+            currentDate.FontSize = 15;
+
+            Grid grid1 = new Grid();
+            grid1.Margin = new Thickness(5);
+            grid1.Background = SetColor("#B4B4B4");
+
+            Grid.SetRow(textName, 0);
+            Grid.SetColumn(textName, 1);
+            Grid.SetColumnSpan(textName, 2);
+
+            Grid.SetRow(feed, 1);
+            Grid.SetColumn(feed, 1);
+            Grid.SetColumnSpan(feed, 3);
+
+            Grid.SetRowSpan(grid1, 2);
+            Grid.SetRow(answer, 2);
+            Grid.SetColumn(answer, 1);
+
+            myGrid.Children.Add(textName);
+            myGrid.Children.Add(grid1);
+            myGrid.Children.Add(feed);
+            myGrid.Children.Add(answer);
+            return myGrid;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -91,7 +178,8 @@ namespace Next_Level
                 }
                 else
                 {
-                    Coments.Text += $"\n{user.Name}\n{ComW.Text}";
+                    //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
+                    Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
                 }
 
                 ComW.Clear();
