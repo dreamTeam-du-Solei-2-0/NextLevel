@@ -31,7 +31,79 @@ namespace Next_Level.Pages
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
             this.user = accounts.getUserByLogin(current_user);
+            //LoginError.Visibility = Visibility.Collapsed;
+            //EmailError.Visibility = Visibility.Collapsed;
+            //PasswordError.Visibility = Visibility.Collapsed;
+            //DataChange.Visibility = Visibility.Collapsed;
         }
+
+        private void createAccount_Click(object sender, RoutedEventArgs e)
+        {
+            int count = 0;
+
+
+            if (!EmailCheckFormat(email.Text) || EmailCheck(email.Text))
+            {
+                if (!EmailCheckFormat(email.Text))
+                    EmailError.Visibility = Visibility.Visible;
+                else
+                    EmailError.Visibility = Visibility.Visible;
+                EmailBorder.Margin = new Thickness(0, 0, 0, 0);
+                EmailBorder.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                EmailError.Visibility = Visibility.Collapsed;
+                EmailError.Visibility = Visibility.Collapsed;
+                EmailBorder.Margin = EmailError.Margin;
+                EmailBorder.BorderBrush = Brushes.Gray;
+                count++;
+            }
+
+            if (LoginCheck(login.Text))
+            {
+                LoginError.Visibility = Visibility.Visible;
+                LoginBorder.Margin = new Thickness(0, 0, 0, 0);
+                LoginBorder.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                LoginError.Visibility = Visibility.Collapsed;
+                LoginBorder.Margin = LoginError.Margin;
+                LoginBorder.BorderBrush = Brushes.Gray;
+                count++;
+            }
+
+            if (!CheckPassword(Password.Password))
+            {
+                PasswordError.Visibility = Visibility.Visible;
+                PasswordBorder.Margin = new Thickness(0, 0, 0, 0);
+                PasswordBorder.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                PasswordError.Visibility = Visibility.Collapsed;
+                PasswordBorder.Margin = PasswordError.Margin;
+                PasswordBorder.BorderBrush = Brushes.Gray;
+                count++;
+            }
+
+            if (count >= 3)
+            {
+                DataChange.Visibility = Visibility.Visible;
+                accounts.removeUser(user);
+                user.Login = login.Text;
+                user.Name = name.Text;
+                user.Surname = Surname.Text;
+                user.Email = email.Text;
+                user.Password = Password.Password;
+                accounts.AddNew(user);
+               
+            }
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             login.Text = user.Login;

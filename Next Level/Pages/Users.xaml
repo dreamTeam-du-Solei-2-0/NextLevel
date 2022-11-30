@@ -11,14 +11,17 @@
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <TextBlock x:Name="DataChange" Grid.Row="0" Visibility="Collapsed" VerticalAlignment="Center" TextAlignment="Center" Text="Data is change" FontSize="13" Foreground="DarkGreen"/>
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -35,7 +38,7 @@
                             <TextBox x:Name="login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
                         </Grid>
                     </Border>
-                    <TextBlock x:Name="LoginError" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
+                    <TextBlock x:Name="LoginError" Visibility="Collapsed" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="10" Grid.Column="1">
                     <Border x:Name="EmailBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B">
@@ -49,12 +52,12 @@
                             <TextBox x:Name="email" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
                         </Grid>
                     </Border>
-                    <TextBlock x:Name="EmailError" Text="Email is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
+                    <TextBlock x:Name="EmailError" Visibility="Collapsed" Text="Email is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
                 </StackPanel>
                 
             </Grid>
             
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -86,7 +89,7 @@
                     </Border>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -118,7 +121,7 @@
                     </Border>
                 </StackPanel>
             </Grid>
-            <StackPanel VerticalAlignment="Center" Margin="10" Grid.Row="3">
+            <StackPanel VerticalAlignment="Center" Margin="10" Grid.Row="4">
                 <Border x:Name="PasswordBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" >
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
@@ -130,9 +133,9 @@
                         <PasswordBox x:Name="Password" PasswordChanged="userPassword_PasswordChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
                     </Grid>
                 </Border>
-                <TextBlock x:Name="FieldsEmpty" TextAlignment="Center" Text="Fields is empty" FontSize="13" Foreground="DarkRed"/>
+                <TextBlock x:Name="PasswordError" Visibility="Collapsed" TextAlignment="Center" Text="Password isn't strong" FontSize="13" Foreground="DarkRed"/>
             </StackPanel>
-            <Border Padding="10" Margin="10 0 10 0" Grid.Row="4" VerticalAlignment="Center" Background="#181A1B" CornerRadius="8">
+            <Border Padding="10" Margin="10 0 10 0" Grid.Row="5" VerticalAlignment="Center" Background="#181A1B" CornerRadius="8">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -146,7 +149,8 @@
                     <TextBlock x:Name="Capital" Foreground="#6B6D6D" Text="-Password must contain at least one capital letter" Grid.Row="3"/>
                 </Grid>
             </Border>
-            <Button x:Name="changeData" Grid.Row="5" Style="{DynamicResource mainButton}" Click="changeData_Click" Content="Change data" Margin="0 10 0 10"/>
+            <Button x:Name="changeData" Grid.Row="6" Style="{DynamicResource mainButton}" Click="changeData_Click" Content="Change data" Margin="0 10 0 10"/>
+            
         </Grid>
         
         <!--<Grid>
