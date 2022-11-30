@@ -38,10 +38,10 @@ namespace Next_Level.Pages
             {
                 file = new BinnaryFile(path_saveData);
                 saveLogin = file.Load<SaveLogin>();
+                saveLog.IsChecked = true;
                 txtEmail.Text = saveLogin.login;
                 passwordBox.Password = saveLogin.password;
             }
-
             else
                 saveLogin = new SaveLogin();
         }
@@ -108,10 +108,15 @@ namespace Next_Level.Pages
                     {
                         file = new BinnaryFile(path_saveData);
                         saveLogin = new SaveLogin();
+                        saveLogin.save_Data = isSaved;
                         saveLogin.login = txtEmail.Text;
                         saveLogin.password = passwordBox.Password;
                         file.Save(saveLogin);
                     }
+                }
+                if (saveLog.IsChecked == false)
+                {
+                    File.Delete(path_saveData);
                 }
                 MainWindow main = new MainWindow();
                 file = new BinnaryFile(path_currentUser);
