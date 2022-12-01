@@ -13,7 +13,7 @@
                 <TabItem.Header>
 
                     <StackPanel Orientation="Horizontal"  >
-                        <Ellipse Height="10" Width="10" Fill="{DynamicResource PrimaryBackgroundColor}"/>
+                       
                         <TextBlock Margin="3" Foreground="{DynamicResource PrimaryBackgroundColor}">Все о товаре</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -55,7 +55,7 @@
             <TabItem x:Name="characteristics" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Rectangle Height="10" Width="10" Fill="{DynamicResource PrimaryBackgroundColor}" />
+                        
                         <TextBlock  Margin="3" Foreground="{DynamicResource PrimaryBackgroundColor}">Характеристики</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -63,7 +63,7 @@
             <TabItem x:Name="reviews" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryBlackColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Rectangle Height="10" Width="10" Fill="{DynamicResource PrimaryBackgroundColor}" />
+                        
                         <TextBlock Margin="3" Foreground="{DynamicResource PrimaryBackgroundColor}">Отзывы</TextBlock>
                     </StackPanel>
 
@@ -107,7 +107,7 @@
             <TabItem x:Name="Photo" BorderBrush="{DynamicResource PrimaryBlackColor}" Background="{DynamicResource SecundaryBlackColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Rectangle Height="10" Width="10" Fill="{DynamicResource PrimaryBackgroundColor}" />
+                        
                         <TextBlock Margin="3" Background="{DynamicResource PrimaryBackgroundColor}">Фото</TextBlock>
                     </StackPanel>
 

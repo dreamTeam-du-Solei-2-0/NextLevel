@@ -174,7 +174,6 @@ namespace Next_Level
             //текущая дата
             Grid.SetColumn(currentDate, 3);
             myGrid.Children.Add(currentDate);
-            Coments.Height = this.Height - 200;
             return myGrid;
         }
 
