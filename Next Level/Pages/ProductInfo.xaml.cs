@@ -42,9 +42,8 @@ namespace Next_Level
             openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
-
             //MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
-
+            MaxWidth = 600;
 
         }
 
@@ -68,6 +67,7 @@ namespace Next_Level
             {
                 //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
                 Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
+                
 
             }
             
@@ -83,7 +83,8 @@ namespace Next_Level
         {
             //тело отзыва
             Grid myGrid = new Grid();
-            myGrid.Height = 150;
+            myGrid.MaxHeight = 350;
+            myGrid.MinHeight = 150;
             myGrid.Background = SetColor("#1F1F1F");
             myGrid.Margin = new Thickness(5);
             //myGrid.ShowGridLines = true;
@@ -173,7 +174,7 @@ namespace Next_Level
             //текущая дата
             Grid.SetColumn(currentDate, 3);
             myGrid.Children.Add(currentDate);
-            
+            Coments.Height = this.Height - 200;
             return myGrid;
         }
 
