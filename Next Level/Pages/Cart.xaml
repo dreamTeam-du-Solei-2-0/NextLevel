@@ -105,7 +105,7 @@
                     </Grid>
 
                     <TextBlock Text="Card Number" Style="{StaticResource titleText}"/>
-                    <TextBox Margin="0 5 0 30"/>
+                    <TextBox MaxLength="16" x:Name="NumberCard" Margin="0 5 0 30" TextChanged="NumberCard_TextChanged"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -115,17 +115,17 @@
 
                         <StackPanel>
                             <TextBlock Text="Expire Date" Style="{StaticResource titleText}"/>
-                            <TextBox Margin="0 5 0 0"/>
+                            <TextBox MaxLength="5" x:Name="DateCard" TextChanged="DateCard_TextChanged"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="30 0 0 0" Width="50">
                             <TextBlock Text="CVV" Style="{StaticResource titleText}"/>
-                            <TextBox Margin="0 5 0 0"/>
+                            <TextBox MaxLength="3" x:Name="CVVCard"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
 
-                <Button Content="Checkout" Style="{DynamicResource mainButton}" Height="48" Margin="50,382,50,0" VerticalAlignment="Top"/>
+                <Button Content="Checkout" Style="{DynamicResource mainButton}" Height="48" Margin="-257,368,357,0" VerticalAlignment="Top"/>
             </Grid>
 
         </Grid>
