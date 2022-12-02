@@ -159,7 +159,7 @@ namespace Next_Level.Pages
             }
             else
             {
-                // login.ForeColor = Color.Red;
+                
                 login.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
@@ -181,7 +181,7 @@ namespace Next_Level.Pages
             }
             else
             {
-                // login.ForeColor = Color.Red;
+
                 name.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
@@ -203,7 +203,7 @@ namespace Next_Level.Pages
             }
             else
             {
-                // login.ForeColor = Color.Red;
+                
                 Surname.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
@@ -227,7 +227,6 @@ namespace Next_Level.Pages
             }
             else
             {
-                // login.ForeColor = Color.Red;
                 email.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
