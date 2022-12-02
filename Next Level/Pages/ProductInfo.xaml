@@ -75,25 +75,22 @@
                             <ColumnDefinition Width="240*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1000*"/>
-                            <RowDefinition Height="300*"/>
+                            <RowDefinition Height="500*"/>
+                            <RowDefinition Height="80*"/>
                         </Grid.RowDefinitions>
                         <!--<TextBlock Width="800" VerticalAlignment="Top" HorizontalAlignment="Left" Height="300" x:Name="Coments" Foreground="White" Grid.ColumnSpan="2"></TextBlock>-->
-                        <ScrollViewer VerticalAlignment="Top" Height="300"   Grid.ColumnSpan="2">
+                        <ScrollViewer x:Name="sc" VerticalAlignment="Top"  Grid.ColumnSpan="2">
                             <StackPanel x:Name="Coments"  Background="{DynamicResource SecundaryBlackColor }"/>
                         </ScrollViewer>
 
-
-
-
-                        <TextBox MaxLength="200" SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryWhiteColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
+                        <TextBox MinWidth="300" MaxWidth="1000" MaxLength="200" SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryWhiteColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
          VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.Row="1">
                             </TextBox>
-                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="send" Content="Send" Height="83" Width="92" Click="send_Click" Background="{DynamicResource PrimaryOrangeColor}" BorderBrush="{DynamicResource PrimaryBlackColor}" Grid.Column="1" Grid.Row="1">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="send" Content="Send" Height="50" Width="92" Click="send_Click" Background="{DynamicResource PrimaryOrangeColor}" BorderBrush="{DynamicResource PrimaryBlackColor}" Grid.Column="1" Grid.Row="1">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Grid>
-                                        <Ellipse StrokeThickness="2" Fill="Red"  Stroke="Red"/>
+                                        <Ellipse StrokeThickness="2" Fill="#3AB19B"  Stroke="#3AB19B"/>
                                         
                                     </Grid>
                                 </ControlTemplate>

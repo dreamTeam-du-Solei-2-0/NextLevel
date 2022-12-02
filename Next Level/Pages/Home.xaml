@@ -40,6 +40,7 @@
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 </StackPanel>
+                <Frame x:Name="frame" NavigationUIVisibility="Hidden" Content="Frame" Height="100"/>
             </StackPanel>
         </ScrollViewer>
     </Border>

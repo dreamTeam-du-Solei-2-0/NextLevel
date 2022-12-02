@@ -174,6 +174,8 @@ namespace Next_Level
             //текущая дата
             Grid.SetColumn(currentDate, 3);
             myGrid.Children.Add(currentDate);
+            sc.MinHeight = 150;
+            sc.MaxHeight = 1000;
             return myGrid;
         }
 

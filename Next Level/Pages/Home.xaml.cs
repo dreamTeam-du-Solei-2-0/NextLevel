@@ -54,8 +54,8 @@ namespace Next_Level.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ProductInfo productInfo = new ProductInfo();
-            productInfo.ShowDialog();
+            ProductInfo pr = new ProductInfo();
+            pr.Show();
         }
     }
 
