@@ -104,30 +104,7 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem x:Name="Photo" BorderBrush="{DynamicResource PrimaryBlackColor}" Background="{DynamicResource SecundaryBlackColor}">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        
-                        <TextBlock Margin="3" Background="{DynamicResource PrimaryBackgroundColor}">Фото</TextBlock>
-                    </StackPanel>
-
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="243*"/>
-                            <ColumnDefinition Width="11*"/>
-                            <ColumnDefinition Width="540*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="previous" Width="50" Height="50" Style="{StaticResource buttonCircle}" HorizontalAlignment="Left" Content="&lt;" Foreground="White" Margin="8,176,0,176">
-                        </Button>
-                        <Image x:Name="gallary" Width="650" Height="400" Grid.ColumnSpan="3" Margin="72,1,72,1" ></Image>
-
-                        <Button x:Name="next" Width="50" Height="50" Style="{StaticResource buttonCircle}" HorizontalAlignment="Left" Content=">" Foreground="White" Click="Button_Click" Grid.Column="2" Margin="482,176,0,176">
-                        </Button>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
+            
 
         </TabControl>
     </Grid>

@@ -124,6 +124,28 @@ namespace Next_Level.Pages
                 user.Email = email.Text;
             user.Password=Password.Password;
             accounts.AddNew(user);
+            if (string.IsNullOrEmpty(Surname.Text))
+            {
+                MessageBox.Show("SurnameIsEmpty");
+
+            }
+            if(string.IsNullOrEmpty(textName.Text))
+                MessageBox.Show("NameIsEmpty");
+            if (string.IsNullOrEmpty(name.Text))
+                MessageBox.Show("NameIsEmpty");
+            if (string.IsNullOrEmpty(email.Text))
+            {
+                MessageBox.Show("EmailIsEmpty");
+                if (string.IsNullOrEmpty(textEmail.Text))
+                {
+                    MessageBox.Show("EmailIsEmpty");
+                }
+            }
+            if (string.IsNullOrEmpty(textLogin.Text))
+                MessageBox.Show("loginIsEmpty");
+            if (string.IsNullOrEmpty(login.Text))
+                MessageBox.Show("loginIsEmpty");
+
         }
         private void txtLogin_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -131,6 +153,15 @@ namespace Next_Level.Pages
                 textLogin.Visibility = Visibility.Collapsed;
             else
                 textLogin.Visibility = Visibility.Visible;
+            if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(login.Text))
+            {
+                login.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                // login.ForeColor = Color.Red;
+                login.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void textLogin_MouseDown(object sender, MouseButtonEventArgs e)
@@ -144,6 +175,15 @@ namespace Next_Level.Pages
                 textName.Visibility = Visibility.Collapsed;
             else
                 textName.Visibility = Visibility.Visible;
+            if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(name.Text))
+            {
+                name.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                // login.ForeColor = Color.Red;
+                name.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void textName_MouseDown(object sender, MouseButtonEventArgs e)
@@ -157,10 +197,21 @@ namespace Next_Level.Pages
                 textSurname.Visibility = Visibility.Collapsed;
             else
                 textSurname.Visibility = Visibility.Visible;
+            if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(Surname.Text))
+            {
+                Surname.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                // login.ForeColor = Color.Red;
+                Surname.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void textSurname_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            
+            
             Surname.Focus();
         }
 
@@ -170,6 +221,15 @@ namespace Next_Level.Pages
                 textEmail.Visibility = Visibility.Collapsed;
             else
                 textEmail.Visibility = Visibility.Visible;
+            if ((new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")).IsMatch(email.Text))
+            {
+                email.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                // login.ForeColor = Color.Red;
+                email.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
@@ -179,10 +239,19 @@ namespace Next_Level.Pages
 
         private void txtPhone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(email.Text) && email.Text.Length > 0)
+            if (!string.IsNullOrEmpty(Phone.Text) && Phone.Text.Length > 0)
                 textPhone.Visibility = Visibility.Collapsed;
             else
                 textPhone.Visibility = Visibility.Visible;
+            if ((new Regex(@"^\+[0-9]{3}\s\((\d+)\)-\d{3}-\d{2}-\d{2}")).IsMatch(Phone.Text))
+            {
+                Phone.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                // login.ForeColor = Color.Red;
+                Phone.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void textPhone_MouseDown(object sender, MouseButtonEventArgs e)
@@ -190,18 +259,18 @@ namespace Next_Level.Pages
             Phone.Focus();
         }
 
-        private void txtBirth_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(email.Text) && email.Text.Length > 0)
-                textBirth.Visibility = Visibility.Collapsed;
-            else
-                textBirth.Visibility = Visibility.Visible;
-        }
+        //private void txtBirth_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(email.Text) && email.Text.Length > 0)
+        //        textBirth.Visibility = Visibility.Collapsed;
+        //    else
+        //        textBirth.Visibility = Visibility.Visible;
+        //}
 
-        private void textBirth_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Birthday.Focus();
-        }
+        //private void textBirth_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    Birthday.Focus();
+        //}
 
         private void userPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {

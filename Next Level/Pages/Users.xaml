@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
       xmlns:local="clr-namespace:Next_Level.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -18,7 +19,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                
+
             </Grid.RowDefinitions>
             <TextBlock x:Name="DataChange" Grid.Row="0" Visibility="Collapsed" VerticalAlignment="Center" TextAlignment="Center" Text="Data is change" FontSize="13" Foreground="DarkGreen"/>
             <Grid Grid.Row="1">
@@ -31,11 +32,12 @@
                         <Grid Margin="7 9">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="45*" />
+                                <ColumnDefinition Width="319*"/>
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
-                            <TextBlock x:Name="textLogin" MouseDown="textLogin_MouseDown" Text="Login" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
-                            <TextBox x:Name="login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                            <TextBlock x:Name="textLogin" MouseDown="textLogin_MouseDown" Text="Login" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1" Grid.ColumnSpan="2"/>
+                            <TextBox MaxLength="30" x:Name="login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Background="#181A1B" Grid.ColumnSpan="3" Margin="10,0,0,0"/>
                         </Grid>
                     </Border>
                     <TextBlock x:Name="LoginError" Visibility="Collapsed" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
@@ -54,9 +56,9 @@
                     </Border>
                     <TextBlock x:Name="EmailError" Visibility="Collapsed" Text="Email is exist" FontSize="13" Foreground="DarkRed" Margin="5 0 0 0"/>
                 </StackPanel>
-                
+
             </Grid>
-            
+
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -102,24 +104,36 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
-                            <TextBlock x:Name="textPhone" MouseDown="textPhone_MouseDown" Text="Phone" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                            <TextBlock x:Name="textPhone" MouseDown="textPhone_MouseDown" Text="+380 (95)-921-11-87" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
                             <TextBox x:Name="Phone" TextChanged="txtPhone_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
                         </Grid>
                     </Border>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="10" Grid.Column="1">
-                    <Border x:Name="BirthdayBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
+                    <!--<TextBlock x:Name="textBirth" MouseDown="textBirth_MouseDown" Text="Birthday" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                           <TextBox x:Name="Birthday" TextChanged="txtBirth_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                            
+                        </Grid>
+                    </Border>-->
+                    <!--<TextBlock x:Name="textBirth" MouseDown="textBirth_MouseDown" Text="Birthday" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                           <TextBox x:Name="Birthday" TextChanged="txtBirth_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                            
+                        </Grid>
+                    </Border>-->
+                    <!-- <Border x:Name="BirthdayBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" Margin="0 0 0 20">
                         <Grid Margin="7 9">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
-                            <TextBlock x:Name="textBirth" MouseDown="textBirth_MouseDown" Text="Birthday" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
-                            <TextBox x:Name="Birthday" TextChanged="txtBirth_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                            <Image Source="/Assets/Images/Email.png" Height="20" />-->
+                    <!--<TextBlock x:Name="textBirth" MouseDown="textBirth_MouseDown" Text="Birthday" Style="{StaticResource textHint}" Foreground="#6B6D6D" Grid.Column="1" Margin="9,0,-2,-1"/>
+                           <TextBox x:Name="Birthday" TextChanged="txtBirth_TextChanged" Style="{StaticResource textBox}" Background="#181A1B"/>
+                            
                         </Grid>
-                    </Border>
+                    </Border>-->
                 </StackPanel>
+                <DatePicker Background="Black" x:Name="datePicker1" IsDropDownOpen="False" SelectedDateFormat="Short" Grid.Column="1" Margin="20,11,0,34" />
             </Grid>
             <StackPanel VerticalAlignment="Center" Margin="10" Grid.Row="4">
                 <Border x:Name="PasswordBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" >
@@ -150,9 +164,9 @@
                 </Grid>
             </Border>
             <Button x:Name="changeData" Grid.Row="6" Style="{DynamicResource mainButton}" Click="changeData_Click" Content="Change data" Margin="0 10 0 10"/>
-            
+
         </Grid>
-        
+
         <!--<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0*"/>
