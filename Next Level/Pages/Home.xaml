@@ -9,7 +9,9 @@
       Title="Home" FontFamily="Poppins">
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
         <ScrollViewer Grid.Column="1" Grid.Row="1" Background="{DynamicResource SecundaryBackgroundColor}" Margin="10,0,10,0">
-            <StackPanel>
+            <StackPanel x:Name="myStack"/>
+            <!--Код Паши-->
+            <!--<StackPanel>
                 <StackPanel Margin="20 0">
                     
                     <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding Product}">
@@ -41,7 +43,8 @@
                     </ItemsControl>
                 </StackPanel>
                 <Frame x:Name="frame" NavigationUIVisibility="Hidden" Content="Frame" Height="100"/>
-            </StackPanel>
+            </StackPanel>-->
+            
         </ScrollViewer>
     </Border>
 </Page>
