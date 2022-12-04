@@ -48,7 +48,7 @@ namespace Next_Level.Pages
             {
                 foreach (var product in products)
                 {
-                    createWrap(CreateProduct(product, SetColor("#0B1726"), Brushes.White));
+                    createWrap(CreateProduct(product, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
                 }
             }
         }

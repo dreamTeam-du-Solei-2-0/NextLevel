@@ -30,6 +30,8 @@ namespace Next_Level
             InitializeComponent();
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
+            frameContent.Navigate(new Home());
+            rdHome.IsChecked = true;
         }
 
         private void headerThumb_DragDelta(object sender, DragDeltaEventArgs e)
@@ -41,9 +43,17 @@ namespace Next_Level
         private void Themes_Click(object sender, RoutedEventArgs e)
         {
             if (Themes.IsChecked == true)
+            {
                 ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
+                frameContent.Navigate(new Home());
+                rdHome.IsChecked = true;
+            }
             else
+            {
                 ThemesController.SetTheme(ThemesController.ThemeTypes.Light);
+                frameContent.Navigate(new Home());
+                rdHome.IsChecked = true;
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -55,6 +65,7 @@ namespace Next_Level
         {
             if (WindowState == WindowState.Normal)
                 WindowState = WindowState.Maximized;
+                
             else
                 WindowState = WindowState.Normal;
         }
