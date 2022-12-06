@@ -63,7 +63,6 @@
     <Compile Include="Classes\SaveLogin.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XmlFormat.cs" />
-    <Compile Include="Classes\CommetsToFile.cs" />
     <Compile Include="Interfaces\IFile.cs" />
     <Compile Include="UserContorls\Item.xaml.cs" />
     <Compile Include="Pages\Cart.xaml.cs">

@@ -10,7 +10,7 @@ namespace Next_Level.Classes
 {
     public class ProductList
     {
-        List<Product> products;
+        public List<Product> products { get; set; }
         IFile file = null;
         public bool fileLoad { get; set; } = false; 
         string product_path = NextLevelPath.PRODUCT_PATH;
@@ -71,6 +71,19 @@ namespace Next_Level.Classes
             foreach (var product in products)
             {
                 if (product.productPrice <= productPrice)
+                    find.Add(product);
+            }
+            if (find.Count != 0)
+                return find;
+            else return null;
+        }
+
+        public List<Product> getProductsByCategory(string category)
+        {
+            List<Product> find = new List<Product>();
+            foreach (var product in products)
+            {
+                if (product.Category == category)
                     find.Add(product);
             }
             if (find.Count != 0)

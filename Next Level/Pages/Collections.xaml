@@ -9,6 +9,20 @@
       Title="Collections" FontFamily="Poppins">
 
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
-        <Label Content="Collections" FontSize="50" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.01*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <WrapPanel x:Name="categoriesPanel"/>
+            </ScrollViewer>
+            <Separator Grid.Row="1"/>
+            <ScrollViewer Grid.Row="2">
+                <WrapPanel x:Name="productsPanel"/>
+            </ScrollViewer>
+
+        </Grid>
     </Border>
 </Page>
