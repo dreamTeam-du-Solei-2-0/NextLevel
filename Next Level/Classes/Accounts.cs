@@ -9,7 +9,7 @@ namespace Next_Level.Classes
 {
     public class Accounts
     {
-        IFile file = new BinnaryFile(@"..\Debug\Accounts.bin");
+        IFile file = new BinnaryFile(NextLevelPath.ACCOUNT_PATH);
         public List<User> account { get; set; } = new List<User>();
         public Accounts() => Load();
         public void AddNew(User person)

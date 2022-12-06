@@ -58,6 +58,7 @@
     <Compile Include="Classes\Accounts.cs" />
     <Compile Include="Classes\BinnaryFile.cs" />
     <Compile Include="Classes\EnterControl.cs" />
+    <Compile Include="Classes\NextLevelPath.cs" />
     <Compile Include="Classes\ProductList.cs" />
     <Compile Include="Classes\SaveLogin.cs" />
     <Compile Include="Classes\User.cs" />

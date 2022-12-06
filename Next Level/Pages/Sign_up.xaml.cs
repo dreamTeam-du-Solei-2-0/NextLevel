@@ -20,8 +20,8 @@ namespace Next_Level.Pages
     
     public partial class Login : Window
     {
-        string path_saveData = @"..\Debug\SaveLogin.bin";
-        string path_currentUser = @"..\Debug\CurrentLogin.bin";
+        string path_saveData = NextLevelPath.SAVE_LOGIN;
+        string path_currentUser = NextLevelPath.CURRENT_USER;
         Accounts account;
         IFile file;
         SaveLogin saveLogin;

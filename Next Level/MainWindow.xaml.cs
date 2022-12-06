@@ -23,7 +23,7 @@ namespace Next_Level
     public partial class MainWindow : Window
     {
         public string current_user { get; set; }
-        string path_currentUser = @"..\Debug\CurrentLogin.bin";
+        string path_currentUser = NextLevelPath.CURRENT_USER;
         IFile file;
         public MainWindow()
         {

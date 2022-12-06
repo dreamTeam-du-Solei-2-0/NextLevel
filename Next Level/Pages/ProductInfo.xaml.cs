@@ -32,7 +32,7 @@ namespace Next_Level
         int counter = 0;
         Accounts accounts = new Accounts();
         IFile file;
-        string path_currentUser = @"..\Debug\CurrentLogin.bin";
+        string path_currentUser = NextLevelPath.CURRENT_USER;
         
         public ProductInfo()
         {

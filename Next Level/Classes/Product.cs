@@ -13,6 +13,7 @@ namespace Next_Level.Classes
     public class Product
     {
         public string Id { get; set; }
+        public string Category { get; set; }
         public string productPhoto { get; set; }
         public string productName { get; set; }
         public double productPrice { get; set; }
@@ -22,6 +23,7 @@ namespace Next_Level.Classes
         public Product()
         {
             Id = string.Empty;
+            Category = string.Empty;
             productPhoto = string.Empty;
             productName = string.Empty;
             productPrice = 0;

@@ -13,7 +13,7 @@ namespace Next_Level.Classes
         List<Product> products;
         IFile file = null;
         public bool fileLoad { get; set; } = false; 
-        string product_path = @"..\Debug\Products.xml";
+        string product_path = NextLevelPath.PRODUCT_PATH;
 
         public ProductList()
         {

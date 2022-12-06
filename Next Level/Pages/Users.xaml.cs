@@ -21,7 +21,7 @@ namespace Next_Level.Pages
     public partial class Users : Page
     {
         public string current_user { get; set; }
-        string path_currentUser = @"..\Debug\CurrentLogin.bin";
+        string path_currentUser = NextLevelPath.CURRENT_USER;
         IFile file;
         Accounts accounts = new Accounts();
         User user;

@@ -23,11 +23,13 @@ namespace Next_Level.Pages
     public partial class Home : Page
     {
         public string current_user { get; set; }
-        string path_currentUser = @"..\Debug\CurrentLogin.bin";
+        string path_currentUser = NextLevelPath.CURRENT_USER;
         IFile file;
         ProductList products = null;
 
         WrapPanel wrap=null;
+
+        List<String> categories;
 
         public Home()
         {
@@ -44,15 +46,38 @@ namespace Next_Level.Pages
         void LoadProducts()
         {
             products = new ProductList();
+
+            file = new XmlFormat(NextLevelPath.CATEGORIES_PATH);
+            categories = file.Load<List<string>>();
             if (products.fileLoad)
             {
-                foreach (var product in products)
+                if (categories.Count != 0)
                 {
-                    createWrap(CreateProduct(product, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
+                    foreach(var category in categories)
+                    {
+                        myStack.Children.Add(createCategory(category));
+                        wrap = new WrapPanel();
+                        myStack.Children.Add(wrap);
+                        foreach (var product in products)
+                        {
+                            if(product.Category==category)
+                                wrap.Children.Add(CreateProduct(product, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
+                        }
+                    }
+                }
+                else
+                {
+                    wrap = new WrapPanel();
+                    myStack.Children.Add(wrap);
+                    foreach (var product in products)
+                    {
+                        wrap.Children.Add(CreateProduct(product, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
+                    }
                 }
             }
         }
 
+        #region EVENTS
         private void button_BuyProduct(object sender, RoutedEventArgs e)
         {
             ProductInfo productInfo = new ProductInfo();
@@ -64,6 +89,9 @@ namespace Next_Level.Pages
             ProductInfo pr = new ProductInfo();
             pr.Show();
         }
+
+
+        #endregion
 
         #region CREATE COLORS
         SolidColorBrush makeRandomColor()
@@ -88,16 +116,17 @@ namespace Next_Level.Pages
 
         #region CREATE ELEMENTS
 
-        void createWrap(Border product)
+        TextBlock createCategory(string _category)
         {
-            if (wrap == null)
-            {
-                wrap = new WrapPanel();
-                myStack.Children.Add(wrap);
-            }
-            wrap.Children.Add(product);
+            TextBlock category = new TextBlock();
+            category.Text = _category;
+            category.FontSize = 20;
+            category.FontWeight = FontWeights.Bold;
+            category.Foreground = SetColor("#15531C");
+            category.HorizontalAlignment = HorizontalAlignment.Center;
+            category.Margin = new Thickness(10);
+            return category;
         }
-
 
         BitmapImage loadPhoto(string path)
         {
@@ -116,14 +145,12 @@ namespace Next_Level.Pages
 
         Border CreateProduct(Product product, SolidColorBrush gridColor, SolidColorBrush textColor)
         {
-            int ROWS_COUNT = 5;
+            int ROWS_COUNT = 6;
             int COLUMNS_COUNT = 2;
 
             //Создание рамки. Для скругления углов
             Border border = new Border();
             border.CornerRadius = new CornerRadius(8);
-            //border.Background = SetColor("#1F1F1F");
-            //border.Background = makeColorRgb(231, 231, 231);
             border.Background = gridColor;
             border.Height = 260;
             border.Width = 180;
@@ -157,23 +184,53 @@ namespace Next_Level.Pages
             myGrid.ColumnDefinitions.Add(columns[1]);
 
             //меняем высоту первой строки
-            rows[0].Height = new GridLength(150);
-            rows[4].Height = new GridLength(50);
+            rows[1].Height = new GridLength(120);
+            rows[5].Height = new GridLength(50);
             //добавляем строки в сетку
             myGrid.RowDefinitions.Add(rows[0]);
             myGrid.RowDefinitions.Add(rows[1]);
             myGrid.RowDefinitions.Add(rows[2]);
             myGrid.RowDefinitions.Add(rows[3]);
             myGrid.RowDefinitions.Add(rows[4]);
+            myGrid.RowDefinitions.Add(rows[5]);
 
             //Фото товара
             Grid photo = new Grid();
             photo.Height = 120;
             photo.Width = 120;
 
+            //Категория
+            Border categoryBorder = new Border();
+            categoryBorder.Background = SetColor("#15531C");
+            categoryBorder.HorizontalAlignment = HorizontalAlignment.Center;
+            categoryBorder.CornerRadius = new CornerRadius(8);
+            categoryBorder.Margin = new Thickness(2);
 
+            TextBlock category = new TextBlock();
+            if (product.Category != String.Empty)
+                category.Text = product.Category;
+            else
+                category.Text = "#CATEGORY#";
+
+            category.Margin = new Thickness(2);
+            category.FontSize = 12;
+            category.TextWrapping = TextWrapping.Wrap;
+            category.VerticalAlignment = VerticalAlignment.Center;
+            category.TextAlignment = TextAlignment.Center;
+            category.Foreground = textColor;
+
+            categoryBorder.Child = category;
+            //Добавляю в строку
+            Grid.SetRow(categoryBorder, 0);
+            //Растягиваю на два столбца
+            Grid.SetColumnSpan(categoryBorder, 2);
+            //Добавляю текст в сетку
+            myGrid.Children.Add(categoryBorder);
+
+            string photoBD = System.IO.Path.GetFullPath(NextLevelPath.STOREBD_PATH);
+            photoBD = System.IO.Path.Combine(photoBD, product.productName);
             //Загрузка фото
-            var productPhoto = loadPhoto(product.productPhoto);
+            var productPhoto = loadPhoto(System.IO.Path.Combine(photoBD, product.productPhoto));
             if (productPhoto != null)
             {
                 Image imageBox = new Image();
@@ -189,7 +246,7 @@ namespace Next_Level.Pages
             }
 
 
-            Grid.SetRow(photo, 0);
+            Grid.SetRow(photo, 1);
             Grid.SetColumnSpan(photo, 2);
             myGrid.Children.Add(photo);
 
@@ -202,7 +259,7 @@ namespace Next_Level.Pages
             itemsCount.TextAlignment = TextAlignment.Center;
             itemsCount.Foreground = textColor;
             //Добавляю в строку
-            Grid.SetRow(itemsCount, 1);
+            Grid.SetRow(itemsCount, 2);
             //Растягиваю на два столбца
             Grid.SetColumnSpan(itemsCount, 2);
             //Добавляю текст в сетку
@@ -219,7 +276,7 @@ namespace Next_Level.Pages
             productName.TextAlignment = TextAlignment.Center;
             productName.Foreground = textColor;
             //Добавляю в строку
-            Grid.SetRow(productName, 2);
+            Grid.SetRow(productName, 3);
             //Растягиваю на два столбца
             Grid.SetColumnSpan(productName, 2);
             //Добавляю текст в сетку
@@ -232,7 +289,7 @@ namespace Next_Level.Pages
             price.VerticalAlignment = VerticalAlignment.Center;
             price.FontSize = 15;
             price.Foreground = textColor;
-            Grid.SetRow(price, 3);
+            Grid.SetRow(price, 4);
             Grid.SetColumnSpan(price, 2);
             myGrid.Children.Add(price);
 
@@ -245,7 +302,8 @@ namespace Next_Level.Pages
             //Кнопка купить
             Button buyBut = new Button();
             buyBut.BorderThickness = new Thickness(0);
-            buyBut.Name = product.Id + "1";
+            if (product.Id != string.Empty)
+                buyBut.Name = product.Id + "1";
             buyBut.Content = "Buy";
             buyBut.Foreground = Brushes.White;
             buyBut.Background = SetColor("#15531C");
@@ -253,7 +311,7 @@ namespace Next_Level.Pages
             buyBut.Foreground = Brushes.White;
             buyBut.Click += new RoutedEventHandler(button_BuyProduct);
             buyBorder.Child = buyBut;
-            Grid.SetRow(buyBorder, 4);
+            Grid.SetRow(buyBorder, 5);
             myGrid.Children.Add(buyBorder);
 
             Border infoBorder = new Border();
@@ -265,7 +323,8 @@ namespace Next_Level.Pages
             //Кнопка информация о товаре
             Button infoBut = new Button();
             infoBut.BorderThickness = new Thickness(0);
-            infoBut.Name = product.Id + "2";
+            if (product.Id != string.Empty)
+                infoBut.Name = product.Id + "2";
             infoBut.Content = "About";
             infoBut.Foreground = Brushes.White;
             infoBut.Background = SetColor("#d32f2f");
@@ -273,7 +332,7 @@ namespace Next_Level.Pages
             infoBut.Foreground = Brushes.White;
             //infoBut.Click += new RoutedEventHandler(button_InfoProduct);
             infoBorder.Child = infoBut;
-            Grid.SetRow(infoBorder, 4);
+            Grid.SetRow(infoBorder, 5);
             Grid.SetColumn(infoBorder, 1);
             myGrid.Children.Add(infoBorder);
 
