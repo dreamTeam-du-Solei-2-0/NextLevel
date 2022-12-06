@@ -46,9 +46,15 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" HorizontalAlignment="Left" Source="/Assets/Images/mastercard.png" Width="25" Style="{StaticResource icon}"/>
-                        <Image Grid.Column="1" HorizontalAlignment="Center" Source="/Assets/Images/visa.png" Width="25" Style="{StaticResource icon}"/>
-                        <Image Grid.Column="2" HorizontalAlignment="Right" Source="/Assets/Images/credit.png" Width="25" Style="{StaticResource icon}"/>
+                        <Button Grid.Column="0" Background="{DynamicResource PrimaryBlackColor}">
+                            <Image  HorizontalAlignment="Left" Source="/Assets/Images/mastercard.png" Width="25" Style="{StaticResource icon}"/>
+                        </Button>
+                        <Button x:Name="btnVisa" Grid.Column="1" Background="{DynamicResource PrimaryBlackColor}" Click="Button_Click">
+                            <Image HorizontalAlignment="Center" Source="/Assets/Images/visa.png" Width="25" Style="{StaticResource icon}"/>
+                        </Button>
+                        <Button x:Name="btnMaster" Grid.Column="1" Background="{DynamicResource PrimaryBlackColor}" Grid.ColumnSpan="2" Margin="66,0,0,0" Click="btnMaster_Click">
+                            <Image Grid.Column="2" HorizontalAlignment="Right" Source="/Assets/Images/credit.png" Width="25" Style="{StaticResource icon}"/>
+                        </Button>
                     </Grid>
 
                     <TextBlock Text="Card Number" Style="{StaticResource titleText}"/>

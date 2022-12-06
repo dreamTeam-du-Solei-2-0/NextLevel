@@ -51,20 +51,7 @@ namespace Next_Level.Pages
 
         private void DateCard_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((new Regex(@"^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$")).IsMatch(DateCard.Text)) // проверка даты ввод(0524 или 05/24)
-            {
-                DateCard.Foreground = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
-                DateCard.Foreground = new SolidColorBrush(Colors.Red);
-               
-
-            }
-            if (string.IsNullOrEmpty(NumberCard.Text))
-            {
-                DateCard.BorderBrush = new SolidColorBrush(Colors.Red);
-            }
+            
         }
 
         private void CVVCard_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,6 +70,43 @@ namespace Next_Level.Pages
             if (string.IsNullOrEmpty(NumberCard.Text))
             {
                 CVVCard.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if ((new Regex(@"^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$")).IsMatch(DateCard.Text)) // проверка даты ввод(0524 или 05/24)
+            {
+                DateCard.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                DateCard.Foreground = new SolidColorBrush(Colors.Red);
+
+
+            }
+            if (string.IsNullOrEmpty(NumberCard.Text))
+            {
+                DateCard.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        private void btnMaster_Click(object sender, RoutedEventArgs e)
+        {
+            //
+            if ((new Regex(@"^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$")).IsMatch(DateCard.Text)) // проверка даты ввод(0524 или 05/24)
+            {
+                DateCard.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                DateCard.Foreground = new SolidColorBrush(Colors.Red);
+
+
+            }
+            if (string.IsNullOrEmpty(NumberCard.Text))
+            {
+                DateCard.BorderBrush = new SolidColorBrush(Colors.Red);
             }
         }
     }
