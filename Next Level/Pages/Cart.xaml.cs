@@ -93,8 +93,8 @@ namespace Next_Level.Pages
 
         private void btnMaster_Click(object sender, RoutedEventArgs e)
         {
-            //
-            if ((new Regex(@"^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$")).IsMatch(DateCard.Text)) // проверка даты ввод(0524 или 05/24)
+            
+            if ((new Regex(@"^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$")).IsMatch(DateCard.Text)) // проверка мастеркада там начинается ввод с 51 до 54
             {
                 DateCard.Foreground = new SolidColorBrush(Colors.White);
             }
