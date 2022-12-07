@@ -47,19 +47,19 @@
                         </Button>
 
                         <Label FontSize="20" Margin="10,10,5,8">Описание:</Label>
-                        <Label FontSize="15" Content="Клоун обыкновенный"/>
+                        <Label x:Name="productDescription" FontSize="15" Content="No description"/>
                     </StackPanel>
 
                 </TabItem.Content>
             </TabItem>
-            <TabItem x:Name="characteristics" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}">
+            <!--<TabItem x:Name="characteristics" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         
                         <TextBlock  Margin="3" Foreground="{DynamicResource PrimaryBackgroundColor}">Характеристики</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
-            </TabItem>
+            </TabItem>-->
             <TabItem x:Name="reviews" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryBlackColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">

@@ -33,8 +33,23 @@ namespace Next_Level
         Accounts accounts = new Accounts();
         IFile file;
         string path_currentUser = NextLevelPath.CURRENT_USER;
-        
-        public ProductInfo()
+        ProductList _products;
+        Product product;
+
+        //public ProductInfo()
+        //{
+        //    InitializeComponent();
+        //    DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
+        //    OpenFileDialog openDialog = new OpenFileDialog();
+        //    openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
+        //    file = new BinnaryFile(path_currentUser);
+        //    current_user = file.Load<string>();
+        //    MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
+        //    MaxWidth = 600;
+        //    products = new ProductList();
+        //}
+
+        public ProductInfo(string id)
         {
             InitializeComponent();
             DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
@@ -44,7 +59,10 @@ namespace Next_Level
             current_user = file.Load<string>();
             //MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
             MaxWidth = 600;
-
+            _products = new ProductList();
+            product = _products.getProductById(id);
+            if (product.descriptionProduct != string.Empty)
+                productDescription.Content = product.descriptionProduct;
         }
 
         private void button4_Click(object sender, RoutedEventArgs e)
@@ -166,10 +184,6 @@ namespace Next_Level
             Grid.SetColumnSpan(feed, 3);
             myGrid.Children.Add(feed);
 
-            //кнопка ответить
-            Grid.SetRow(answer, 2);
-            Grid.SetColumn(answer, 1);
-            myGrid.Children.Add(answer);
 
             //текущая дата
             Grid.SetColumn(currentDate, 3);
