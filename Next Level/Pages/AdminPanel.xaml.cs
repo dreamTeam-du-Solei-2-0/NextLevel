@@ -5,18 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Next_Level.Pages
 {
@@ -25,15 +19,20 @@ namespace Next_Level.Pages
     /// </summary>
     public partial class AdminPanel : Window
     {
-
+        //исходная ссылка на фото которое загружаешь
         string sourcePhoto = String.Empty;
+        //ссылка на базу проекта
         string target = NextLevelPath.STOREBD_PATH;
+        //ссылка на файл категорий
         string categoryPath = NextLevelPath.CATEGORIES_PATH;
-
+        //для проверки условия ввода данных
         delegate bool Conditions();
 
+        //список категорий
         List<string> categories = new List<string>();
+        //продукты
         ProductList products;
+        //интерфейс для записи и выгрузки данных
         IFile file;
         public AdminPanel()
         {
@@ -54,6 +53,18 @@ namespace Next_Level.Pages
             }
         }
 
+        #region CONSTRUCTOR_ACTIONS
+        //подключение кнопок к событиям, загрузка бд
+        private void basicSettings()
+        {
+            addProduct.Click += new RoutedEventHandler(addProduct_but);
+            uploadPhoto.Click += new RoutedEventHandler(addProductPhoto_but);
+            categories = new List<string>();
+            products = new ProductList();
+            file = null;
+        }
+
+        //выгрузка продуктов
         private void loadProducts()
         {
             if (products.fileLoad)
@@ -87,16 +98,37 @@ namespace Next_Level.Pages
                 }
             }
         }
-
-        private void basicSettings()
+        #endregion
+        //сохранение ктаегории в файл
+        private void AddCategory(string categoryName)
         {
-            addProduct.Click += new RoutedEventHandler(addProduct_but);
-            uploadPhoto.Click += new RoutedEventHandler(addProductPhoto_but);
-            categories = new List<string>();
-            products = new ProductList();
-            file = null;
+            bool IsExists = false;
+            if (categories.Count == 0)
+            {
+                file = new XmlFormat(categoryPath);
+                categories.Add(categoryName);
+                file.Save(categories);
+            }
+            else
+            {
+                foreach (var category in categories)
+                {
+                    if (category == categoryName)
+                    {
+                        IsExists = true;
+                        break;
+                    }
+                }
+                if (!IsExists)
+                {
+                    file = new XmlFormat(categoryPath);
+                    categories.Add(categoryName);
+                    file.Save(categories);
+                }
+            }
         }
 
+        //очистка полей после того как нажал добавить продукт
         private void clearFields()
         {
             productName.Text = string.Empty;
@@ -114,7 +146,7 @@ namespace Next_Level.Pages
 
             productPhoto.Children.Add(text);
         }
-
+        //очистка полей после того как нажал изменить продукт
         private void clearEditFields()
         {
             editName.Text = string.Empty;
@@ -133,7 +165,28 @@ namespace Next_Level.Pages
             productPhoto.Children.Add(text);
         }
 
-        #region CONDITIONS
+        //Битмап плохо работает с относительными ссылками
+        //Для создания ссылки создал этот метод
+        //Здесь также копируется в базу картинка которую подгружаешь для продукта
+
+        private string getPhotoPath(string nameProduct)
+        {
+            if (sourcePhoto != string.Empty)
+            {
+                string fileExtension = System.IO.Path.GetExtension(sourcePhoto);
+                string product_name = nameProduct + fileExtension;
+                string photoDir = System.IO.Path.Combine(System.IO.Path.GetFullPath(target), nameProduct);
+                if (!Directory.Exists(photoDir))
+                    Directory.CreateDirectory(photoDir);
+                string targetPhoto = System.IO.Path.Combine(photoDir, product_name);
+                File.Copy(sourcePhoto, targetPhoto, true);
+                sourcePhoto = string.Empty;
+                return product_name;
+            }
+            return string.Empty;
+        }
+
+        #region ADD_PRODUCT_CONDITIONS
         //проверяет на содержимость пустоты или пробелов поле имя продукта
         private bool productNameIsEmpty()
         {
@@ -200,7 +253,7 @@ namespace Next_Level.Pages
             }
             else return false;
         }
-        //проверяются все условия
+        //проверяются все условия ввода данных
         bool checkAddConditions()
         {
             Conditions conditions = new Conditions(productNameIsEmpty);
@@ -220,7 +273,10 @@ namespace Next_Level.Pages
             }
             return IsOk;
         }
+        #endregion
 
+        #region EDIT_PRODUCT_CONDITIONS
+        //проверяет на содержимость пустоты или пробелов поле имя продукта
         private bool editNameIsEmpty()
         {
             Regex spaces = new Regex("^\\s*$");
@@ -286,7 +342,7 @@ namespace Next_Level.Pages
             }
             else return false;
         }
-
+        //проверяет все эти условия
         bool checkEditConditions()
         {
             Conditions conditions = new Conditions(productNameIsEmpty);
@@ -310,6 +366,8 @@ namespace Next_Level.Pages
         #endregion
 
         #region EVENTS
+
+        //Проверяет формат ввода цены
         private void priceCheck(object sender, TextChangedEventArgs e)
         {
             Regex price = new Regex("^\\d+,\\d{1,2}$");
@@ -317,6 +375,7 @@ namespace Next_Level.Pages
                 productPrice.BorderBrush = Brushes.Red;
             else productPrice.BorderBrush = Brushes.DarkGreen;
         }
+        //Проверяет формат ввода кол-ва продуктов
         private void countCheck(object sender, TextChangedEventArgs e)
         {
             Regex price = new Regex("^\\d+$");
@@ -325,6 +384,8 @@ namespace Next_Level.Pages
             else productCount.BorderBrush = Brushes.DarkGreen;
         }
 
+        //ДЛЯ ВКЛАДКИ ИЗМЕНЕНИЯ ПРОДУКТА
+        //Проверяет формат ввода кол-ва продуктов
         private void editPriceCheck(object sender, TextChangedEventArgs e)
         {
             Regex price = new Regex("^\\d+,\\d{1,2}$");
@@ -332,6 +393,7 @@ namespace Next_Level.Pages
                 editPrice.BorderBrush = Brushes.Red;
             else editPrice.BorderBrush = Brushes.DarkGreen;
         }
+        //Проверяет формат ввода кол-ва продуктов
         private void editCountCheck(object sender, TextChangedEventArgs e)
         {
             Regex price = new Regex("^\\d+$");
@@ -340,53 +402,66 @@ namespace Next_Level.Pages
             else editCount.BorderBrush = Brushes.DarkGreen;
         }
 
+        //ДОБАВЛЯЕТ ТОВАР В БАЗУ
         private void addProduct_but(object sender, RoutedEventArgs e)
         {
+            //Условия ввода данных выполнились?
             bool IsOk = checkAddConditions();
             if (IsOk)
             {
+                //Создаём продукт
                 Product product = new Product();
                 product.productName = productName.Text;
                 product.Category = productCategory.Text;
+                //Записываем категорию в файл
                 AddCategory(product.Category);
+                //если пользователь ввёл запятую заменятся на точку
                 if (productPrice.Text.Contains(','))
                     productPrice.Text.Replace(',', '.');
+                //запись данных в продукт
                 product.productPrice = double.Parse(productPrice.Text);
                 product.productCount = int.Parse(productCount.Text);
                 product.productPhoto = getPhotoPath(product.productName);
                 product.descriptionProduct = productDescription.Text;
+                //записывает в файл продукт
                 products.AddNew(product);
+                //уведомление о том что продукт создан
                 ProductView productView = new ProductView(product);
                 productView.ShowDialog();
+                //очистка полей
                 clearFields();
+                //обновление данных
                 loadCategories();
                 loadProducts();
             }
         }
+        //Изменяет продукт
+        //БУДУ ПЕРЕДЕЛЫВАТЬ
+        //private void editProduct_but(object sender, RoutedEventArgs e)
+        //{
+        //    bool IsOk = checkAddConditions();
+        //    if (IsOk)
+        //    {
+        //        Product product = new Product();
+        //        product.productName = editName.Text;
+        //        product.Category = editCategory.Text;
+        //        AddCategory(product.Category);
+        //        if (editPrice.Text.Contains(','))
+        //            editPrice.Text.Replace(',', '.');
+        //        product.productPrice = double.Parse(editPrice.Text);
+        //        product.productCount = int.Parse(editCount.Text);
+        //        product.productPhoto = getPhotoPath(product.productName);
+        //        product.descriptionProduct = editDescription.Text;
+        //        products.AddNew(product);
+        //        ProductView productView = new ProductView(product);
+        //        productView.ShowDialog();
+        //        clearFields();
+        //        loadCategories();
+        //        loadProducts();
+        //    }
+        //}
 
-        private void editProduct_but(object sender, RoutedEventArgs e)
-        {
-            bool IsOk = checkAddConditions();
-            if (IsOk)
-            {
-                Product product = new Product();
-                product.productName = editName.Text;
-                product.Category = editCategory.Text;
-                AddCategory(product.Category);
-                if (editPrice.Text.Contains(','))
-                    editPrice.Text.Replace(',', '.');
-                product.productPrice = double.Parse(editPrice.Text);
-                product.productCount = int.Parse(editCount.Text);
-                product.productPhoto = getPhotoPath(product.productName);
-                product.descriptionProduct = editDescription.Text;
-                products.AddNew(product);
-                ProductView productView = new ProductView(product);
-                productView.ShowDialog();
-                clearFields();
-                loadCategories();
-                loadProducts();
-            }
-        }
+        //Достаёт полный путь к картинке которую загружаем для продкута
 
         private void addProductPhoto_but(object sender, RoutedEventArgs e)
         {
@@ -396,9 +471,10 @@ namespace Next_Level.Pages
             {
                 sourcePhoto = openFile.FileName;
             }
+            productPhoto.Children.Clear();
             productPhoto.Children.Add(createImageBox(sourcePhoto));
         }
-
+        //событие для кнопки в продукте
         private void edittProduct_but(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -407,6 +483,7 @@ namespace Next_Level.Pages
 
         #endregion
 
+        #region CREATE_ELEMENTS
         private void loadProductForEdit(string id)
         {
             productsView.Visibility = Visibility.Collapsed;
@@ -423,50 +500,9 @@ namespace Next_Level.Pages
             gridPhoto.Children.Add(createImageBox(targetPhoto));
         }
 
-        private void AddCategory(string categoryName)
-        {
-            bool IsExists = false;
-            if (categories.Count == 0)
-            {
-                file = new XmlFormat(categoryPath);
-                categories.Add(categoryName);
-                file.Save(categories);
-            }
-            else
-            {
-                foreach (var category in categories)
-                {
-                    if (category == categoryName)
-                    {
-                        IsExists = true;
-                        break;
-                    }
-                }
-                if (!IsExists)
-                {
-                    file = new XmlFormat(categoryPath);
-                    categories.Add(categoryName);
-                    file.Save(categories);
-                }
-            }
-        }
+        
 
-        private string getPhotoPath(string nameProduct)
-        {
-            if (sourcePhoto != string.Empty)
-            {
-                string fileExtension = System.IO.Path.GetExtension(sourcePhoto);
-                string product_name = nameProduct + fileExtension;
-                string photoDir = System.IO.Path.Combine(System.IO.Path.GetFullPath(target), nameProduct);
-                if (!Directory.Exists(photoDir))
-                    Directory.CreateDirectory(photoDir);
-                string targetPhoto = System.IO.Path.Combine(photoDir, product_name);
-                File.Copy(sourcePhoto, targetPhoto, true);
-                sourcePhoto = string.Empty;
-                return product_name;
-            }
-            return string.Empty;
-        }
+        
 
         private TextBlock createTextBlock(string text)
         {
@@ -683,6 +719,8 @@ namespace Next_Level.Pages
             border.Child = myGrid;
             return border;
         }
+
+        #endregion
 
     }
 }
