@@ -671,7 +671,7 @@ namespace Next_Level.Pages
             buyBut.Background = SetColor("#15531C");
             buyBut.Margin = new Thickness(2);
             buyBut.Foreground = Brushes.White;
-            buyBut.Click += new RoutedEventHandler(edittProduct_but);
+            //buyBut.Click += new RoutedEventHandler(edittProduct_but);
             buyBorder.Child = buyBut;
             Grid.SetRow(buyBorder, 5);
             Grid.SetColumnSpan(buyBorder, 2);

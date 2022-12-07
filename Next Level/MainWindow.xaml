@@ -48,15 +48,15 @@
 
                         <Separator Margin="20 20" Background="{DynamicResource TertiaryBackgroundColor}"/>
 
-                        <RadioButton x:Name="rdNotifications" Content="Notifications" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notifications}" Margin="0 1 0 1"/>
-                        <RadioButton x:Name="rdSettings" Content="Settings" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource settings}"/>
+                        <!--<RadioButton x:Name="rdNotifications" Content="Notifications" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notifications}" Margin="0 1 0 1"/>-->
+                        <!--<RadioButton x:Name="rdSettings" Content="Settings" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource settings}"/>-->
                         <RadioButton x:Name="logOut" Click="logOut_Click" Content="Log out" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource close}"/>
                     </StackPanel>
-                    <Viewbox Grid.Row="2" OpacityMask="{DynamicResource TertiaryBackgroundColor}">
+                    <!--<Viewbox Grid.Row="2" OpacityMask="{DynamicResource TertiaryBackgroundColor}">
                         <TextBlock>
                            Place for your ad
                         </TextBlock>
-                    </Viewbox>
+                    </Viewbox>-->
 
                     <Path Grid.Row="3" Data="{DynamicResource information}" Fill="{DynamicResource TertiaryTextColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     <Border Grid.Row="3" CornerRadius="18" Width="110" Height="35" Background="{DynamicResource TertiaryBackgroundColor}" HorizontalAlignment="Right" Margin="0 0 20 0">

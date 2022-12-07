@@ -35,6 +35,7 @@ namespace Next_Level
         string path_currentUser = NextLevelPath.CURRENT_USER;
         ProductList _products;
         Product product;
+        List<Feedback> feedbacks;
 
         //public ProductInfo()
         //{
@@ -52,9 +53,9 @@ namespace Next_Level
         public ProductInfo(string id)
         {
             InitializeComponent();
-            DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
-            OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
+            //DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
+            //OpenFileDialog openDialog = new OpenFileDialog();
+            //openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
             //MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
@@ -63,6 +64,7 @@ namespace Next_Level
             product = _products.getProductById(id);
             if (product.descriptionProduct != string.Empty)
                 productDescription.Content = product.descriptionProduct;
+            LoadComments();
         }
 
         private void button4_Click(object sender, RoutedEventArgs e)
@@ -78,19 +80,49 @@ namespace Next_Level
             user = accounts.getUserByLogin(this.current_user);
             if(string.IsNullOrEmpty(ComW.Text))
             {
-                MessageBox.Show("Is Empty");
+                //MessageBox.Show("Is Empty");
                
             }
             else
             {
-                //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
                 Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
-                
-
+                Feedback feedback= new Feedback();
+                feedback.username=user.Name;
+                feedback.comment = ComW.Text;
+                SaveComments(feedback);
             }
             
             ComW.Clear();
 
+        }
+
+        void LoadComments()
+        {
+            string target = NextLevelPath.STOREBD_PATH;
+            target = System.IO.Path.Combine(target, product.productName);
+            target = System.IO.Path.Combine(target, product.productName + ".xml");
+            if (File.Exists(target))
+            {
+                file = new XmlFormat(target);
+                feedbacks = file.Load<List<Feedback>>();
+                foreach(var feedback in feedbacks)
+                {
+                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment));
+                }
+            }
+            else feedbacks = new List<Feedback>();
+
+
+        }
+
+        void SaveComments(Feedback feedback)
+        {
+            feedbacks.Add(feedback);
+            string target = NextLevelPath.STOREBD_PATH;
+            target = System.IO.Path.Combine(target, product.productName);
+            target = System.IO.Path.Combine(target, product.productName + ".xml");
+            file = new XmlFormat(target);
+            file.Save(feedbacks);
         }
 
         Brush SetColor(string hex)
@@ -213,6 +245,10 @@ namespace Next_Level
                 {
                     //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
                     Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
+                    Feedback feedback = new Feedback();
+                    feedback.username = user.Name;
+                    feedback.comment = ComW.Text;
+                    SaveComments(feedback);
                 }
 
                 ComW.Clear();
