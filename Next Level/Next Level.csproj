@@ -58,12 +58,19 @@
     <Compile Include="Classes\Accounts.cs" />
     <Compile Include="Classes\BinnaryFile.cs" />
     <Compile Include="Classes\EnterControl.cs" />
+    <Compile Include="Classes\Feedback.cs" />
     <Compile Include="Classes\NextLevelPath.cs" />
     <Compile Include="Classes\ProductList.cs" />
     <Compile Include="Classes\SaveLogin.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XmlFormat.cs" />
     <Compile Include="Interfaces\IFile.cs" />
+    <Compile Include="Pages\AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserContorls\Item.xaml.cs" />
     <Compile Include="Pages\Cart.xaml.cs">
       <DependentUpon>Cart.xaml</DependentUpon>
@@ -92,6 +99,14 @@
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Themes\ThemesController.cs" />
     <Page Include="Assets\Icons\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

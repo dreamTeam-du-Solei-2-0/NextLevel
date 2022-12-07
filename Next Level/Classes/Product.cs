@@ -16,18 +16,21 @@ namespace Next_Level.Classes
         public string Category { get; set; }
         public string productPhoto { get; set; }
         public string productName { get; set; }
+        public string descriptionProduct { get; set; }
         public double productPrice { get; set; }
         public int productCount { get; set; }
-
+        public List<Feedback> coments { get; set; }
 
         public Product()
         {
             Id = string.Empty;
-            Category = string.Empty;
             productPhoto = string.Empty;
             productName = string.Empty;
+            descriptionProduct = string.Empty;
+            Category = string.Empty;
             productPrice = 0;
             productCount = 0;
+            coments = new List<Feedback>();
         }
     }
 

@@ -51,6 +51,12 @@ namespace Next_Level.Classes
             products.Remove(product);
             Save();
         }
+
+        public void deleteProduct(Product product)
+        {
+            products.Remove(product);
+            Save();
+        }
         //Возвращает список товаров которые содержат похожие имена
         public List<Product> getProductByName(string productName)
         {

@@ -118,11 +118,20 @@ namespace Next_Level.Pages
                 {
                     File.Delete(path_saveData);
                 }
-                MainWindow main = new MainWindow();
-                file = new BinnaryFile(path_currentUser);
-                file.Save(txtEmail.Text);
-                this.Close();
-                main.Show();
+                if (txtEmail.Text == "SuperAdmin")
+                {
+                    AdminPanel admin = new AdminPanel();
+                    this.Close();
+                    admin.Show();
+                }
+                else
+                {
+                    MainWindow main = new MainWindow();
+                    file = new BinnaryFile(path_currentUser);
+                    file.Save(txtEmail.Text);
+                    this.Close();
+                    main.Show();
+                }
             }
             
         }
