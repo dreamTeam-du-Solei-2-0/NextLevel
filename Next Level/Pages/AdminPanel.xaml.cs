@@ -65,6 +65,19 @@ namespace Next_Level.Pages
                 categories = file.Load<List<string>>();
             }
         }
+
+        #region CONSTRUCTOR_ACTIONS
+        //подключение кнопок к событиям, загрузка бд
+        private void basicSettings()
+        {
+            addProduct.Click += new RoutedEventHandler(addProduct_but);
+            uploadPhoto.Click += new RoutedEventHandler(addProductPhoto_but);
+            categories = new List<string>();
+            products = new ProductList();
+            file = null;
+        }
+
+        //выгрузка продуктов
         //выгрузка продуктов
         private void loadProducts()
         {
@@ -485,6 +498,7 @@ namespace Next_Level.Pages
         #endregion
 
         #region CREATE_ELEMENTS
+        #region CREATE_ELEMENTS
 
         //открывает вкладку для редактирования продукта
         private void loadProductForEdit(string id)
@@ -507,6 +521,10 @@ namespace Next_Level.Pages
             gridPhoto.Children.Clear();
             gridPhoto.Children.Add(createImageBox(targetPhoto));
         }
+
+        
+
+        
 
         //создание текстблока
         private TextBlock createTextBlock(string text)
