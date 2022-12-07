@@ -42,9 +42,7 @@ namespace Next_Level.Pages
             loadProducts();
 
         }
-
         
-
         #region CONSTRUCTOR_ACTIONS
         //подключение кнопок к событиям, загрузка бд
         private void basicSettings()
@@ -65,19 +63,6 @@ namespace Next_Level.Pages
                 categories = file.Load<List<string>>();
             }
         }
-
-        #region CONSTRUCTOR_ACTIONS
-        //подключение кнопок к событиям, загрузка бд
-        private void basicSettings()
-        {
-            addProduct.Click += new RoutedEventHandler(addProduct_but);
-            uploadPhoto.Click += new RoutedEventHandler(addProductPhoto_but);
-            categories = new List<string>();
-            products = new ProductList();
-            file = null;
-        }
-
-        //выгрузка продуктов
         //выгрузка продуктов
         private void loadProducts()
         {
@@ -113,6 +98,8 @@ namespace Next_Level.Pages
             }
         }
         #endregion
+
+        #region WORK_WITH_FILE
         //сохранение ктаегории в файл
         private void AddCategory(string categoryName)
         {
@@ -141,6 +128,28 @@ namespace Next_Level.Pages
                 }
             }
         }
+
+        //Битмап плохо работает с относительными ссылками
+        //Для создания ссылки создал этот метод
+        //Здесь также копируется в базу картинка которую подгружаешь для продукта
+        private string getPhotoPath(string nameProduct)
+        {
+            if (sourcePhoto != string.Empty)
+            {
+                string fileExtension = System.IO.Path.GetExtension(sourcePhoto);
+                string product_name = nameProduct + fileExtension;
+                string photoDir = System.IO.Path.Combine(System.IO.Path.GetFullPath(target), nameProduct);
+                if (!Directory.Exists(photoDir))
+                    Directory.CreateDirectory(photoDir);
+                string targetPhoto = System.IO.Path.Combine(photoDir, product_name);
+                File.Copy(sourcePhoto, targetPhoto, true);
+                sourcePhoto = string.Empty;
+                return product_name;
+            }
+            return string.Empty;
+        }
+        #endregion
+
 
         //очистка полей после того как нажал добавить продукт
         private void clearFields()
@@ -179,26 +188,7 @@ namespace Next_Level.Pages
             productPhoto.Children.Add(text);
         }
 
-        //Битмап плохо работает с относительными ссылками
-        //Для создания ссылки создал этот метод
-        //Здесь также копируется в базу картинка которую подгружаешь для продукта
-
-        private string getPhotoPath(string nameProduct)
-        {
-            if (sourcePhoto != string.Empty)
-            {
-                string fileExtension = System.IO.Path.GetExtension(sourcePhoto);
-                string product_name = nameProduct + fileExtension;
-                string photoDir = System.IO.Path.Combine(System.IO.Path.GetFullPath(target), nameProduct);
-                if (!Directory.Exists(photoDir))
-                    Directory.CreateDirectory(photoDir);
-                string targetPhoto = System.IO.Path.Combine(photoDir, product_name);
-                File.Copy(sourcePhoto, targetPhoto, true);
-                sourcePhoto = string.Empty;
-                return product_name;
-            }
-            return string.Empty;
-        }
+       
 
         #region ADD_PRODUCT_CONDITIONS
         //проверяет на содержимость пустоты или пробелов поле имя продукта
@@ -497,7 +487,6 @@ namespace Next_Level.Pages
 
         #endregion
 
-        #region CREATE_ELEMENTS
         #region CREATE_ELEMENTS
 
         //открывает вкладку для редактирования продукта
