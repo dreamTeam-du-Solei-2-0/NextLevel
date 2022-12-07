@@ -45,6 +45,9 @@ namespace Next_Level.Pages
 
             file = new XmlFormat(NextLevelPath.CATEGORIES_PATH);
             categories = file.Load<List<string>>();
+            if (categories == null)
+                categories = new List<string>();
+
             if (products.fileLoad)
             {
                 if (categories.Count != 0)
@@ -334,22 +337,7 @@ namespace Next_Level.Pages
             return border;
         }
         #endregion
-        //Код Паши
-        //private List<Product> GetProducts(int number)
-        //{
-        //    var products = new List<Product>();
-        //    for (int i = 1; i <= number; i++)
-        //    {
-        //        //products.Add(new Product($"Товар {i}", i, $"Assets\\Images\\{i}.png"));
 
-
-        //    }
-        //    return products;
-        //}
     }
-
-
-
-
 
 }

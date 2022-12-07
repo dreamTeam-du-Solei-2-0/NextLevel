@@ -14,9 +14,6 @@ using System.Windows.Media.Imaging;
 
 namespace Next_Level.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminPanel.xaml
-    /// </summary>
     public partial class AdminPanel : Window
     {
         //исходная ссылка на фото которое загружаешь
