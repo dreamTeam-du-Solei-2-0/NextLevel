@@ -70,7 +70,7 @@ namespace Next_Level.Pages
         {
             IFile file = new XmlFormat(NextLevelPath.CATEGORIES_PATH);
             categories = file.Load<List<string>>();
-            if(categories.Count!= 0)
+            if(categories.Count!= 0 ||categories != null)
             {
                 foreach(var category in categories)
                 {
