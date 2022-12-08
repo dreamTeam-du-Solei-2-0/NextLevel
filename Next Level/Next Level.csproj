@@ -250,5 +250,8 @@
     <Resource Include="Assets\Images\mastercard.png" />
     <Resource Include="Assets\Images\visa.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\send.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

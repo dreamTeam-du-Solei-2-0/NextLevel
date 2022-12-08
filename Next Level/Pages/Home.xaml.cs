@@ -37,6 +37,7 @@ namespace Next_Level.Pages
             file = new BinnaryFile(path_currentUser);
             this.current_user = file.Load<string>();
             LoadProducts();
+            
         }
 
         void LoadProducts()
@@ -82,6 +83,7 @@ namespace Next_Level.Pages
             Button button = (Button)sender;
             ProductInfo productInfo = new ProductInfo(button.Name);
             productInfo.ShowDialog();
+            
         }
 
         

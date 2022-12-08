@@ -1,0 +1,23 @@
+﻿<Page x:Class="Next_Level.Pages.Order"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Next_Level.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Order">
+
+    <Grid>
+        <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
+            <Grid>
+                <Grid Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Grid>
+                <TextBlock Text="Content" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                <TextBox Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
+                <Button x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
+                <Button x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>
+                <TextBlock Name="TotalPrice" Text="Price:" Height="30" Margin="210,70,500,350"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

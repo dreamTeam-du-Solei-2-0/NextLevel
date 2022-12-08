@@ -35,8 +35,9 @@ namespace Next_Level
         string path_currentUser = NextLevelPath.CURRENT_USER;
         ProductList _products;
         Product product;
-        List<Feedback> feedbacks;
-
+        List<Feedback> feedbacks = new List<Feedback>();
+        TextBlock currentDate = new TextBlock();
+        Product p = new Product();
         //public ProductInfo()
         //{
         //    InitializeComponent();
@@ -63,8 +64,9 @@ namespace Next_Level
             _products = new ProductList();
             product = _products.getProductById(id);
             if (product.descriptionProduct != string.Empty)
-                productDescription.Content = product.descriptionProduct;
+            //    product.descriptionProduct.Content. = product.descriptionProduct.ToString();
             LoadComments();
+            Des.Text += "\nОчень классный клоун";
         }
 
         private void button4_Click(object sender, RoutedEventArgs e)
@@ -89,6 +91,7 @@ namespace Next_Level
                 Feedback feedback= new Feedback();
                 feedback.username=user.Name;
                 feedback.comment = ComW.Text;
+                feedback.date = currentDate.Text;
                 SaveComments(feedback);
             }
             
@@ -117,12 +120,13 @@ namespace Next_Level
 
         void SaveComments(Feedback feedback)
         {
-            feedbacks.Add(feedback);
-            string target = NextLevelPath.STOREBD_PATH;
-            target = System.IO.Path.Combine(target, product.productName);
-            target = System.IO.Path.Combine(target, product.productName + ".xml");
-            file = new XmlFormat(target);
-            file.Save(feedbacks);
+            
+            //feedbacks.Add(feedback);
+            //string target = NextLevelPath.STOREBD_PATH;
+            //target = System.IO.Path.Combine(target, product.productName);
+            //target = System.IO.Path.Combine(target, product.productName + ".xml");
+            //file = new XmlFormat(target);
+            //file.Save(feedbacks);
         }
 
         Brush SetColor(string hex)
@@ -186,7 +190,7 @@ namespace Next_Level
             feed.FontSize = 15;
 
             //время
-            TextBlock currentDate = new TextBlock();
+            
             currentDate.Margin = new Thickness(10);
             currentDate.Text = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
             currentDate.Foreground = SetColor("#B4B4B4");
@@ -218,10 +222,11 @@ namespace Next_Level
 
 
             //текущая дата
-            Grid.SetColumn(currentDate, 3);
-            myGrid.Children.Add(currentDate);
-            sc.MinHeight = 150;
-            sc.MaxHeight = 1000;
+            //Grid.SetColumn(currentDate, 3);
+            //myGrid.Children.Add(currentDate);
+            //sc.MinHeight = 150;
+            //sc.MaxHeight = 1000;
+
             return myGrid;
         }
 
@@ -253,6 +258,38 @@ namespace Next_Level
 
                 ComW.Clear();
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+            user = accounts.getUserByLogin(this.current_user);
+            if (string.IsNullOrEmpty(ComW.Text))
+            {
+                //MessageBox.Show("Is Empty");
+
+            }
+            else
+            {
+                Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
+                Feedback feedback = new Feedback();
+                feedback.username = user.Name;
+                feedback.comment = ComW.Text;
+                feedback.date = currentDate.Text;
+                SaveComments(feedback);
+            }
+
+            ComW.Clear();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
 
 

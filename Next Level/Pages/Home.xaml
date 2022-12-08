@@ -10,40 +10,6 @@
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
         <ScrollViewer Grid.Column="1" Grid.Row="1" Background="{DynamicResource SecundaryBackgroundColor}" Margin="10,0,10,0">
             <StackPanel x:Name="myStack"/>
-            <!--Код Паши-->
-            <!--<StackPanel>
-                <StackPanel Margin="20 0">
-                    
-                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding Product}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Margin="20" Width="110" Height="160">
-                                    <StackPanel>
-                                        <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                            <Border.Effect>
-                                                <DropShadowEffect ShadowDepth="1"/>
-                                            </Border.Effect>
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="{Binding Image}"/>
-                                            </Border.Background>
-                                        </Border>
-                                        <TextBlock Margin="-5" Text="{Binding Value, StringFormat={}{0:C},ConverterCulture=ua-ua}" Foreground ="{DynamicResource PrimaryTextColor}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                        <TextBlock Margin="20 0" Text="{Binding Name}" Foreground ="{DynamicResource SecundaryTextColor}" FontSize="15"/>
-                                        <Button Click="Button_Click" Background="LightGreen">Buy</Button>
-                                            
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </StackPanel>
-                <Frame x:Name="frame" NavigationUIVisibility="Hidden" Content="Frame" Height="100"/>
-            </StackPanel>-->
             
         </ScrollViewer>
     </Border>
