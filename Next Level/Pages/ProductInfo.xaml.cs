@@ -127,6 +127,8 @@ namespace Next_Level
             string target = NextLevelPath.STOREBD_PATH;
             target = System.IO.Path.GetFullPath(target);
             target = System.IO.Path.Combine(target, product.productName);
+            if (!Directory.Exists(target))
+                Directory.CreateDirectory(target);
             target = System.IO.Path.Combine(target, product.productName + ".xml");
             file = new XmlFormat(target);
             file.Save(feedbacks);
