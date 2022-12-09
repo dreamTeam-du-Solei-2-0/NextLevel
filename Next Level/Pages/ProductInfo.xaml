@@ -9,12 +9,8 @@
       d:DesignHeight="450" d:DesignWidth="600"
       Title="ProductInfo" FontFamily="Poppins" WindowStyle="None" Background="{DynamicResource PrimaryBlackColor}" Foreground="{DynamicResource PrimaryBackgroundColor}"  ResizeMode="NoResize" WindowState="Normal">
     <Grid Background ="{DynamicResource SecundaryBlackColor}">
-        <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
-
-            <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
-        </StackPanel>
-        <TabControl x:Name="products" Margin="0,30,0,0" Background="{DynamicResource PrimaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}" PreviewKeyDown="products_PreviewKeyDown">
+       
+        <TabControl x:Name="products"  Background="{DynamicResource PrimaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}" PreviewKeyDown="products_PreviewKeyDown">
             <TabItem x:Name="all" Background ="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}">
                 <TabItem.Header>
 

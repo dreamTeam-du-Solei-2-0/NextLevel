@@ -282,15 +282,7 @@ namespace Next_Level
             ComW.Clear();
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+       
 
 
 
