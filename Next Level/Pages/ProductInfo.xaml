@@ -20,7 +20,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
-                    <Button x:Name="button4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Click="button4_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="Hand" ToolTip="Закрыть">
+                    <Button x:Name="button4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"  BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="Hand" ToolTip="Закрыть">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#FF2D2D30"/>
@@ -87,7 +87,7 @@
 
                     <TextBox MinWidth="300" MaxWidth="1000" MaxLength="200" SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryWhiteColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
          VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.Row="1"/>
-                    <Button Style="{StaticResource buttonCircle}" Foreground="{DynamicResource PrimaryBlackColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,4" Grid.Column="1" Grid.RowSpan="2" Click="Button_Click_1">
+                    <Button Style="{StaticResource buttonCircle}" Foreground="{DynamicResource PrimaryBlackColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,4" Grid.Column="1" Grid.RowSpan="2" Click="send_Click">
                         <Image Source="/Assets/Images/send.png" Width="20" Height="20" />
                     </Button>
                 </Grid>

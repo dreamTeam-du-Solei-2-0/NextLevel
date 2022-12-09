@@ -21,10 +21,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Next_Level
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductInfo.xaml
-    /// </summary>
-    /// 
+    
     public partial class ProductInfo : Window
     {
         List<string> files = new List<string>();
@@ -36,46 +33,24 @@ namespace Next_Level
         ProductList _products;
         Product product;
         List<Feedback> feedbacks = new List<Feedback>();
-        TextBlock currentDate = new TextBlock();
         Product p = new Product();
-        //public ProductInfo()
-        //{
-        //    InitializeComponent();
-        //    DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
-        //    OpenFileDialog openDialog = new OpenFileDialog();
-        //    openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
-        //    file = new BinnaryFile(path_currentUser);
-        //    current_user = file.Load<string>();
-        //    MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
-        //    MaxWidth = 600;
-        //    products = new ProductList();
-        //}
+        
 
         public ProductInfo(string id)
         {
             InitializeComponent();
-            //DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\Alex\Desktop\1");
-            //OpenFileDialog openDialog = new OpenFileDialog();
-            //openDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
-            //MyImage.Source = new BitmapImage(new Uri(openDialog.FileName));
             MaxWidth = 600;
             _products = new ProductList();
             product = _products.getProductById(id);
-            if (product.descriptionProduct != string.Empty)
-            //    product.descriptionProduct.Content. = product.descriptionProduct.ToString();
+            //if (product.descriptionProduct != string.Empty)
+            ////    product.descriptionProduct.Content. = product.descriptionProduct.ToString();
             LoadComments();
             Des.Text += "\nОчень классный клоун";
         }
 
-        private void button4_Click(object sender, RoutedEventArgs e)
-        {
-            //BitmapImage b = new BitmapImage();
-            //b.UriSource = new Uri("Assets\\Images\\google.png");
-            //im.Source = b;
-        }
-
+        #region FEEDBACKS        
         private void send_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
@@ -87,21 +62,48 @@ namespace Next_Level
             }
             else
             {
-                Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
                 Feedback feedback= new Feedback();
                 feedback.username=user.Name;
                 feedback.comment = ComW.Text;
-                feedback.date = currentDate.Text;
+                feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
+                Coments.Children.Add(CreateGrid(feedback.username,feedback.comment, feedback.date));
                 SaveComments(feedback);
             }
             
             ComW.Clear();
 
+        
+        }
+
+        private void products_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                User user = new User();
+                user = accounts.getUserByLogin(this.current_user);
+                if (string.IsNullOrEmpty(ComW.Text))
+                {
+                    //MessageBox.Show("Is Empty");
+                }
+
+                else
+                {
+                    Feedback feedback = new Feedback();
+                    feedback.username = user.Name;
+                    feedback.comment = ComW.Text;
+                    feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
+                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date));
+                    SaveComments(feedback);
+                }
+
+                ComW.Clear();
+            }
         }
 
         void LoadComments()
         {
             string target = NextLevelPath.STOREBD_PATH;
+            target = System.IO.Path.GetFullPath(target);
             target = System.IO.Path.Combine(target, product.productName);
             target = System.IO.Path.Combine(target, product.productName + ".xml");
             if (File.Exists(target))
@@ -110,30 +112,36 @@ namespace Next_Level
                 feedbacks = file.Load<List<Feedback>>();
                 foreach(var feedback in feedbacks)
                 {
-                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment));
+                    Coments.Children.Add(CreateGrid(feedback.username,feedback.comment,feedback.date));
                 }
             }
             else feedbacks = new List<Feedback>();
 
 
         }
-
+        //Сохраняет комментарий
         void SaveComments(Feedback feedback)
         {
-            
-            //feedbacks.Add(feedback);
-            //string target = NextLevelPath.STOREBD_PATH;
-            //target = System.IO.Path.Combine(target, product.productName);
-            //target = System.IO.Path.Combine(target, product.productName + ".xml");
-            //file = new XmlFormat(target);
-            //file.Save(feedbacks);
-        }
 
+            feedbacks.Add(feedback);
+            string target = NextLevelPath.STOREBD_PATH;
+            target = System.IO.Path.GetFullPath(target);
+            target = System.IO.Path.Combine(target, product.productName);
+            target = System.IO.Path.Combine(target, product.productName + ".xml");
+            file = new XmlFormat(target);
+            file.Save(feedbacks);
+        }
+        #endregion
+
+        #region CREATE_ELEMENTS
+        //Установка 16-ричного цвета
         Brush SetColor(string hex)
         {
             return (Brush)(new BrushConverter().ConvertFrom(hex));
         }
-        Grid CreateGrid(string userName, string commentText)
+        
+        //Создаёт комментарий
+        Grid CreateGrid(string userName, string commentText,string currentdate)
         {
             //тело отзыва
             Grid myGrid = new Grid();
@@ -190,9 +198,9 @@ namespace Next_Level
             feed.FontSize = 15;
 
             //время
-            
+            TextBlock currentDate = new TextBlock();
             currentDate.Margin = new Thickness(10);
-            currentDate.Text = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
+            currentDate.Text = currentdate;
             currentDate.Foreground = SetColor("#B4B4B4");
             currentDate.TextWrapping = TextWrapping.Wrap;
             currentDate.Margin = new Thickness(10, 0, 0, 0);
@@ -222,70 +230,24 @@ namespace Next_Level
 
 
             //текущая дата
-            //Grid.SetColumn(currentDate, 3);
-            //myGrid.Children.Add(currentDate);
-            //sc.MinHeight = 150;
-            //sc.MaxHeight = 1000;
+            Grid.SetColumn(currentDate, 3);
+            myGrid.Children.Add(currentDate);
+            sc.MinHeight = 150;
+            sc.MaxHeight = 1000;
 
             return myGrid;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        #endregion
 
-        private void products_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                User user = new User();
-                user = accounts.getUserByLogin(this.current_user);
-                if (string.IsNullOrEmpty(ComW.Text))
-                {
-                    MessageBox.Show("Is Empty");
-                }
+        #region GALLERY_EVENTS
 
-                else
-                {
-                    //Coments.Text += $"\n{user.Name}\n{ComW.Text}";
-                    Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
-                    Feedback feedback = new Feedback();
-                    feedback.username = user.Name;
-                    feedback.comment = ComW.Text;
-                    SaveComments(feedback);
-                }
-
-                ComW.Clear();
-            }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            User user = new User();
-            user = accounts.getUserByLogin(this.current_user);
-            if (string.IsNullOrEmpty(ComW.Text))
-            {
-                //MessageBox.Show("Is Empty");
-
-            }
-            else
-            {
-                Coments.Children.Add(CreateGrid(user.Name, ComW.Text));
-                Feedback feedback = new Feedback();
-                feedback.username = user.Name;
-                feedback.comment = ComW.Text;
-                feedback.date = currentDate.Text;
-                SaveComments(feedback);
-            }
-
-            ComW.Clear();
-        }
-
-       
-
-
-
+        //private void button4_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //BitmapImage b = new BitmapImage();
+        //    //b.UriSource = new Uri("Assets\\Images\\google.png");
+        //    //im.Source = b;
+        //}
         //private void First_Click(object sender, RoutedEventArgs e)
         //{
         //    MyImage.Source = new BitmapImage(new Uri(files[0]));
@@ -315,7 +277,7 @@ namespace Next_Level
         //    MyImage.Source = new BitmapImage(new Uri(files[counter]));
 
         //}
-
+        #endregion
 
     }
 }
