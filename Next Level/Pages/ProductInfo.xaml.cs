@@ -22,7 +22,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Next_Level
 {
     
-    public partial class ProductInfo : Window
+    public partial class ProductInfo : Page
     {
         List<string> files = new List<string>();
         public string current_user { get; set; }
@@ -41,7 +41,7 @@ namespace Next_Level
             InitializeComponent();
             file = new BinnaryFile(path_currentUser);
             current_user = file.Load<string>();
-            MaxWidth = 600;
+            //MaxWidth = 600;
             _products = new ProductList();
             product = _products.getProductById(id);
             //if (product.descriptionProduct != string.Empty)

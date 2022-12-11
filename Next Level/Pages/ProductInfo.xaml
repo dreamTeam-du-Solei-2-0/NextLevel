@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Page
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,17 +6,15 @@
       xmlns:local="clr-namespace:Next_Level.Pages"
       xmlns:Properties="clr-namespace:Next_Level.Properties" x:Class="Next_Level.ProductInfo"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
-      Title="ProductInfo" FontFamily="Poppins" WindowStyle="None" Background="{DynamicResource PrimaryBlackColor}" Foreground="{DynamicResource PrimaryBackgroundColor}"  ResizeMode="NoResize" WindowState="Normal">
-    <Grid Background ="{DynamicResource SecundaryBlackColor}">
-       
-        <TabControl x:Name="products"  Background="{DynamicResource PrimaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}" PreviewKeyDown="products_PreviewKeyDown">
-            <TabItem x:Name="all" Background ="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryTextColor}">
+      d:DesignHeight="450" d:DesignWidth="760" Margin="2"
+      Title="ProductInfo" FontFamily="Poppins"  Background="{DynamicResource TertiaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}"  >
+    <Grid Background ="{DynamicResource TertiaryBackgroundColor}">
+
+        <TabControl x:Name="products"  Background="{DynamicResource TertiaryBackgroundColor}"  PreviewKeyDown="products_PreviewKeyDown">
+            <TabItem x:Name="all" BorderThickness="0" Background ="{DynamicResource TertiaryBackgroundColor}">
                 <TabItem.Header>
-
                     <StackPanel Orientation="Horizontal"  >
-
-                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryBackgroundColor}"><Run Text="Все о товаре"/></TextBlock>
+                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryTextColor}"><Run Text="Все о товаре"/></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
@@ -47,8 +45,8 @@
                         <Image x:Name="im" Source="/Assets/Images/1.png"/>
                     </Button>
 
-                    <TextBlock FontSize="20" x:Name="Des" Foreground="{DynamicResource PrimaryWhiteColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Описание:"/>
-                    <TextBlock HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryWhiteColor}" FontSize="20" VerticalAlignment="Top" Text="Цена:100"/>
+                    <TextBlock FontSize="20" x:Name="Des" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Описание:"/>
+                    <TextBlock HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Цена:100"/>
                     <Button Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
                     <Button Width="100" Height="50" Background="LightGreen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">Buy in credit</Button>
                 </Grid>
@@ -63,7 +61,7 @@
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>-->
-            <TabItem x:Name="reviews" Background="{DynamicResource SecundaryBlackColor}" BorderBrush="{DynamicResource PrimaryBlackColor}">
+            <TabItem x:Name="reviews" Background="{DynamicResource PrimaryBackgroundColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
 
@@ -82,12 +80,12 @@
                     </Grid.RowDefinitions>
                     <!--<TextBlock Width="800" VerticalAlignment="Top" HorizontalAlignment="Left" Height="300" x:Name="Coments" Foreground="White" Grid.ColumnSpan="2"></TextBlock>-->
                     <ScrollViewer x:Name="sc" VerticalAlignment="Top"  Grid.ColumnSpan="2">
-                        <StackPanel x:Name="Coments"  Background="{DynamicResource SecundaryBlackColor}"/>
+                        <StackPanel x:Name="Coments"  Background="{DynamicResource PrimaryBackgroundColor}"/>
                     </ScrollViewer>
 
                     <TextBox MinWidth="300" MaxWidth="1000" MaxLength="200" SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryWhiteColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
          VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.Row="1"/>
-                    <Button Style="{StaticResource buttonCircle}" Foreground="{DynamicResource PrimaryBlackColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,4" Grid.Column="1" Grid.RowSpan="2" Click="send_Click">
+                    <Button Style="{StaticResource buttonCircle}" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,4" Grid.Column="1" Grid.RowSpan="2" Click="send_Click">
                         <Image Source="/Assets/Images/send.png" Width="20" Height="20" />
                     </Button>
                 </Grid>
@@ -98,4 +96,4 @@
 
         </TabControl>
     </Grid>
-</Window>
+</Page>

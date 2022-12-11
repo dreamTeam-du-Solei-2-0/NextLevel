@@ -7,10 +7,5 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home" FontFamily="Poppins">
-    <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
-        <ScrollViewer Grid.Column="1" Grid.Row="1" Background="{DynamicResource SecundaryBackgroundColor}" Margin="10,0,10,0">
-            <StackPanel x:Name="myStack"/>
-            
-        </ScrollViewer>
-    </Border>
+    <Border x:Name="homeView" CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}"/>
 </Page>

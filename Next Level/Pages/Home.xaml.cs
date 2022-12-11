@@ -42,6 +42,10 @@ namespace Next_Level.Pages
 
         void LoadProducts()
         {
+            ScrollViewer scroll = createScroll();
+            StackPanel myStack = createStackPanel();
+            scroll.Content = myStack;
+            homeView.Child = scroll;
             products = new ProductList();
 
             file = new XmlFormat(NextLevelPath.CATEGORIES_PATH);
@@ -81,9 +85,9 @@ namespace Next_Level.Pages
         private void button_BuyProduct(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            ProductInfo productInfo = new ProductInfo(button.Name);
-            productInfo.ShowDialog();
-            
+            Frame myFrame = createFrame();
+            myFrame.Navigate(new ProductInfo(button.Name));
+            homeView.Child = myFrame;
         }
 
         
@@ -114,6 +118,25 @@ namespace Next_Level.Pages
 
         #region CREATE ELEMENTS
 
+        Frame createFrame()
+        {
+            Frame frame = new Frame();
+            return frame;
+        }
+
+        StackPanel createStackPanel()
+        {
+            StackPanel stackPanel = new StackPanel();
+            return stackPanel;
+        }
+
+        ScrollViewer createScroll()
+        {
+            ScrollViewer scrollViewer = new ScrollViewer();
+            scrollViewer.Background = (SolidColorBrush)FindResource("SecundaryBackgroundColor");
+            scrollViewer.Margin = new Thickness(10, 0, 10, 0);
+            return scrollViewer;
+        }
         TextBlock createCategory(string _category)
         {
             TextBlock category = new TextBlock();
