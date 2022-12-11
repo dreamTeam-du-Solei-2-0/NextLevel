@@ -13,10 +13,15 @@
             <Grid>
                 <Grid Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Grid>
                 <TextBlock Text="Content" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-                <TextBox Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
-                <Button x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
-                <Button x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>
+                <TextBox BorderThickness="3" BorderBrush="Black" Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
+                <Button Background="{DynamicResource SecundaryBackgroundColor}" x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
+                <Button Background="{DynamicResource SecundaryBackgroundColor}" x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>
                 <TextBlock Name="TotalPrice" Text="Price:" Height="30" Margin="210,70,500,350"/>
+                <Button x:Name="back" Width="200" Height="50" Content="Продожить покупки" Margin="0,285,600,115" />
+                <Grid Background="Green" Width="250" Height="70" Margin="509,285,41,95">
+                    <TextBlock Text="Price" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                    <Button Width="150" HorizontalAlignment="Right" Content="Оформить заказ"/>
+                </Grid>
             </Grid>
         </Border>
     </Grid>
