@@ -160,15 +160,15 @@ namespace Next_Level.Pages
                 textLogin.Visibility = Visibility.Collapsed;
             else
                 textLogin.Visibility = Visibility.Visible;
-            if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(Login.Text))
-            {
-                Login.Foreground = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
+            //if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(Login.Text))
+            //{
+            //    Login.Foreground = new SolidColorBrush(Colors.White);
+            //}
+            //else
+            //{
 
-                Login.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            //    Login.Foreground = new SolidColorBrush(Colors.Red);
+            //}
         }
 
         private void textLogin_MouseDown(object sender, MouseButtonEventArgs e)
@@ -182,15 +182,15 @@ namespace Next_Level.Pages
                 textName.Visibility = Visibility.Collapsed;
             else
                 textName.Visibility = Visibility.Visible;
-            if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(userName.Text))
-            {
-                userName.Foreground = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
+            //if ((new Regex(@"^[a-zA-Z]*$")).IsMatch(userName.Text))
+            //{
+            //    userName.Foreground = new SolidColorBrush(Colors.White);
+            //}
+            //else
+            //{
 
-                userName.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            //    userName.Foreground = new SolidColorBrush(Colors.Red);
+            //}
         }
 
         private void textName_MouseDown(object sender, MouseButtonEventArgs e)

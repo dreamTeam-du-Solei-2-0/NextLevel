@@ -84,7 +84,7 @@
                     </ScrollViewer>
 
                     <TextBox MinWidth="300" MaxWidth="1000" MaxLength="200" SpellCheck.IsEnabled="True" Language="en-ru" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="502" Height="83" x:Name="ComW" Background="{DynamicResource SecundaryWhiteColor}" BorderBrush="{DynamicResource PrimaryWhiteColor}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
-         VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource TextBoxes}"/>
+         VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.Row="1" Foreground="{DynamicResource PrimaryTextColor}" Style="{StaticResource TextBoxes}"/>
                     <Button Style="{StaticResource buttonCircle}" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,4" Grid.Column="1" Grid.RowSpan="2" Click="send_Click">
                         <Image Source="/Assets/Images/send.png" Width="20" Height="20" />
                     </Button>
