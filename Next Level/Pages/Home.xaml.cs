@@ -86,11 +86,17 @@ namespace Next_Level.Pages
         {
             Button button = (Button)sender;
             Frame myFrame = createFrame();
-            myFrame.Navigate(new ProductInfo(button.Name));
+            myFrame.Navigate(new Order(button.Name.Remove(button.Name.Length - 1)));
             homeView.Child = myFrame;
-
         }
 
+        private void button_InfoProduct(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            Frame myFrame = createFrame();
+            myFrame.Navigate(new ProductInfo(button.Name.Remove(button.Name.Length-1)));
+            homeView.Child = myFrame;
+        }
         
 
 
@@ -324,14 +330,14 @@ namespace Next_Level.Pages
             //Кнопка купить
             Button buyBut = new Button();
             buyBut.BorderThickness = new Thickness(0);
-            //if (product.Id != string.Empty)
-            //    buyBut.Name = product.Id + "1";
+            if (product.Id != string.Empty)
+                buyBut.Name = product.Id + "1";
             buyBut.Content = "Buy";
             buyBut.Foreground = Brushes.White;
             buyBut.Background = SetColor("#15531C");
             buyBut.Margin = new Thickness(2);
             buyBut.Foreground = Brushes.White;
-            //buyBut.Click += new RoutedEventHandler(button_BuyProduct);
+            buyBut.Click += new RoutedEventHandler(button_BuyProduct);
             buyBorder.Child = buyBut;
             Grid.SetRow(buyBorder, 5);
             myGrid.Children.Add(buyBorder);
@@ -346,13 +352,13 @@ namespace Next_Level.Pages
             Button infoBut = new Button();
             infoBut.BorderThickness = new Thickness(0);
             if (product.Id != string.Empty)
-                infoBut.Name = product.Id;
+                infoBut.Name = product.Id+"2";
             infoBut.Content = "About";
             infoBut.Foreground = Brushes.White;
             infoBut.Background = SetColor("#d32f2f");
             infoBut.Margin = new Thickness(2);
             infoBut.Foreground = Brushes.White;
-            infoBut.Click += new RoutedEventHandler(button_BuyProduct);
+            infoBut.Click += new RoutedEventHandler(button_InfoProduct);
             infoBorder.Child = infoBut;
             Grid.SetRow(infoBorder, 5);
             Grid.SetColumn(infoBorder, 1);

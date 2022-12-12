@@ -5,24 +5,24 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Next_Level.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" Margin="2"
       Title="Order">
 
     <Grid>
-        <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
+        <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
             <Grid>
-                <TextBlock Width="400" Height="200" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
+                <TextBlock Width="400" Height="200" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
                 <Grid Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Grid>
-                <TextBlock Text="Content" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-                <TextBox BorderThickness="3" BorderBrush="Black" Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
-                <Button Background="{DynamicResource SecundaryBackgroundColor}" x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
-                <Button Background="{DynamicResource SecundaryBackgroundColor}" x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>
-                <TextBlock Name="TotalPrice" Text="Price:" Height="30" Margin="210,70,500,350"/>
-                <Button x:Name="back" Background="{DynamicResource SecundaryBackgroundColor}" Width="200" Height="50" Content="Продожить покупки" Margin="0,285,600,115" />
-                
-                <Grid Background="#e5f5eb" Width="250" Height="70" Margin="509,285,41,95">
-                    <TextBlock Text="Price" Margin="30" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <Button Width="150" Height="30" Background="#00a046" HorizontalAlignment="Right" Content="Оформить заказ"/>
+                <TextBlock Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                <TextBox BorderThickness="3" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
+                <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
+                <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>
+                <TextBlock Name="TotalPrice" Text="Price:" Foreground="{DynamicResource PrimaryTextColor}" Height="30" Margin="210,70,500,350"/>
+                <Button x:Name="back" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Продолжить покупки" Margin="0,285,600,115" />
+
+                <Grid Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="70" Margin="509,285,41,95">
+                    <TextBlock Text="Price" Foreground="{DynamicResource PrimaryTextColor}" Margin="30" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                    <Button Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Content="Оформить заказ"/>
                 </Grid>
                 
             </Grid>

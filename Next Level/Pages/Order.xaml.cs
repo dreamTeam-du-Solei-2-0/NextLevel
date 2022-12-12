@@ -20,7 +20,7 @@ namespace Next_Level.Pages
     /// </summary>
     public partial class Order : Page
     {
-        public Order()
+        public Order(string id)
         {
             InitializeComponent();
         }
