@@ -11,9 +11,9 @@
     <Grid>
         <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
             <Grid>
-                <TextBlock Width="400" Height="200" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
-                <Grid Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Grid>
-                <TextBlock Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                <TextBlock x:Name="Description" Width="400" Height="200" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
+                <Grid x:Name="gridPhoto" Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock  Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
                 <TextBox BorderThickness="3" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="Count:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="241,36,0,0"></TextBox>
                 <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Width="20" Height="20" Margin="216,39,564,391" Content="+"/>
                 <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" Margin="280,39,500,391" Content="-"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Next_Level.Pages"
         mc:Ignorable="d"
-     Title="NextLevel [Administrator]" Height="650" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+     Title="NextLevel [Administrator]" Height="650" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Assets/Icons/Logo.png">
     <Grid>
         <TabControl>
             <TabItem x:Name="addTab">

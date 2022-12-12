@@ -44,7 +44,7 @@
                         </Button.Style>
                         
                     </Button>-->
-                    <Image x:Name="productImage" Source="/Assets/Images/1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200"/>
+                    <Image x:Name="productImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200"/>
                     <TextBlock FontSize="20" x:Name="Description" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Описание:"/>
                     <TextBlock x:Name="Price" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Цена:100"/>
                     <Button Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
