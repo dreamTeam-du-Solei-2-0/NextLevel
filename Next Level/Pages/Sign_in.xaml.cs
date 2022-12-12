@@ -20,11 +20,12 @@ namespace Next_Level.Pages
             user = new User();
             this.ResizeMode = ResizeMode.NoResize;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            cancelButton.Click += new RoutedEventHandler(cancelClick);
         }
         public bool isFieldsNoEmpty()
         {
             int count = 0;
-            if (Login.Text != String.Empty)
+            if (login.Text != String.Empty)
                 count++;
             if (userName.Text != String.Empty)
                 count++;
@@ -102,7 +103,7 @@ namespace Next_Level.Pages
                 count++;
             }
 
-            if (LoginCheck(Login.Text))
+            if (LoginCheck(login.Text))
             {
                 LoginError.Visibility = Visibility.Visible;
                 LoginBorder.Margin = new Thickness(0, 0, 0, 0);
@@ -134,17 +135,17 @@ namespace Next_Level.Pages
 
             if (count >= 4)
             {
-                if (Login.Text == "SuperAdmin")
+                if (login.Text == "SuperAdmin")
                     user.isAdmin = true;
-                user.Login = Login.Text;
+                user.Login = login.Text;
                 user.Name = userName.Text;
                 user.Surname = userSurname.Text;
                 user.Email = userEmail.Text;
                 user.Password = userPassword.Password;
                 accounts.AddNew(user);
-                Login login = new Login();
+                Login _login = new Login();
                 this.Close();
-                login.ShowDialog();
+                _login.ShowDialog();
             }
         }
 
@@ -156,7 +157,7 @@ namespace Next_Level.Pages
 
         private void txtLogin_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(Login.Text) && Login.Text.Length > 0)
+            if (!string.IsNullOrEmpty(login.Text) && login.Text.Length > 0)
                 textLogin.Visibility = Visibility.Collapsed;
             else
                 textLogin.Visibility = Visibility.Visible;
@@ -173,7 +174,7 @@ namespace Next_Level.Pages
 
         private void textLogin_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Login.Focus();
+            login.Focus();
         }
 
         private void txtName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -349,6 +350,13 @@ namespace Next_Level.Pages
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void cancelClick(object sender,RoutedEventArgs e)
+        {
+            Login _login = new Login();
+            this.Close();
+            _login.ShowDialog();
         }
     }
 }

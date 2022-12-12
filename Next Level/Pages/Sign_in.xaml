@@ -28,7 +28,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textLogin" MouseDown="textLogin_MouseDown" Text="Login" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1"/>
-                        <TextBox x:Name="Login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <TextBox x:Name="login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 <TextBlock x:Name="LoginError" Visibility="Collapsed" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="0 0 0 20"/>
@@ -98,6 +98,11 @@
                 </Border>
                 <Button x:Name="createAccount" Content="Sign Up" Click="createAccount_Click" Style="{StaticResource mainButton}" Margin="0 0 0 5"/>
                 <TextBlock x:Name="FieldsEmpty" Visibility="Collapsed" TextAlignment="Center" Text="Fields is empty" FontSize="13" Foreground="DarkRed" Margin="0 0 0 5"/>
+                <Button x:Name="cancelButton" VerticalAlignment="Center" HorizontalAlignment="Center"  Background="{x:Null}" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <TextBlock Text="Cancel" Foreground="{DynamicResource PrimaryTextColor}" TextDecorations="Underline"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Border>
 

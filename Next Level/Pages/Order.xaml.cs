@@ -28,7 +28,7 @@ namespace Next_Level.Pages
 
         ProductList _products;
         Product product;
-        List<Feedback> feedbacks;
+
         public Order(string id,Home home)
         {
             InitializeComponent();
