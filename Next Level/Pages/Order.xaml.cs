@@ -20,9 +20,20 @@ namespace Next_Level.Pages
     /// </summary>
     public partial class Order : Page
     {
-        public Order(string id)
+        Home relative_page;
+        public Order(string id,Home home)
         {
             InitializeComponent();
+            relative_page = home;
         }
+
+        #region EVENTS
+
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            relative_page.LoadProducts();
+        }
+
+        #endregion
     }
 }

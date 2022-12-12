@@ -40,7 +40,7 @@ namespace Next_Level.Pages
             
         }
 
-        void LoadProducts()
+        public void LoadProducts()
         {
             ScrollViewer scroll = createScroll();
             StackPanel myStack = createStackPanel();
@@ -86,7 +86,7 @@ namespace Next_Level.Pages
         {
             Button button = (Button)sender;
             Frame myFrame = createFrame();
-            myFrame.Navigate(new Order(button.Name.Remove(button.Name.Length - 1)));
+            myFrame.Navigate(new Order(button.Name.Remove(button.Name.Length - 1),this));
             homeView.Child = myFrame;
         }
 
@@ -128,6 +128,7 @@ namespace Next_Level.Pages
         Frame createFrame()
         {
             Frame frame = new Frame();
+            frame.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
             return frame;
         }
 
