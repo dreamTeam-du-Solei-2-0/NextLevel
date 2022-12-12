@@ -85,7 +85,7 @@ namespace Next_Level.Pages
         private Border createCategory(string categoryName)
         {
             Border categoryBorder = new Border();
-            categoryBorder.Background = SetColor("#15531C");
+            categoryBorder.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
             categoryBorder.CornerRadius = new CornerRadius(8);
             categoryBorder.BorderThickness = new Thickness(1);
             categoryBorder.Margin = new Thickness(10);
@@ -94,11 +94,10 @@ namespace Next_Level.Pages
             Button category = new Button();
             category.BorderThickness = new Thickness(0);
             category.Content = categoryName;
-            category.Foreground = Brushes.White;
-            category.Background = SetColor("#15531C");
+            category.Foreground = (SolidColorBrush)FindResource("PrimaryTextColor");
+            category.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
             category.FontSize = 20;
             category.Margin = new Thickness(2);
-            category.Foreground = Brushes.White;
             category.Click += new RoutedEventHandler(showCategory);
             categoryBorder.Child = category;
             return categoryBorder;
@@ -128,7 +127,7 @@ namespace Next_Level.Pages
             Border border = new Border();
             border.CornerRadius = new CornerRadius(8);
             border.Background = gridColor;
-            border.Height = 260;
+            border.Height = 265;
             border.Width = 180;
             border.Margin = new Thickness(8);
 
@@ -140,7 +139,7 @@ namespace Next_Level.Pages
 
             //Создание сетки
             Grid myGrid = new Grid();
-            myGrid.Height = 260;
+            myGrid.Height = 265;
             myGrid.Width = 180;
             //показать линии сетки
             //myGrid.ShowGridLines = true;
@@ -177,7 +176,7 @@ namespace Next_Level.Pages
 
             //Категория
             Border categoryBorder = new Border();
-            categoryBorder.Background = SetColor("#15531C");
+            categoryBorder.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
             categoryBorder.HorizontalAlignment = HorizontalAlignment.Center;
             categoryBorder.CornerRadius = new CornerRadius(8);
             categoryBorder.Margin = new Thickness(2);
@@ -188,7 +187,7 @@ namespace Next_Level.Pages
             else
                 category.Text = "#CATEGORY#";
 
-            category.Margin = new Thickness(2);
+            category.Margin = new Thickness(3);
             category.FontSize = 12;
             category.TextWrapping = TextWrapping.Wrap;
             category.VerticalAlignment = VerticalAlignment.Center;

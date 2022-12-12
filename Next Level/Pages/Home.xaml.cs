@@ -151,7 +151,7 @@ namespace Next_Level.Pages
             category.Text = _category;
             category.FontSize = 20;
             category.FontWeight = FontWeights.Bold;
-            category.Foreground = SetColor("#15531C");
+            category.Foreground = (SolidColorBrush)FindResource("PrimaryTextColor");
             category.HorizontalAlignment = HorizontalAlignment.Center;
             category.Margin = new Thickness(10);
             return category;
@@ -181,7 +181,7 @@ namespace Next_Level.Pages
             Border border = new Border();
             border.CornerRadius = new CornerRadius(8);
             border.Background = gridColor;
-            border.Height = 260;
+            border.Height = 265;
             border.Width = 180;
             border.Margin = new Thickness(8);
 
@@ -193,7 +193,7 @@ namespace Next_Level.Pages
 
             //Создание сетки
             Grid myGrid = new Grid();
-            myGrid.Height = 260;
+            myGrid.Height = 265;
             myGrid.Width = 180;
             //показать линии сетки
             //myGrid.ShowGridLines = true;
@@ -230,7 +230,7 @@ namespace Next_Level.Pages
 
             //Категория
             Border categoryBorder = new Border();
-            categoryBorder.Background = SetColor("#15531C");
+            categoryBorder.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
             categoryBorder.HorizontalAlignment = HorizontalAlignment.Center;
             categoryBorder.CornerRadius = new CornerRadius(8);
             categoryBorder.Margin = new Thickness(2);
@@ -241,7 +241,7 @@ namespace Next_Level.Pages
             else
                 category.Text = "#CATEGORY#";
 
-            category.Margin = new Thickness(2);
+            category.Margin = new Thickness(3);
             category.FontSize = 12;
             category.TextWrapping = TextWrapping.Wrap;
             category.VerticalAlignment = VerticalAlignment.Center;
@@ -353,7 +353,7 @@ namespace Next_Level.Pages
             Button infoBut = new Button();
             infoBut.BorderThickness = new Thickness(0);
             if (product.Id != string.Empty)
-                infoBut.Name = product.Id+"2";
+                infoBut.Name = product.Id + "2";
             infoBut.Content = "About";
             infoBut.Foreground = Brushes.White;
             infoBut.Background = SetColor("#d32f2f");
