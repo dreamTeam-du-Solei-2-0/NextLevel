@@ -88,6 +88,7 @@ namespace Next_Level.Pages
             Frame myFrame = createFrame();
             myFrame.Navigate(new ProductInfo(button.Name));
             homeView.Child = myFrame;
+
         }
 
         
