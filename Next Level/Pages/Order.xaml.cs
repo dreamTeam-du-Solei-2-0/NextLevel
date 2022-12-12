@@ -28,7 +28,8 @@ namespace Next_Level.Pages
 
         ProductList _products;
         Product product;
-
+        List<Feedback> feedbacks;
+        int count = 0;
         public Order(string id,Home home)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Next_Level.Pages
             LoadCurrentUser();
             LoadProductList();
             LoadProduct(id);
+            examinationTextBlock();
         }
 
         #region LOAD_ALL_DATA
@@ -62,6 +64,25 @@ namespace Next_Level.Pages
                 LoadPriceDescription();
                 LoadImage();
             }
+        }
+
+        void examinationTextBlock()
+        {
+            string tmp = Count.Text;
+            int a = Int32.Parse(tmp);
+            if(a > product.productCount || a < 0)
+            {
+                Count.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else Count.BorderBrush = new SolidColorBrush(Colors.Black);
+
+            if (string.IsNullOrEmpty(Count.Text))
+            {
+                Count.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+                Count.BorderBrush = new SolidColorBrush(Colors.Black);
+            
         }
 
         //подгружает описание и цену из бд
@@ -127,5 +148,29 @@ namespace Next_Level.Pages
             return null;
         }
         #endregion
+
+        private void plus_Click(object sender, RoutedEventArgs e)
+        {
+            count++;
+            Count.Text = count.ToString();
+        }
+
+        private void minus_Click(object sender, RoutedEventArgs e)
+        {
+            if (count > 0)
+            {
+                count--;
+            }
+            else
+                Count.BorderBrush = new SolidColorBrush(Colors.Red);
+            
+            Count.Text = count.ToString();
+        }
+
+        private void Count_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            double totalprice = count * product.productPrice;
+            Price.Text = totalprice.ToString();
+        }
     }
 }
