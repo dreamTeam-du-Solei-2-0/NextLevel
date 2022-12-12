@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
@@ -24,82 +25,62 @@ namespace Next_Level
     
     public partial class ProductInfo : Page
     {
-        List<string> files = new List<string>();
-        public string current_user { get; set; }
-        int counter = 0;
+        User current_user;
         Accounts accounts = new Accounts();
         IFile file;
-        string path_currentUser = NextLevelPath.CURRENT_USER;
+        
         ProductList _products;
         Product product;
-        List<Feedback> feedbacks = new List<Feedback>();
-        Product p = new Product();
-        
+        List<Feedback> feedbacks;
+
+        SolidColorBrush gridColor;
+        SolidColorBrush textColor;
+
 
         public ProductInfo(string id)
         {
             InitializeComponent();
-            file = new BinnaryFile(path_currentUser);
-            current_user = file.Load<string>();
-            //MaxWidth = 600;
-            _products = new ProductList();
-            product = _products.getProductById(id);
-            //if (product.descriptionProduct != string.Empty)
-            ////    product.descriptionProduct.Content. = product.descriptionProduct.ToString();
+            LoadCurrentUser();
+            LoadProductList();
+            LoadProduct(id);
+            LoadColors();
             LoadComments();
-            Des.Text += "\nОчень классный клоун";
         }
 
-        #region FEEDBACKS        
-        private void send_Click(object sender, RoutedEventArgs e)
+        #region LOAD_ALL_DATA
+
+        //загрузка текущего пользователя
+        void LoadCurrentUser()
         {
-            User user = new User();
-            user = accounts.getUserByLogin(this.current_user);
-            if(string.IsNullOrEmpty(ComW.Text))
-            {
-                //MessageBox.Show("Is Empty");
-               
-            }
+            string path_currentUser = NextLevelPath.CURRENT_USER;
+            file = new BinnaryFile(path_currentUser);
+            current_user = accounts.getUserByLogin(file.Load<string>());
+        }
+
+        //подгружает продукты из бд
+        void LoadProductList() => _products = new ProductList();
+
+        //находит нужный продукт
+        void LoadProduct(string id)
+        {
+            product = _products.getProductById(id);
+            if (product == null)
+                product = new Product();
             else
             {
-                Feedback feedback= new Feedback();
-                feedback.username=user.Name;
-                feedback.comment = ComW.Text;
-                feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
-                Coments.Children.Add(CreateGrid(feedback.username,feedback.comment, feedback.date));
-                SaveComments(feedback);
+                LoadPriceDescription();
+                LoadImage();
             }
-            
-            ComW.Clear();
-
-        
         }
 
-        private void products_PreviewKeyDown(object sender, KeyEventArgs e)
+        //загрузка цветов
+        void LoadColors()
         {
-            if (e.Key == Key.Return)
-            {
-                User user = new User();
-                user = accounts.getUserByLogin(this.current_user);
-                if (string.IsNullOrEmpty(ComW.Text))
-                {
-                    //MessageBox.Show("Is Empty");
-                }
-
-                else
-                {
-                    Feedback feedback = new Feedback();
-                    feedback.username = user.Name;
-                    feedback.comment = ComW.Text;
-                    feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
-                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date));
-                    SaveComments(feedback);
-                }
-
-                ComW.Clear();
-            }
+            gridColor = (SolidColorBrush)FindResource("SecundaryBackgroundColor");
+            textColor = (SolidColorBrush)FindResource("PrimaryTextColor");
         }
 
+        //подгружает комментарии из бд
         void LoadComments()
         {
             string target = NextLevelPath.STOREBD_PATH;
@@ -110,19 +91,76 @@ namespace Next_Level
             {
                 file = new XmlFormat(target);
                 feedbacks = file.Load<List<Feedback>>();
-                foreach(var feedback in feedbacks)
+                foreach (var feedback in feedbacks)
                 {
-                    Coments.Children.Add(CreateGrid(feedback.username,feedback.comment,feedback.date));
+                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
                 }
             }
             else feedbacks = new List<Feedback>();
-
-
         }
+
+        //подгружает описание и цену из бд
+        void LoadPriceDescription()
+        {
+            if (product.descriptionProduct == string.Empty)
+                Description.Text = "No description";
+            else
+                Description.Text = product.descriptionProduct;
+
+            Price.Text = "Price: " + product.productPrice.ToString();
+        }
+
+        //подгружает фото из бд
+        void LoadImage()
+        {
+            string target = NextLevelPath.STOREBD_PATH;
+            target = System.IO.Path.GetFullPath(target);
+            target = System.IO.Path.Combine(target, product.productName);
+            target = System.IO.Path.Combine(target, product.productPhoto);
+            if(File.Exists(target))
+                productImage.Source = loadPhoto(target);
+        }
+
+        #endregion
+
+        #region FEEDBACKS      
+        //оставить отзыв нажатием на кнопку
+        private void send_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ComW.Text))
+            {
+                Feedback feedback = new Feedback();
+                feedback.username = current_user.Name;
+                feedback.comment = ComW.Text;
+                feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
+                Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
+                SaveComments(feedback);
+                ComW.Clear();
+            }
+        }
+        //оставить отзыв нажатием на Enter
+        private void products_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+
+                if (!string.IsNullOrEmpty(ComW.Text))
+                {
+                    Feedback feedback = new Feedback();
+                    feedback.username = current_user.Name;
+                    feedback.comment = ComW.Text;
+                    feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
+                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
+                    SaveComments(feedback);
+                    ComW.Clear();
+                }
+            }
+        }
+
+        
         //Сохраняет комментарий
         void SaveComments(Feedback feedback)
         {
-
             feedbacks.Add(feedback);
             string target = NextLevelPath.STOREBD_PATH;
             target = System.IO.Path.GetFullPath(target);
@@ -136,21 +174,45 @@ namespace Next_Level
         #endregion
 
         #region CREATE_ELEMENTS
+        //загружает фото
+        BitmapImage loadPhoto(string path)
+        {
+            BitmapImage img = new BitmapImage();
+            if (File.Exists(path))
+            {
+                img.BeginInit();
+                img.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+                img.DecodePixelWidth = 200;
+                img.DecodePixelHeight = 200;
+                img.EndInit();
+                return img;
+            }
+            return null;
+        }
+
         //Установка 16-ричного цвета
         Brush SetColor(string hex)
         {
             return (Brush)(new BrushConverter().ConvertFrom(hex));
         }
-        
         //Создаёт комментарий
-        Grid CreateGrid(string userName, string commentText,string currentdate)
+        Border CreateGrid(string userName, string commentText, string currentdate, SolidColorBrush gridColor, SolidColorBrush textColor)
         {
             //тело отзыва
+            Border border = new Border();
+            border.Margin = new Thickness(5);
+            border.CornerRadius = new CornerRadius(8);
+            //border.MaxHeight = 350;
+            //border.MinHeight = 150;
+            border.Background = gridColor;
+            DropShadowEffect shadowEffect = new DropShadowEffect();
+            shadowEffect.BlurRadius = 8;
+            shadowEffect.Opacity = 0.5;
+            border.Effect = shadowEffect;
+
             Grid myGrid = new Grid();
-            myGrid.MaxHeight = 350;
-            myGrid.MinHeight = 150;
-            myGrid.Background = SetColor("#1F1F1F");
-            myGrid.Margin = new Thickness(5);
+            myGrid.Margin = new Thickness(2);
+            myGrid.Height = 150;
             //myGrid.ShowGridLines = true;
 
             RowDefinition[] rows = new RowDefinition[3];
@@ -178,23 +240,24 @@ namespace Next_Level
             myGrid.RowDefinitions.Add(rows[1]);
             myGrid.RowDefinitions.Add(rows[2]);
 
-            //кнопка ответить
-            Button answer = new Button();
-            answer.Content = "Reply";
-            answer.Foreground = SetColor("#00541F");
+
+
 
             //имя пользователя
             TextBlock textName = new TextBlock();
             textName.Text = userName;
-            textName.Foreground = SetColor("#B4B4B4");
+            textName.Foreground = textColor;
             textName.Margin = new Thickness(10, 0, 0, 0);
             textName.FontSize = 20;
 
             //текст отзыва
-            TextBlock feed = new TextBlock();
+            TextBox feed = new TextBox();
             feed.Margin = new Thickness(10);
+            feed.IsReadOnly = true;
+            feed.BorderThickness = new Thickness(0);
+            feed.Background = gridColor;
             feed.Text = commentText;
-            feed.Foreground = SetColor("#B4B4B4");
+            feed.Foreground = textColor;
             feed.TextWrapping = TextWrapping.Wrap;
             feed.Margin = new Thickness(10, 0, 0, 0);
             feed.FontSize = 15;
@@ -203,13 +266,13 @@ namespace Next_Level
             TextBlock currentDate = new TextBlock();
             currentDate.Margin = new Thickness(10);
             currentDate.Text = currentdate;
-            currentDate.Foreground = SetColor("#B4B4B4");
+            currentDate.Foreground = textColor;
             currentDate.TextWrapping = TextWrapping.Wrap;
             currentDate.Margin = new Thickness(10, 0, 0, 0);
             currentDate.FontSize = 12;
             currentDate.VerticalAlignment = VerticalAlignment.Center;
 
-           ///ДОБАВЛЕНИЕ В ГРИД
+            ///ДОБАВЛЕНИЕ В ГРИД
 
             //фото
             Grid grid1 = new Grid();
@@ -237,9 +300,10 @@ namespace Next_Level
             sc.MinHeight = 150;
             sc.MaxHeight = 1000;
 
-            return myGrid;
+            border.Child = myGrid;
+            return border;
         }
-
+       
         #endregion
 
         #region GALLERY_EVENTS
