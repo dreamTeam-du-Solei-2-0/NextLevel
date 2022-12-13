@@ -31,7 +31,7 @@ namespace Next_Level
         
         ProductList _products;
         Product product;
-        List<Feedback> feedbacks;
+        FeedbackList feedbacks;
 
         SolidColorBrush gridColor;
         SolidColorBrush textColor;
@@ -83,20 +83,15 @@ namespace Next_Level
         //подгружает комментарии из бд
         void LoadComments()
         {
-            string target = NextLevelPath.STOREBD_PATH;
-            target = System.IO.Path.GetFullPath(target);
-            target = System.IO.Path.Combine(target, product.productName);
-            target = System.IO.Path.Combine(target, product.productName + ".xml");
-            if (File.Exists(target))
+            Coments.Children.Clear();
+            feedbacks = new FeedbackList(product.productName);
+            if(feedbacks.Count!=0)
             {
-                file = new XmlFormat(target);
-                feedbacks = file.Load<List<Feedback>>();
                 foreach (var feedback in feedbacks)
                 {
-                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
+                    Coments.Children.Add(CreateGrid(feedback, gridColor, textColor));
                 }
             }
-            else feedbacks = new List<Feedback>();
         }
 
         //подгружает описание и цену из бд
@@ -123,7 +118,7 @@ namespace Next_Level
 
         #endregion
 
-        #region FEEDBACKS      
+        #region EVENTS      
         //оставить отзыв нажатием на кнопку
         private void send_Click(object sender, RoutedEventArgs e)
         {
@@ -133,7 +128,7 @@ namespace Next_Level
                 feedback.username = current_user.Name;
                 feedback.comment = ComW.Text;
                 feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
-                Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
+                Coments.Children.Add(CreateGrid(feedback, gridColor, textColor));
                 SaveComments(feedback);
                 ComW.Clear();
             }
@@ -147,29 +142,29 @@ namespace Next_Level
                 if (!string.IsNullOrEmpty(ComW.Text))
                 {
                     Feedback feedback = new Feedback();
+                    feedback.login = current_user.Login;
                     feedback.username = current_user.Name;
                     feedback.comment = ComW.Text;
                     feedback.date = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}  {DateTime.Now.Hour}:{DateTime.Now.Minute}";
-                    Coments.Children.Add(CreateGrid(feedback.username, feedback.comment, feedback.date, gridColor, textColor));
+                    Coments.Children.Add(CreateGrid(feedback, gridColor, textColor));
                     SaveComments(feedback);
                     ComW.Clear();
                 }
             }
         }
 
+        private void deleteFeedback(object sender, RoutedEventArgs e) 
+        {
+            Button but = (Button)sender;
+            var feedback = feedbacks.getFeedbackById(but.Name);
+            feedbacks.RemoveCommentById(feedback);
+            LoadComments();
+        }
         
         //Сохраняет комментарий
         void SaveComments(Feedback feedback)
         {
-            feedbacks.Add(feedback);
-            string target = NextLevelPath.STOREBD_PATH;
-            target = System.IO.Path.GetFullPath(target);
-            target = System.IO.Path.Combine(target, product.productName);
-            if (!Directory.Exists(target))
-                Directory.CreateDirectory(target);
-            target = System.IO.Path.Combine(target, product.productName + ".xml");
-            file = new XmlFormat(target);
-            file.Save(feedbacks);
+            feedbacks.AddNewComment(feedback);
         }
         #endregion
 
@@ -196,7 +191,7 @@ namespace Next_Level
             return (Brush)(new BrushConverter().ConvertFrom(hex));
         }
         //Создаёт комментарий
-        Border CreateGrid(string userName, string commentText, string currentdate, SolidColorBrush gridColor, SolidColorBrush textColor)
+        Border CreateGrid(Feedback feedback, SolidColorBrush gridColor, SolidColorBrush textColor)
         {
             //тело отзыва
             Border border = new Border();
@@ -214,19 +209,19 @@ namespace Next_Level
             myGrid.Margin = new Thickness(2);
             myGrid.MinHeight = 150;
             myGrid.MaxHeight = 350;
-            myGrid.ShowGridLines = true;
+            //myGrid.ShowGridLines = true;
 
-            RowDefinition[] rows = new RowDefinition[4];
+            RowDefinition[] rows = new RowDefinition[3];
             for (int i = 0; i < rows.Length; i++)
                 rows[i] = new RowDefinition();
 
-            ColumnDefinition[] columns = new ColumnDefinition[3];
+            ColumnDefinition[] columns = new ColumnDefinition[4];
             for (int i = 0; i < columns.Length; i++)
                 columns[i] = new ColumnDefinition();
 
             rows[0].Height = new GridLength(25);
             //rows[1].Height = new GridLength(100);
-            rows[3].Height = new GridLength(25);
+            //rows[3].Height = new GridLength(25);
 
             columns[0].Width = new GridLength(110);
             columns[1].Width = new GridLength(100);
@@ -246,7 +241,7 @@ namespace Next_Level
 
             //имя пользователя
             TextBlock textName = new TextBlock();
-            textName.Text = userName;
+            textName.Text = feedback.username;
             textName.Foreground = textColor;
             textName.Margin = new Thickness(10, 0, 0, 0);
             textName.FontSize = 20;
@@ -257,7 +252,7 @@ namespace Next_Level
             feed.IsReadOnly = true;
             feed.BorderThickness = new Thickness(0);
             feed.Background = gridColor;
-            feed.Text = commentText;
+            feed.Text = feedback.comment;
             feed.Foreground = textColor;
             feed.TextWrapping = TextWrapping.Wrap;
             feed.Margin = new Thickness(10, 0, 0, 0);
@@ -266,7 +261,7 @@ namespace Next_Level
             //время
             TextBlock currentDate = new TextBlock();
             currentDate.Margin = new Thickness(10);
-            currentDate.Text = currentdate;
+            currentDate.Text = feedback.date;
             currentDate.Foreground = textColor;
             currentDate.TextWrapping = TextWrapping.Wrap;
             currentDate.Margin = new Thickness(10, 0, 0, 0);
@@ -278,6 +273,9 @@ namespace Next_Level
             deleteFeed.BorderThickness = new Thickness(0);
             deleteFeed.Background = Brushes.Transparent;
             deleteFeed.HorizontalAlignment = HorizontalAlignment.Right;
+            deleteFeed.Margin=new Thickness(0,0, 5, 0);
+            deleteFeed.Click += new RoutedEventHandler(deleteFeedback);
+            deleteFeed.Name = feedback.id;
             TextBlock deleteText = new TextBlock();
             deleteText.TextDecorations = TextDecorations.Underline;
             deleteText.FontSize = 15;
@@ -316,10 +314,14 @@ namespace Next_Level
             sc.MinHeight = 150;
             sc.MaxHeight = 1000;
 
+
             //delete feedback
-            Grid.SetColumn(deleteFeed, 2);
-            Grid.SetRow(deleteFeed, 0);
-            myGrid.Children.Add(deleteFeed);
+            if (feedback.login == current_user.Login)
+            {
+                Grid.SetColumn(deleteFeed, 2);
+                Grid.SetRow(deleteFeed, 0);
+                myGrid.Children.Add(deleteFeed);
+            }
 
             border.Child = myGrid;
             return border;
