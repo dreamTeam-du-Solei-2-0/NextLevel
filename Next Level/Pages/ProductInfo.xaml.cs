@@ -202,8 +202,8 @@ namespace Next_Level
             Border border = new Border();
             border.Margin = new Thickness(5);
             border.CornerRadius = new CornerRadius(8);
-            //border.MaxHeight = 350;
-            //border.MinHeight = 150;
+            border.MaxHeight = 350;
+            border.MinHeight = 150;
             border.Background = gridColor;
             DropShadowEffect shadowEffect = new DropShadowEffect();
             shadowEffect.BlurRadius = 8;
@@ -212,10 +212,11 @@ namespace Next_Level
 
             Grid myGrid = new Grid();
             myGrid.Margin = new Thickness(2);
-            myGrid.Height = 150;
+            myGrid.MinHeight = 150;
+            myGrid.MaxHeight = 350;
             //myGrid.ShowGridLines = true;
 
-            RowDefinition[] rows = new RowDefinition[3];
+            RowDefinition[] rows = new RowDefinition[4];
             for (int i = 0; i < rows.Length; i++)
                 rows[i] = new RowDefinition();
 
@@ -224,8 +225,8 @@ namespace Next_Level
                 columns[i] = new ColumnDefinition();
 
             rows[0].Height = new GridLength(25);
-            rows[1].Height = new GridLength(100);
-            rows[2].Height = new GridLength(25);
+            //rows[1].Height = new GridLength(100);
+            rows[3].Height = new GridLength(25);
 
             columns[0].Width = new GridLength(110);
             columns[1].Width = new GridLength(100);
@@ -276,6 +277,8 @@ namespace Next_Level
 
             //фото
             Grid grid1 = new Grid();
+            grid1.Height = 100;
+            grid1.Width = 100;
             grid1.Margin = new Thickness(5);
             grid1.Background = SetColor("#B4B4B4");
             Grid.SetRowSpan(grid1, 2);
@@ -289,6 +292,7 @@ namespace Next_Level
 
             //отзыв
             Grid.SetRow(feed, 1);
+            Grid.SetRowSpan(feed, 2);
             Grid.SetColumn(feed, 1);
             Grid.SetColumnSpan(feed, 3);
             myGrid.Children.Add(feed);

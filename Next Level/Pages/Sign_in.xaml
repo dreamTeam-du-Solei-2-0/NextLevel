@@ -28,7 +28,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textLogin" MouseDown="textLogin_MouseDown" Text="Login" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1"/>
-                        <TextBox x:Name="login" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <TextBox x:Name="login" MaxLength="60" TextChanged="txtLogin_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 <TextBlock x:Name="LoginError" Visibility="Collapsed" Text="Login is exist" FontSize="13" Foreground="DarkRed" Margin="0 0 0 20"/>
@@ -41,7 +41,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textName" MouseDown="textName_MouseDown" Text="Name" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1"/>
-                        <TextBox x:Name="userName" TextChanged="txtName_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <TextBox x:Name="userName" MaxLength="60" TextChanged="txtName_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}" Margin="0 0 0 20">
@@ -52,7 +52,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textSurname" MouseDown="textSurname_MouseDown" Text="Surname" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1"/>
-                        <TextBox x:Name="userSurname" TextChanged="txtSurname_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <TextBox x:Name="userSurname" MaxLength="60" TextChanged="txtSurname_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 <Border x:Name="EmailBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}" Margin="0 0 0 20">
@@ -63,7 +63,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1"/>
-                        <TextBox x:Name="userEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <TextBox x:Name="userEmail" MaxLength="60" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 
@@ -77,7 +77,7 @@
                         </Grid.ColumnDefinitions>
                         <!--<Image Source="/Assets/Images/Email.png" Height="20" />-->
                         <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" Foreground="{DynamicResource PrimaryTextColor}" Grid.Column="1" Margin="9,0,-2,-1" TextInput="textPassword_TextInput"  DataContextChanged="textPassword_DataContextChanged"/>
-                        <PasswordBox x:Name="userPassword" PasswordChanged="userPassword_PasswordChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
+                        <PasswordBox x:Name="userPassword" MaxLength="60" PasswordChanged="userPassword_PasswordChanged" Style="{StaticResource textBox}" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource SecundaryBackgroundColor}"/>
                     </Grid>
                 </Border>
                 <TextBlock x:Name="PasswordError" Visibility="Collapsed" Text="Password isn't strong" FontSize="13" Foreground="DarkRed" Margin="0 0 0 5"/>
