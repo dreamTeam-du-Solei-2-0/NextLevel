@@ -47,6 +47,71 @@ namespace Next_Level.AdminPanelPages
 
         }
 
+        #region MENU_EVENTS
+
+        private void addProductClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editProductClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void showProductsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addCategoriesClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editCategoriesClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addUserClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editUserClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void logOutClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region WINDOW_EVENTS
+
+        private void replacePanel(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void closePanel(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void minimizePanel(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        #endregion
+
+        #region OLD_CODE
         //#region CONSTRUCTOR_ACTIONS
         ////подключение кнопок к событиям, загрузка бд
         //private void basicSettings()
@@ -745,5 +810,6 @@ namespace Next_Level.AdminPanelPages
         //}
 
         //#endregion
+        #endregion
     }
 }
