@@ -214,13 +214,13 @@ namespace Next_Level
             myGrid.Margin = new Thickness(2);
             myGrid.MinHeight = 150;
             myGrid.MaxHeight = 350;
-            //myGrid.ShowGridLines = true;
+            myGrid.ShowGridLines = true;
 
             RowDefinition[] rows = new RowDefinition[4];
             for (int i = 0; i < rows.Length; i++)
                 rows[i] = new RowDefinition();
 
-            ColumnDefinition[] columns = new ColumnDefinition[4];
+            ColumnDefinition[] columns = new ColumnDefinition[3];
             for (int i = 0; i < columns.Length; i++)
                 columns[i] = new ColumnDefinition();
 
@@ -273,9 +273,11 @@ namespace Next_Level
             currentDate.FontSize = 12;
             currentDate.VerticalAlignment = VerticalAlignment.Center;
 
+            //delete feedback
             Button deleteFeed = new Button();
             deleteFeed.BorderThickness = new Thickness(0);
             deleteFeed.Background = Brushes.Transparent;
+            deleteFeed.HorizontalAlignment = HorizontalAlignment.Right;
             TextBlock deleteText = new TextBlock();
             deleteText.TextDecorations = TextDecorations.Underline;
             deleteText.FontSize = 15;
@@ -314,8 +316,9 @@ namespace Next_Level
             sc.MinHeight = 150;
             sc.MaxHeight = 1000;
 
-            Grid.SetColumn(deleteFeed, 1);
-            Grid.SetRow(deleteFeed, 3);
+            //delete feedback
+            Grid.SetColumn(deleteFeed, 2);
+            Grid.SetRow(deleteFeed, 0);
             myGrid.Children.Add(deleteFeed);
 
             border.Child = myGrid;
