@@ -30,6 +30,7 @@ namespace Next_Level.Pages
         Product product;
         List<Feedback> feedbacks;
         int count = 0;
+        public static string _id;
         public Order(string id,Home home)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace Next_Level.Pages
             LoadProductList();
             LoadProduct(id);
             examinationTextBlock();
+            
         }
 
         #region LOAD_ALL_DATA
@@ -69,7 +71,7 @@ namespace Next_Level.Pages
         void examinationTextBlock()
         {
             string tmp = Count.Text;
-            int a = Int32.Parse(tmp);
+            int a = int.Parse(tmp);
             if(a > product.productCount || a < 0)
             {
                 Count.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -118,6 +120,8 @@ namespace Next_Level.Pages
         private void back_Click(object sender, RoutedEventArgs e)
         {
             relative_page.LoadProducts();
+            string _id = product.Id;
+
         }
 
         #endregion

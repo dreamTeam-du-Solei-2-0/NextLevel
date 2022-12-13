@@ -13,7 +13,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.01*"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ScrollViewer>
                 <WrapPanel x:Name="categoriesPanel"/>

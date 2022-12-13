@@ -15,7 +15,7 @@
                 <Grid x:Name="gridPhoto" Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBlock  Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,50,0,0" Width="100" Height="50">
-                    <TextBox x:Name="Count" BorderThickness="1" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="Count:"  HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
+                    <TextBox x:Name="Count" BorderThickness="1" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="0"  HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
                     <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Content="+"/>
                     <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Content="-"/>
                 </Grid>
