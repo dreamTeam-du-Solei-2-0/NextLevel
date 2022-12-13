@@ -25,17 +25,18 @@ namespace Next_Level
     
     public partial class ProductInfo : Page
     {
+        IFile file;
+
         User current_user;
         Accounts accounts = new Accounts();
-        IFile file;
         
         ProductList _products;
         Product product;
+
         FeedbackList feedbacks;
 
         SolidColorBrush gridColor;
         SolidColorBrush textColor;
-
 
         public ProductInfo(string id)
         {
@@ -219,7 +220,7 @@ namespace Next_Level
             for (int i = 0; i < columns.Length; i++)
                 columns[i] = new ColumnDefinition();
 
-            rows[0].Height = new GridLength(25);
+            rows[0].Height = new GridLength(30);
             //rows[1].Height = new GridLength(100);
             //rows[3].Height = new GridLength(25);
 
@@ -236,15 +237,13 @@ namespace Next_Level
             myGrid.RowDefinitions.Add(rows[1]);
             myGrid.RowDefinitions.Add(rows[2]);
 
-
-
-
             //имя пользователя
             TextBlock textName = new TextBlock();
+            textName.FontWeight = FontWeights.Bold;
             textName.Text = feedback.username;
             textName.Foreground = textColor;
             textName.Margin = new Thickness(10, 0, 0, 0);
-            textName.FontSize = 20;
+            textName.FontSize = 25;
 
             //текст отзыва
             TextBox feed = new TextBox();
