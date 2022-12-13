@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminPanelPages\AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Accounts.cs" />
     <Compile Include="Classes\BinnaryFile.cs" />
     <Compile Include="Classes\EnterControl.cs" />
@@ -66,9 +69,6 @@
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XmlFormat.cs" />
     <Compile Include="Interfaces\IFile.cs" />
-    <Compile Include="Pages\AdminPanel.xaml.cs">
-      <DependentUpon>AdminPanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
@@ -102,11 +102,11 @@
     </Compile>
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Themes\ThemesController.cs" />
-    <Page Include="Assets\Icons\Icons.xaml">
+    <Page Include="AdminPanelPages\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AdminPanel.xaml">
+    <Page Include="Assets\Icons\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
