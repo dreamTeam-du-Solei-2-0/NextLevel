@@ -1,4 +1,5 @@
-﻿using Next_Level.Classes;
+﻿using Next_Level.AdminPanelPages;
+using Next_Level.Classes;
 using Next_Level.Interfaces;
 using System;
 using System.Collections.Generic;

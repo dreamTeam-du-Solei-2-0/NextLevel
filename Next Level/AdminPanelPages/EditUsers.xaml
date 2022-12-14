@@ -1,0 +1,15 @@
+﻿<Page x:Class="Next_Level.AdminPanelPages.EditUsers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Next_Level.AdminPanelPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditUsers" Height="Auto" Width="Auto" Background="{DynamicResource SecundaryBackgroundColor}">
+    <Border Width="Auto" Height="Auto" BorderThickness="1"  Background="AliceBlue"  CornerRadius="8"  >
+        <Grid Margin="2">
+            <TextBlock Text="EditUsers" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Foreground="{DynamicResource PrimaryTextColor}"/>
+        </Grid>
+    </Border>
+</Page>
