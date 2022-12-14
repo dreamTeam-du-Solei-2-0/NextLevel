@@ -18,15 +18,11 @@
                 <TextBlock Text="[Administrator]" Margin="0 0 0 40" TextAlignment="Center" FontSize="25" Foreground="{DynamicResource PrimaryBlueColor}"/>
                 
                 <Button x:Name="addProduct" Click="addProductClick" Content="Add product" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryBackgroundColor}" Background="{DynamicResource SecundaryTextColor}"/>
-                <Button x:Name="editProduct" Click="editProductClick" Content="Edit product" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryTextColor}"/>
-                <Button x:Name="showProducts" Click="showProductsClick" Content="Show products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryBackgroundColor}" Background="{DynamicResource SecundaryTextColor}"/>
-                <Button x:Name="addCategories" Click="addCategoriesClick" Content="Add categories" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryTextColor}"/>
-                <Button x:Name="editCategories" Click="editCategoriesClick" Content="Edit categories" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryBackgroundColor}" Background="{DynamicResource SecundaryTextColor}"/>
-                <Button x:Name="addUser" Click="addUserClick" Content="Create user" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryTextColor}"/>
+                <Button x:Name="showProduct" Click="showProductClick" Content="Show products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryTextColor}"/>
+                <Button x:Name="editProducts" Click="editProductsClick" Content="Edit products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryBackgroundColor}" Background="{DynamicResource SecundaryTextColor}"/>
+                <Button x:Name="editCategories" Click="editCategoriesClick" Content="Edit categories" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryTextColor}"/>
                 <Button x:Name="editUser" Click="editUserClick" Content="Edit users" FontSize="20" BorderThickness="0" Height="40" Margin="0 0 0 40" Foreground="{DynamicResource PrimaryBackgroundColor}" Background="{DynamicResource SecundaryTextColor}"/>
                 <Button x:Name="logOut" Click="logOutClick" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryWhiteColor}" Background="{DynamicResource SecundaryRedColor}" Content="Log out" FontSize="20"/>
-                
-
             </StackPanel>
             <!--отображение страниц-->
             <Border Grid.Column="1"  Background="{DynamicResource SecundaryBackgroundColor}" CornerRadius="0 8 8 0">
