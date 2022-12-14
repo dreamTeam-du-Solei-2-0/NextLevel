@@ -51,42 +51,51 @@ namespace Next_Level.AdminPanelPages
 
         private void addProductClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new AddProduct());
         }
 
         private void editProductClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new EditProduct());
         }
 
         private void showProductsClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new ShowProducts());
         }
 
         private void addCategoriesClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new AddCategories());
         }
 
         private void editCategoriesClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new EditCategories());
         }
 
         private void addUserClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new AddUser());
         }
 
         private void editUserClick(object sender, RoutedEventArgs e)
         {
-
+            panelPage.Content = null;
+            panelPage.Navigate(new EditUsers());
         }
 
         private void logOutClick(object sender, RoutedEventArgs e)
         {
-
+            Login login = new Login();
+            this.Close();
+            login.ShowDialog();
         }
 
         #endregion

@@ -41,7 +41,7 @@
                         <Button HorizontalAlignment="Right" Margin="2 2 30 2" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="minimizePanel" Foreground="White"/>
                     </Grid>
 
-                    <Frame x:Name="panelPage" Grid.Row="1"/>
+                    <Frame x:Name="panelPage" NavigationUIVisibility="Hidden" Grid.Row="1"/>
 
                 </Grid>
             </Border>

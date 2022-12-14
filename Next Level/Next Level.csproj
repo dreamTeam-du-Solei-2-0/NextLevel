@@ -55,8 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminPanelPages\AddCategories.xaml.cs">
+      <DependentUpon>AddCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanelPages\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\CreateUser.xaml.cs">
+      <DependentUpon>CreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\EditCategories.xaml.cs">
+      <DependentUpon>EditCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\EditProduct.xaml.cs">
+      <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\EditUsers.xaml.cs">
+      <DependentUpon>EditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanelPages\ShowProducts.xaml.cs">
+      <DependentUpon>ShowProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Accounts.cs" />
     <Compile Include="Classes\BinnaryFile.cs" />
@@ -102,7 +126,39 @@
     </Compile>
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Themes\ThemesController.cs" />
+    <Page Include="AdminPanelPages\AddCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminPanelPages\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\CreateUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\EditCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\EditProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\EditUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanelPages\ShowProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
