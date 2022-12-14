@@ -11,6 +11,8 @@
 
 
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
-        
+        <ScrollViewer>
+            <WrapPanel x:Name="productPanel"></WrapPanel>
+        </ScrollViewer>
     </Border>
 </Page>

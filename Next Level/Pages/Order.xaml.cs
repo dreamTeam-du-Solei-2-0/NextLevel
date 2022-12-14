@@ -27,10 +27,10 @@ namespace Next_Level.Pages
         IFile file;
 
         ProductList _products;
-        Product product;
+        public static Product product;
         List<Feedback> feedbacks;
         int count = 0;
-        public static string _id;
+        public string _id;
         public Order(string id,Home home)
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace Next_Level.Pages
         void LoadProductList() => _products = new ProductList();
 
         //находит нужный продукт
-        void LoadProduct(string id)
+         public void LoadProduct(string id)
         {
             product = _products.getProductById(id);
             if (product == null)
@@ -120,7 +120,7 @@ namespace Next_Level.Pages
         private void back_Click(object sender, RoutedEventArgs e)
         {
             relative_page.LoadProducts();
-            string _id = product.Id;
+            product.Liked = true;
 
         }
 

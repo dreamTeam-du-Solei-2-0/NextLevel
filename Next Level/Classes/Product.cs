@@ -20,6 +20,7 @@ namespace Next_Level.Classes
         public double productPrice { get; set; }
         public int productCount { get; set; }
         public List<Feedback> coments { get; set; }
+        public bool Liked { get; set; }
 
         public Product()
         {

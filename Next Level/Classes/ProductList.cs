@@ -106,6 +106,22 @@ namespace Next_Level.Classes
             }
             return null;
         }
+        public List<Product> getByLike()
+        {
+            List<Product> find = new List<Product>();
+            foreach (var product in products)
+            {
+                if (product.Liked == true)
+                    find.Add(product);
+
+                
+            }
+            if(find.Count != 0)
+                return find;
+
+            return null;
+            
+        }
 
         public bool idIsUnique(string id)
         {
