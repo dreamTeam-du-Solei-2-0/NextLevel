@@ -169,8 +169,10 @@ namespace Next_Level.AdminPanelPages
             Regex spaces = new Regex("^\\s*$");
             if (productCategory.Text == string.Empty || spaces.IsMatch(productCategory.Text))
             {
+                if (createNew.IsChecked == true)
+                    return false;
+                else return true;
                 //MessageBox.Show("Cat!!!! ne ok");
-                return false;
             }
             else return true;
         }

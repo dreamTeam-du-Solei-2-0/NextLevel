@@ -8,8 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ShowProduct" Height="Auto" Width="Auto" Background="{DynamicResource SecundaryBackgroundColor}">
     <Border Width="Auto" Height="Auto" BorderThickness="1"  Background="AliceBlue"  CornerRadius="8"  >
-        <Grid Margin="2">
+        <!--<Grid Margin="2">
             <TextBlock Text="ShowProduct" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Foreground="{DynamicResource PrimaryTextColor}"/>
-        </Grid>
+        </Grid>-->
+        <Border x:Name="homeView" CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}"/>
     </Border>
 </Page>

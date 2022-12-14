@@ -1,6 +1,7 @@
 ﻿using Next_Level.Classes;
 using Next_Level.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace Next_Level.Pages
         public Collections()
         {
             InitializeComponent();
-            LoadCategories();
             products = new ProductList();
+            LoadCategories();
         }
 
         #region EVENTS
@@ -72,11 +73,15 @@ namespace Next_Level.Pages
             categories = file.Load<List<string>>();
             if (categories == null)
                 categories = new List<string>();
-            if(categories.Count!= 0)
+            if(categories.Count!= 0&&products.products.Count!=0)
             {
                 foreach(var category in categories)
                 {
-                    categoriesPanel.Children.Add(createCategory(category));
+                    if (products.isHaveCategory(category))
+                    {
+                        categoriesPanel.Children.Add(createCategory(category)); 
+                    }
+                    
                 }
             }
         }

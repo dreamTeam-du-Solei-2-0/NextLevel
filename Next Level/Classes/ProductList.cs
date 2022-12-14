@@ -83,7 +83,15 @@ namespace Next_Level.Classes
                 return find;
             else return null;
         }
-
+        public bool isHaveCategory(string category)
+        {
+            foreach(var product in products)
+            {
+                if (product.Category == category)
+                    return true;
+            }
+            return false;
+        }
         public List<Product> getProductsByCategory(string category)
         {
             List<Product> find = new List<Product>();

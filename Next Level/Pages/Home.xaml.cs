@@ -53,13 +53,16 @@ namespace Next_Level.Pages
             if (categories == null)
                 categories = new List<string>();
 
-            if (products.fileLoad)
+            if (products.fileLoad&&products.products.Count!=0)
             {
                 if (categories.Count != 0)
                 {
                     foreach(var category in categories)
                     {
-                        myStack.Children.Add(createCategory(category));
+                        if (products.isHaveCategory(category))
+                        {
+                            myStack.Children.Add(createCategory(category));
+                        }
                         wrap = new WrapPanel();
                         myStack.Children.Add(wrap);
                         foreach (var product in products)
