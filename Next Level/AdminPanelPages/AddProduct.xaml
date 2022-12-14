@@ -31,14 +31,14 @@
                 <!--productName-->
                 <StackPanel Grid.ColumnSpan="2">
                     <TextBlock Foreground="{DynamicResource PrimaryTextColor}"  FontSize="15" Text="Product Name"  TextAlignment="Center"/>
-                    <TextBox x:Name="productName" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource PrimaryBackgroundColor}" TextAlignment="Center" MaxLength="50" TextWrapping="Wrap" FontSize="15" Margin="50 5 50 5" TextChanged="productName_TextChanged"/>
+                    <TextBox x:Name="productName" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource PrimaryBackgroundColor}" TextAlignment="Center" MaxLength="20" TextWrapping="Wrap" FontSize="15" Margin="50 5 50 5" TextChanged="productName_TextChanged"/>
                 </StackPanel>
 
                 <!--productCategory-->
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                     <TextBlock Foreground="{DynamicResource PrimaryTextColor}" FontSize="15"  Text="Product Category" TextAlignment="Center"/>
-                    <TextBox x:Name="productCategory" Visibility="Collapsed" TextChanged="productCategory_TextChanged" Foreground="{DynamicResource PrimaryTextColor}"  Background="{DynamicResource PrimaryBackgroundColor}" TextAlignment="Center" MaxLength="50" TextWrapping="Wrap" FontSize="15" Margin="50 5 50 5"/>
-                    <ComboBox x:Name="comboCategory" SelectionChanged="comboCategory_SelectionChanged" Foreground="{DynamicResource PrimaryTextColor}" Background="{DynamicResource PrimaryBackgroundColor}" Margin="50 5 50 5"/>
+                    <TextBox x:Name="productCategory" Visibility="Collapsed" TextChanged="productCategory_TextChanged" Foreground="{DynamicResource PrimaryTextColor}"  Background="{DynamicResource PrimaryBackgroundColor}" TextAlignment="Center" MaxLength="20" TextWrapping="Wrap" FontSize="15" Margin="50 5 50 5"/>
+                    <ComboBox x:Name="comboCategory" SelectionChanged="comboCategory_SelectionChanged" Foreground="{DynamicResource PrimaryBlackColor}" Background="{DynamicResource PrimaryBlackColor}" Margin="50 5 50 5"/>
                     <CheckBox x:Name="createNew" HorizontalAlignment="Center" Content="Create new" Unchecked="createNew_Unchecked" Checked="createNew_Checked" FontSize="15" Foreground="{DynamicResource PrimaryTextColor}"/>
                 </StackPanel>
 

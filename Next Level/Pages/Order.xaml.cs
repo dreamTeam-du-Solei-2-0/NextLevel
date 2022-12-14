@@ -31,6 +31,7 @@ namespace Next_Level.Pages
         List<Feedback> feedbacks;
         int count = 0;
         public string _id;
+        
         public Order(string id,Home home)
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Next_Level.Pages
             LoadProductList();
             LoadProduct(id);
             examinationTextBlock();
+            Description.Text += product.productCount.ToString();
             
         }
 
@@ -153,28 +155,52 @@ namespace Next_Level.Pages
         }
         #endregion
 
-        private void plus_Click(object sender, RoutedEventArgs e)
+
+      
+
+        private void plus_Click_1(object sender, RoutedEventArgs e)
         {
-            count++;
-            Count.Text = count.ToString();
+            if(count > product.productCount - 1)
+            {
+                Count.BorderBrush = new SolidColorBrush(Colors.Red);
+            }else
+            {
+                count++;
+                Count.Text = count.ToString();
+            }
+            double totalprice = count * product.productPrice;
+            Price.Text = totalprice.ToString() + " grn";
+
         }
 
-        private void minus_Click(object sender, RoutedEventArgs e)
+        private void minus_Click_1(object sender, RoutedEventArgs e)
         {
             if (count > 0)
             {
                 count--;
             }
-            else
+            else if( count > 0)
                 Count.BorderBrush = new SolidColorBrush(Colors.Red);
-            
+
             Count.Text = count.ToString();
+            double totalprice = count * product.productPrice;
+            Price.Text = totalprice.ToString() + " grn";
         }
 
-        private void Count_TextChanged(object sender, TextChangedEventArgs e)
+        private void Count_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            double totalprice = count * product.productPrice;
-            Price.Text = totalprice.ToString();
-        }
+            string tmp = Count.Text;
+            int a;
+            if (string.IsNullOrEmpty(Count.Text))
+            {
+                Count.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                Count.BorderBrush = new SolidColorBrush(Colors.Black);
+                a = int.Parse(tmp);
+            }
+                     
+            }
     }
 }
