@@ -25,7 +25,7 @@
 
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="70" >
                     <TextBlock x:Name="Price" Height="30" Text="Price" Foreground="{DynamicResource PrimaryTextColor}" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <Button Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Content="Оформить заказ"/>
+                    <Button Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Content="Оформить заказ" Click="Button_Click"/>
                 </Grid>
 
             </Grid>

@@ -146,7 +146,7 @@ namespace Next_Level.Classes
             for (int i = 0; i < products.Count; i++)
                 yield return products[i];
         }
-        void Save()
+        public void Save()
         {
             file = new XmlFormat(product_path);
             file.Save(products);

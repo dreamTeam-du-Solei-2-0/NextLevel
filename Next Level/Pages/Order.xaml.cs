@@ -122,7 +122,6 @@ namespace Next_Level.Pages
         private void back_Click(object sender, RoutedEventArgs e)
         {
             relative_page.LoadProducts();
-            product.Liked = true;
 
         }
 
@@ -202,5 +201,13 @@ namespace Next_Level.Pages
             }
                      
             }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _products.deleteProduct(product);
+            product.Liked = true;
+            _products.AddNew(product);
+            _products.Save();
+        }
     }
 }

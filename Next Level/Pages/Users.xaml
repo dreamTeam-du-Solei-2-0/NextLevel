@@ -133,7 +133,7 @@
                         </Grid>
                     </Border>-->
                 </StackPanel>
-                <DatePicker Background="Black" x:Name="datePicker1" IsDropDownOpen="False" SelectedDateFormat="Short" Grid.Column="1" Margin="20,11,0,34" />
+                <DatePicker Background="Black" x:Name="datePicker1" IsDropDownOpen="False" SelectedDateFormat="Short" Grid.Column="1" Margin="20,11,0,34" DataContextChanged="datePicker1_DataContextChanged" />
             </Grid>
             <StackPanel VerticalAlignment="Center" Margin="10" Grid.Row="4">
                 <Border x:Name="PasswordBorder" BorderBrush="Gray" BorderThickness="1"  CornerRadius="5" Background="#181A1B" >

@@ -2,6 +2,7 @@
 using Next_Level.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -365,6 +366,17 @@ namespace Next_Level.Pages
             if (accounts.LoginIsExist(login))
                 return true;
             else return false;
+        }
+
+        private void datePicker1_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            DateTime? selectedDate = datePicker1.SelectedDate;
+
+            
+            DateTime date1 = new DateTime(selectedDate.Value.Year); // 20.07.2015 18:30:25
+            DateTime date2 = new DateTime(); // 20.07.2015 15:30:25
+            MessageBox.Show(selectedDate.Value.Year.ToString());
+            Console.WriteLine(date1.Subtract(date2)); // 03:00:00
         }
 
         //private void createAccount_Click(object sender, RoutedEventArgs e)
