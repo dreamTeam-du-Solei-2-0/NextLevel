@@ -21,11 +21,15 @@
                 </Grid>
 
                 <TextBlock Name="TotalPrice" Text="Price:" Foreground="{DynamicResource PrimaryTextColor}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="210,20,0,0"/>
-                <Button x:Name="back" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Продолжить покупки" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="back_Click" />
+                <Button x:Name="back" Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Продолжить покупки" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="back_Click" />
 
-                <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="70" >
-                    <TextBlock x:Name="Price" Height="30" Text="Price" Foreground="{DynamicResource PrimaryTextColor}" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <Button Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Content="Оформить заказ" Click="Button_Click"/>
+                <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="50" >
+                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black"/>
+                    <TextBlock x:Name="Price" Height="30" Text="Price" Foreground="{DynamicResource PrimaryTextColor}" Margin="30,15,0,0" HorizontalAlignment="Left"  VerticalAlignment="Center"></TextBlock>
+
+
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Click="Button_Click" Content="Buy"></Button>
+
                 </Grid>
 
             </Grid>

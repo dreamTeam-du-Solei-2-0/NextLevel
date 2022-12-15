@@ -370,13 +370,8 @@ namespace Next_Level.Pages
 
         private void datePicker1_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            DateTime? selectedDate = datePicker1.SelectedDate;
-
             
-            DateTime date1 = new DateTime(selectedDate.Value.Year); // 20.07.2015 18:30:25
-            DateTime date2 = new DateTime(); // 20.07.2015 15:30:25
-            MessageBox.Show(selectedDate.Value.Year.ToString());
-            Console.WriteLine(date1.Subtract(date2)); // 03:00:00
+
         }
 
         //private void createAccount_Click(object sender, RoutedEventArgs e)
