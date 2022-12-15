@@ -34,7 +34,12 @@ namespace Next_Level.Pages
         void showProduct()
         {
             var product = products.getByLike();
-            if (product.Count != 0)
+            
+            //if (product.Count != 0)//твоё условие, если product получит null это уже не объект а ссылка типа List но эта ссылка ни на что не ссылается, объекта в памяти нет, соответсвено и каунта нет
+            // ты через .Count пытаешься обратиьтся к не существующему объекту, вот тебе и ошибка
+
+            //Так что лушче проверить, не null ли это объект
+            if (product!=null)
             {
                 foreach (var prod in product)
                 {
