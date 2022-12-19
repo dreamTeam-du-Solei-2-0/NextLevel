@@ -317,5 +317,8 @@
   <ItemGroup>
     <Resource Include="Assets\Images\send.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\cart.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

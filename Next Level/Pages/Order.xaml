@@ -11,13 +11,15 @@
     <Grid>
         <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
             <Grid>
+
                 <TextBlock x:Name="Description" Width="400" Height="200" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
+
                 <Grid x:Name="gridPhoto" Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBlock  Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,50,0,0" Width="100" Height="50">
                     <TextBox x:Name="Count" BorderThickness="1" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="Count_TextChanged_1" ></TextBox>
-                    <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Height="20" VerticalAlignment="Center" Content="+" Click="plus_Click_1" Margin="0,0,80,0"/>
-                    <Button Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Content="-" Margin="80,0,0,0" Click="minus_Click_1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Height="20" VerticalAlignment="Center" Content="+" Click="plus_Click_1" Margin="0,0,80,0"/>
+                    <Button  Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Content="-" Margin="80,0,0,0" Click="minus_Click_1"></Button>
                 </Grid>
 
                 <TextBlock Name="TotalPrice" Text="Price:" Foreground="{DynamicResource PrimaryTextColor}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="210,20,0,0"/>
@@ -27,8 +29,10 @@
                     <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black"/>
                     <TextBlock x:Name="Price" Height="30" Text="Price" Foreground="{DynamicResource PrimaryTextColor}" Margin="30,15,0,0" HorizontalAlignment="Left"  VerticalAlignment="Center"></TextBlock>
 
-
-                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="150" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Click="Button_Click" Content="Buy"></Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Content="Buy" Width="50" Height="30" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Click="Button_Click_1"></Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="30" Height="30" Foreground="{DynamicResource PrimaryTextColor}" Background="#00a046" HorizontalAlignment="Right" Click="Button_Click" Margin="0,0,10,0">
+                        <Image Source="/Assets/Images/cart.png"></Image>
+                    </Button>
 
                 </Grid>
 

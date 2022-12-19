@@ -22,6 +22,7 @@ namespace Next_Level.Pages
     public partial class Order : Page
     {
         Home relative_page;
+     
         User current_user;
         Accounts accounts = new Accounts();
         IFile file;
@@ -208,6 +209,11 @@ namespace Next_Level.Pages
             product.Liked = true;
             _products.AddNew(product);
             _products.Save();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
