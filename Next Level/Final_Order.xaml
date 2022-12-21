@@ -26,5 +26,6 @@
             <RadioButton FontSize="20" VerticalAlignment="Top" Margin="0,60,0,0" Content="Delivery to New post"></RadioButton>
             <RadioButton FontSize="20" VerticalAlignment="Top" Margin="0,100,0,0" Content="Delivery to Ukrpost"></RadioButton>
         </Grid>
+        <Button Style="{DynamicResource RoundedButtonStyle2}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,20" Content="Back to Order" FontSize="20" Width="150" Height="50"></Button>
     </Grid>
 </Page>
