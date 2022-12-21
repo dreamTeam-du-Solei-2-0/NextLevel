@@ -92,6 +92,7 @@
     <Compile Include="Classes\SaveLogin.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XmlFormat.cs" />
+    <Compile Include="Final_Order.xaml.cs" />
     <Compile Include="Interfaces\IFile.cs" />
     <Compile Include="Pages\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>

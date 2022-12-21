@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Next_Level.Pages
+namespace Next_Level
 {
     /// <summary>
     /// Логика взаимодействия для Final_Order.xaml
