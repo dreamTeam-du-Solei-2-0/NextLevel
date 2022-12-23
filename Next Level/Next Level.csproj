@@ -92,7 +92,9 @@
     <Compile Include="Classes\SaveLogin.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XmlFormat.cs" />
-    <Compile Include="Final_Order.xaml.cs" />
+    <Compile Include="Final_Order.xaml.cs">
+      <DependentUpon>Final_Order.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IFile.cs" />
     <Compile Include="Pages\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
@@ -164,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Icons\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Final_Order.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

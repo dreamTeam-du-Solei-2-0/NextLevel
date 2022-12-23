@@ -213,7 +213,7 @@ namespace Next_Level.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
