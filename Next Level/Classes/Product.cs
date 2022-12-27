@@ -19,7 +19,9 @@ namespace Next_Level.Classes
         public string descriptionProduct { get; set; }
         public double productPrice { get; set; }
         public int productCount { get; set; }
+        public int currentCount { get; set; }
         public List<Feedback> coments { get; set; }
+        public string customer { get; set; }
         public bool Liked { get; set; }
 
         public Product()
@@ -29,8 +31,10 @@ namespace Next_Level.Classes
             productName = string.Empty;
             descriptionProduct = string.Empty;
             Category = string.Empty;
+            customer = string.Empty;
             productPrice = 0;
             productCount = 0;
+            currentCount = 0;
             coments = new List<Feedback>();
         }
     }

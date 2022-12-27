@@ -296,6 +296,7 @@ namespace Next_Level.AdminPanelPages
                 if (productPrice.Text.Contains(','))
                     productPrice.Text.Replace(',', '.');
                 //запись данных в продукт
+                product.Id = "nl" + generateId();
                 product.productPrice = double.Parse(productPrice.Text);
                 product.productCount = int.Parse(productCount.Text);
                 product.productPhoto = getPhotoPath(product.productName);
@@ -309,7 +310,25 @@ namespace Next_Level.AdminPanelPages
                 clearFields();
             }
         }
+        string generateId()
+        {
+            string result = string.Empty;
+            Random random = new Random();
+            int[] id = new int[5];
+            while (true)
+            {
+                result = string.Empty;
+                for (int i = 0; i < 5; i++)
+                {
+                    id[i] = random.Next(0, 9);
+                    result += id[i];
+                }
+                if (!products.idIsUnique(result))
+                    break;
+            }
 
+            return result;
+        }
 
         //Достаёт полный путь к картинке которую загружаем для продкута
 

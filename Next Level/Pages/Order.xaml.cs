@@ -205,10 +205,23 @@ namespace Next_Level.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _products.deleteProduct(product);
-            product.Liked = true;
-            _products.AddNew(product);
-            _products.Save();
+            ProductList cart = new ProductList(NextLevelPath.CART_PATH);
+            
+            var cartTemporary = cart.getProductByIdAndCustomer(product.Id,current_user.Login);
+            if (cartTemporary == null)
+            {
+                _products.deleteProduct(product);
+
+                product.productCount--;
+                product.Liked = true;
+
+                _products.AddNew(product);
+
+                product.currentCount = 1;
+                product.customer = current_user.Login;
+
+                cart.AddNew(product);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

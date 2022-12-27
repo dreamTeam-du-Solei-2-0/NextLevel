@@ -6,13 +6,63 @@
       xmlns:local="clr-namespace:Next_Level.Pages" xmlns:uc="clr-namespace:Next_Level.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="450"
-      Title="Cart" FontFamily="Poppins" Width="858">
-
-
+      d:DesignWidth="600"
+      Title="Cart" FontFamily="Poppins">
 
     <Border CornerRadius="8" Background="{DynamicResource SecundaryBackgroundColor}">
-        <ScrollViewer>
-            <WrapPanel x:Name="productPanel"></WrapPanel>
-        </ScrollViewer>
+        <Grid Margin="2"
+              x:Name="cartBody">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WrapPanel HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0 0 15 0">
+                <Border Background="#15531C"
+                        CornerRadius="8"
+                        Margin="5">
+                    <Button
+                        x:Name="selectAll"
+                        Content="Select all"
+                        Foreground="White"
+                        Background="#15531C"
+                        BorderThickness="0"
+                        FontSize="18"
+                        Margin="5" Click="selectAll_Click"/>
+                </Border>
+                
+                <Border Background="#15531C"
+                        CornerRadius="8"
+                        Margin="5">
+                    <Button
+                        x:Name="unselect"
+                        Content="Unselect"
+                        Foreground="White"
+                        Background="#15531C"
+                        BorderThickness="0"
+                        FontSize="18"
+                        Margin="5" Click="unselect_Click"/>
+                </Border>
+
+                <Border Background="#d32f2f"
+                        CornerRadius="8"
+                        Margin="5">
+                    <Button
+                        x:Name="delete"
+                        Content="Delete"
+                        Foreground="White"
+                        Background="#d32f2f"
+                        BorderThickness="0"
+                        FontSize="18"
+                        Margin="5" Click="delete_Click"/>
+                </Border>
+            </WrapPanel>
+            <ScrollViewer 
+                Grid.Row="1" 
+                x:Name="scroll">
+                <WrapPanel x:Name="productPanel"></WrapPanel>
+            </ScrollViewer>
+        </Grid>
     </Border>
 </Page>

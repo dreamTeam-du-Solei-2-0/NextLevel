@@ -15,5 +15,6 @@ namespace Next_Level.Classes
         public static string PROJECT_PATH { get; } = @"..\Debug";
         public static string STOREBD_PATH { get; } = @"..\Debug\bd";
         public static string CATEGORIES_PATH { get; } = @"..\Debug\Categories.xml";
+        public static string CART_PATH { get; }= @"..\Debug\Cart.xml";
     }
 }

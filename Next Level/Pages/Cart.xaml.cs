@@ -1,4 +1,5 @@
 ﻿using Next_Level.Classes;
+using Next_Level.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,33 +23,69 @@ namespace Next_Level.Pages
 {
     public partial class Cart : Page
     {
-
-        ProductList products;
+        IFile file;
+        User current_user;
+        ProductList cartProducts;
+        List<CheckBox> cartElements;
         public Cart()
         {
             InitializeComponent();
-            //string current_id = Order._id;
-            products = new ProductList();
+            file = null;
+            LoadCurrentUser();
+            cartElements = new List<CheckBox>();
+            cartProducts = new ProductList(NextLevelPath.CART_PATH);
             showProduct();
         }
+
+        void LoadCurrentUser()
+        {
+            Accounts accounts = new Accounts();
+            string path_currentUser = NextLevelPath.CURRENT_USER;
+            file = new BinnaryFile(path_currentUser);
+            current_user = accounts.getUserByLogin(file.Load<string>());
+        }
+
         void showProduct()
         {
-            var product = products.getByLike();
-            
-            //if (product.Count != 0)//твоё условие, если product получит null это уже не объект а ссылка типа List но эта ссылка ни на что не ссылается, объекта в памяти нет, соответсвено и каунта нет
-            // ты через .Count пытаешься обратиьтся к не существующему объекту, вот тебе и ошибка
-
-            //Так что лушче проверить, не null ли это объект
+            var product = cartProducts.getProductsByCustomer(current_user.Login);
             if (product!=null)
             {
+                productPanel.Children.Clear();
                 foreach (var prod in product)
                 {
-                    productPanel.Children.Add(CreateProduct(prod, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
+                    productPanel.Children.Add(createCartElement(prod, (SolidColorBrush)FindResource("TertiaryBackgroundColor"), (SolidColorBrush)FindResource("PrimaryTextColor")));
                 }
             }
             else
-                MessageBox.Show("none");
+            {
+                TextBlock cartInfo = new TextBlock();
+                cartInfo.Text = "Cart is epmpty";
+                cartInfo.Foreground = (SolidColorBrush)FindResource("PrimaryTextColor");
+                cartInfo.VerticalAlignment = VerticalAlignment.Center;
+                cartInfo.HorizontalAlignment = HorizontalAlignment.Center;
+                cartInfo.TextWrapping = TextWrapping.Wrap;
+                cartInfo.FontSize = 50;
+                Grid.SetRow(cartInfo, 1);
+                cartBody.Children.Remove(scroll);
+                cartBody.Children.Add(cartInfo);
+            }
         }
+
+
+        #region EVENTS
+
+        private void plusButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void minusButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         SolidColorBrush SetColor(string hex)
         {
             return (SolidColorBrush)(new BrushConverter().ConvertFrom(hex));
@@ -67,89 +104,56 @@ namespace Next_Level.Pages
             }
             return null;
         }
-        Border CreateProduct(Product product, SolidColorBrush gridColor, SolidColorBrush textColor)
-        {
-            int ROWS_COUNT = 6;
-            int COLUMNS_COUNT = 2;
 
-            //Создание рамки. Для скругления углов
+        Border createCartElement(Product product, SolidColorBrush gridColor, SolidColorBrush textColor)
+        {
+            //main_body
             Border border = new Border();
             border.CornerRadius = new CornerRadius(8);
+            border.Height = 150;
+            border.Width = 800;
+            border.Margin = new Thickness(5);
             border.Background = gridColor;
-            border.Height = 265;
-            border.Width = 180;
-            border.Margin = new Thickness(8);
 
-            //Эффект тени для рамки
+            //body_shadow
             DropShadowEffect shadowEffect = new DropShadowEffect();
             shadowEffect.BlurRadius = 8;
+            shadowEffect.ShadowDepth = 8;
             shadowEffect.Opacity = 0.5;
+
             border.Effect = shadowEffect;
 
-            //Создание сетки
-            Grid myGrid = new Grid();
-            myGrid.Height = 265;
-            myGrid.Width = 180;
-            //показать линии сетки
-            //myGrid.ShowGridLines = true;
+            //main_grid
+            Grid grid = new Grid();
+            grid.Width = border.Width-10;
+            grid.Margin = new Thickness(10);
 
-            //Создание строк для сетки
-            RowDefinition[] rows = new RowDefinition[ROWS_COUNT];
-            for (int i = 0; i < rows.Length; i++)
-                rows[i] = new RowDefinition();
+            ColumnDefinition[] columnDefinitions = new ColumnDefinition[5];
 
-            //Создание столбцов для сетки
-            ColumnDefinition[] columns = new ColumnDefinition[COLUMNS_COUNT];
-            for (int i = 0; i < columns.Length; i++)
-                columns[i] = new ColumnDefinition();
+            for (int i = 0; i < columnDefinitions.Length; i++)
+            {
+                columnDefinitions[i] = new ColumnDefinition();
+                grid.ColumnDefinitions.Add(columnDefinitions[i]);
+            }
 
-            //добавялем столбцы в сетку
-            myGrid.ColumnDefinitions.Add(columns[0]);
-            myGrid.ColumnDefinitions.Add(columns[1]);
+            columnDefinitions[0].Width = new GridLength(0.3, GridUnitType.Star);
 
-            //меняем высоту первой строки
-            rows[1].Height = new GridLength(120);
-            rows[5].Height = new GridLength(50);
-            //добавляем строки в сетку
-            myGrid.RowDefinitions.Add(rows[0]);
-            myGrid.RowDefinitions.Add(rows[1]);
-            myGrid.RowDefinitions.Add(rows[2]);
-            myGrid.RowDefinitions.Add(rows[3]);
-            myGrid.RowDefinitions.Add(rows[4]);
-            myGrid.RowDefinitions.Add(rows[5]);
+            //delete_check
+            CheckBox checkBox = new CheckBox();
+            checkBox.VerticalAlignment = VerticalAlignment.Center;
+            checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            checkBox.Name = product.Id;
 
-            //Фото товара
+            cartElements.Add(checkBox);
+
+            Grid.SetColumn(checkBox, 0);
+            grid.Children.Add(checkBox);
+
+            //product_photo
             Grid photo = new Grid();
-            photo.Height = 120;
             photo.Width = 120;
-
-            //Категория
-            Border categoryBorder = new Border();
-            categoryBorder.Background = (SolidColorBrush)FindResource("PrimaryBackgroundColor");
-            categoryBorder.HorizontalAlignment = HorizontalAlignment.Center;
-            categoryBorder.CornerRadius = new CornerRadius(8);
-            categoryBorder.Margin = new Thickness(2);
-
-            TextBlock category = new TextBlock();
-            if (product.Category != String.Empty)
-                category.Text = product.Category;
-            else
-                category.Text = "#CATEGORY#";
-
-            category.Margin = new Thickness(3);
-            category.FontSize = 12;
-            category.TextWrapping = TextWrapping.Wrap;
-            category.VerticalAlignment = VerticalAlignment.Center;
-            category.TextAlignment = TextAlignment.Center;
-            category.Foreground = textColor;
-
-            categoryBorder.Child = category;
-            //Добавляю в строку
-            Grid.SetRow(categoryBorder, 0);
-            //Растягиваю на два столбца
-            Grid.SetColumnSpan(categoryBorder, 2);
-            //Добавляю текст в сетку
-            myGrid.Children.Add(categoryBorder);
+            photo.Height = 120;
+            photo.Background = SetColor("#1F1F1F");
 
             string photoBD = System.IO.Path.GetFullPath(NextLevelPath.STOREBD_PATH);
             photoBD = System.IO.Path.Combine(photoBD, product.productName);
@@ -169,100 +173,148 @@ namespace Next_Level.Pages
                 photo.Children.Add(photoInfo);
             }
 
+            Grid.SetColumn(photo, 1);
+            grid.Children.Add(photo);
 
-            Grid.SetRow(photo, 1);
-            Grid.SetColumnSpan(photo, 2);
-            myGrid.Children.Add(photo);
-
-            //Items count
-            TextBlock itemsCount = new TextBlock();
-            itemsCount.Text = $"Items count: {product.productCount}";
-            itemsCount.FontSize = 12;
-            itemsCount.TextWrapping = TextWrapping.Wrap;
-            itemsCount.VerticalAlignment = VerticalAlignment.Center;
-            itemsCount.TextAlignment = TextAlignment.Center;
-            itemsCount.Foreground = textColor;
-            //Добавляю в строку
-            Grid.SetRow(itemsCount, 2);
-            //Растягиваю на два столбца
-            Grid.SetColumnSpan(itemsCount, 2);
-            //Добавляю текст в сетку
-            myGrid.Children.Add(itemsCount);
-
-            //Название товара
+            //product_name
             TextBlock productName = new TextBlock();
-            if (product.productName != String.Empty)
-                productName.Text = product.productName;
-            else productName.Text = "#PRODUCT_NAME#";
-            productName.FontSize = 15;
-            productName.TextWrapping = TextWrapping.Wrap;
-            productName.VerticalAlignment = VerticalAlignment.Center;
-            productName.TextAlignment = TextAlignment.Center;
+            productName.Text = product.productName;
             productName.Foreground = textColor;
-            //Добавляю в строку
-            Grid.SetRow(productName, 3);
-            //Растягиваю на два столбца
-            Grid.SetColumnSpan(productName, 2);
-            //Добавляю текст в сетку
-            myGrid.Children.Add(productName);
+            productName.VerticalAlignment = VerticalAlignment.Center;
+            productName.HorizontalAlignment = HorizontalAlignment.Center;
+            productName.TextWrapping = TextWrapping.Wrap;
+            productName.FontSize = 25;
 
-            //Цена товара
-            TextBlock price = new TextBlock();
-            price.Text = $"{product.productPrice} grn";
-            price.TextAlignment = TextAlignment.Center;
-            price.VerticalAlignment = VerticalAlignment.Center;
-            price.FontSize = 15;
-            price.Foreground = textColor;
-            Grid.SetRow(price, 4);
-            Grid.SetColumnSpan(price, 2);
-            myGrid.Children.Add(price);
+            Grid.SetColumn(productName, 2);
+            grid.Children.Add(productName);
 
-            Border buyBorder = new Border();
-            buyBorder.Background = SetColor("#15531C");
-            buyBorder.CornerRadius = new CornerRadius(8);
-            buyBorder.BorderThickness = new Thickness(1);
-            buyBorder.Margin = new Thickness(10);
+            //for_plus_countProducts_minus
+            WrapPanel wp = new WrapPanel();
+            wp.HorizontalAlignment = HorizontalAlignment.Center;
+            wp.VerticalAlignment = VerticalAlignment.Center;
 
-            //Кнопка купить
-            Button buyBut = new Button();
-            buyBut.BorderThickness = new Thickness(0);
-            if (product.Id != string.Empty)
-                buyBut.Name = product.Id + "1";
-            buyBut.Content = "Buy";
-            buyBut.Foreground = Brushes.White;
-            buyBut.Background = SetColor("#15531C");
-            buyBut.Margin = new Thickness(2);
-            buyBut.Foreground = Brushes.White;
-            //buyBut.Click += new RoutedEventHandler(button_BuyProduct);
-            buyBorder.Child = buyBut;
-            Grid.SetRow(buyBorder, 5);
-            myGrid.Children.Add(buyBorder);
+            Border buttonBorder = new Border();
+            buttonBorder.Background = SetColor("#d32f2f");
+            buttonBorder.CornerRadius = new CornerRadius(8);
+            buttonBorder.BorderThickness = new Thickness(1);
+            buttonBorder.Margin = new Thickness(10);
 
-            Border infoBorder = new Border();
-            infoBorder.Background = SetColor("#d32f2f");
-            infoBorder.CornerRadius = new CornerRadius(8);
-            infoBorder.BorderThickness = new Thickness(1);
-            infoBorder.Margin = new Thickness(10);
+            Button minus = new Button();
+            minus.Background = SetColor("#d32f2f");
+            minus.Foreground = Brushes.White;
+            minus.BorderThickness = new Thickness(0);
+            minus.Height = 30;
+            minus.Width = 30;
+            minus.FontSize = 20;
+            minus.Margin = new Thickness(2);
+            minus.Content = "-";
+            buttonBorder.Child = minus;
 
-            //Кнопка информация о товаре
-            Button infoBut = new Button();
-            infoBut.BorderThickness = new Thickness(0);
-            if (product.Id != string.Empty)
-                infoBut.Name = product.Id + "2";
-            infoBut.Content = "About";
-            infoBut.Foreground = Brushes.White;
-            infoBut.Background = SetColor("#d32f2f");
-            infoBut.Margin = new Thickness(2);
-            infoBut.Foreground = Brushes.White;
-            //infoBut.Click += new RoutedEventHandler(button_InfoProduct);
-            infoBorder.Child = infoBut;
-            Grid.SetRow(infoBorder, 5);
-            Grid.SetColumn(infoBorder, 1);
-            myGrid.Children.Add(infoBorder);
+            wp.Children.Add(buttonBorder);
 
-            //добавляю в рамку сетку
-            border.Child = myGrid;
+            //countProducts
+            TextBlock textBlock1 = new TextBlock();
+            textBlock1.Text = product.currentCount.ToString();
+            textBlock1.Foreground = textColor;
+            textBlock1.VerticalAlignment = VerticalAlignment.Center;
+            textBlock1.HorizontalAlignment = HorizontalAlignment.Center;
+            textBlock1.FontSize = 20;
+            textBlock1.Margin = new Thickness(5);
+
+            wp.Children.Add(textBlock1);
+
+            buttonBorder = new Border();
+            buttonBorder.Background = SetColor("#15531C");
+            buttonBorder.CornerRadius = new CornerRadius(8);
+            buttonBorder.BorderThickness = new Thickness(1);
+            buttonBorder.Margin = new Thickness(10);
+
+            Button plus = new Button();
+            plus.Background = SetColor("#15531C");
+            plus.Foreground = Brushes.White;
+            plus.BorderThickness = new Thickness(0);
+            plus.Height = 30;
+            plus.Width = 30;
+            plus.FontSize = 20;
+            plus.Margin = new Thickness(2);
+            plus.Content = "+";
+
+            buttonBorder.Child = plus;
+
+            wp.Children.Add(buttonBorder);
+
+            Grid.SetColumn(wp, 3);
+            grid.Children.Add(wp);
+
+            StackPanel sp = new StackPanel();
+            TextBlock textBlock2 = new TextBlock();
+            textBlock2.Foreground = textColor;
+            textBlock2.Text = product.productPrice.ToString();
+            textBlock2.TextAlignment = TextAlignment.Center;
+            textBlock2.TextWrapping = TextWrapping.Wrap;
+            textBlock2.FontSize = 25;
+            textBlock2.Margin = new Thickness(0, 20, 0, 20);
+
+            sp.Children.Add(textBlock2);
+
+            buttonBorder = new Border();
+            buttonBorder.Background = SetColor("#15531C");
+            buttonBorder.CornerRadius = new CornerRadius(8);
+            buttonBorder.BorderThickness = new Thickness(1);
+            buttonBorder.Margin = new Thickness(10);
+
+            Button button = new Button();
+            button.Background = SetColor("#15531C");
+            button.Foreground = Brushes.White;
+            button.FontSize = 25;
+            button.Margin = new Thickness(2);
+            button.Content = "Buy";
+            button.BorderThickness = new Thickness(0);
+
+            buttonBorder.Child = button;
+
+            sp.Children.Add(buttonBorder);
+
+            Grid.SetColumn(sp, 4);
+            grid.Children.Add(sp);
+
+            border.Child = grid;
+
             return border;
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (cartElements.Count != 0)
+            {
+                foreach (var element in cartElements)
+                {
+                    if(element.IsChecked==true)
+                    {
+                        var product = cartProducts.getProductByIdAndCustomer(element.Name,current_user.Login);
+                        cartProducts.removeUser(product);
+                    }
+                }
+                showProduct();
+            }
+        }
+
+        private void unselect_Click(object sender, RoutedEventArgs e)
+        {
+            if (cartElements.Count != 0)
+            {
+                foreach (var element in cartElements)
+                    element.IsChecked = false;
+            }
+        }
+
+        private void selectAll_Click(object sender, RoutedEventArgs e)
+        {
+            if(cartElements.Count!=0)
+            {
+                foreach (var element in cartElements)
+                    element.IsChecked = true;
+            }
         }
     }
 }

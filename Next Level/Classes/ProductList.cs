@@ -13,36 +13,22 @@ namespace Next_Level.Classes
         public List<Product> products { get; set; }
         IFile file = null;
         public bool fileLoad { get; set; } = false; 
-        string product_path = NextLevelPath.PRODUCT_PATH;
+        string product_path;
 
         public ProductList()
         {
+            product_path = NextLevelPath.PRODUCT_PATH;
             products = Load();
         }
-
-        string generateId()
+        public ProductList(string path)
         {
-            string result = string.Empty;
-            Random random = new Random();
-            int[] id = new int[5];
-            while (true)
-            {
-                result = string.Empty;
-                for (int i = 0; i < 5; i++)
-                {
-                    id[i] = random.Next(0, 9);
-                    result += id[i];
-                }
-                if (!idIsUnique(result))
-                    break;
-            }
-
-            return result;
+            product_path = path;
+            products = Load();
         }
+       
 
         public void AddNew(Product product)
         {
-            product.Id = "nl" + generateId();
             products.Add(product);
             Save();
         }
@@ -64,6 +50,19 @@ namespace Next_Level.Classes
             foreach (var product in products)
             {
                 if (product.productName.Contains(productName))
+                    find.Add(product);
+            }
+            if (find.Count != 0)
+                return find;
+            else return null;
+        }
+
+        public List<Product> getProductsByCustomer(string customer)
+        {
+            List<Product> find = new List<Product>();
+            foreach (var product in products)
+            {
+                if (product.customer==customer)
                     find.Add(product);
             }
             if (find.Count != 0)
@@ -114,6 +113,15 @@ namespace Next_Level.Classes
             }
             return null;
         }
+        public Product getProductByIdAndCustomer(string productId,string customer)
+        {
+            foreach (var product in products)
+            {
+                if (product.Id == productId && product.customer == customer) 
+                    return product;
+            }
+            return null;
+        }
         public List<Product> getByLike()
         {
             List<Product> find = new List<Product>();
@@ -133,12 +141,16 @@ namespace Next_Level.Classes
 
         public bool idIsUnique(string id)
         {
-            foreach (var product in products)
+            if (products.Count != 0)
             {
-                if (product.Id == id)
-                    return true;
+                foreach (var product in products)
+                {
+                    if (product.Id == id)
+                        return true;
+                }
+                return false;
             }
-            return false;
+            return true;
         }
 
         public IEnumerator<Product> GetEnumerator()
