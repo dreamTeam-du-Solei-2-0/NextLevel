@@ -14,7 +14,7 @@
             <TabItem x:Name="all" BorderThickness="0" Background="{DynamicResource PrimaryBackgroundColor}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal"  >
-                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryTextColor}"><Run Text="Все о товаре"/></TextBlock>
+                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryTextColor}"><Run Text="About Product"/></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
@@ -45,10 +45,10 @@
                         
                     </Button>-->
                     <Image x:Name="productImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200"/>
-                    <TextBlock FontSize="20" x:Name="Description" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Описание:"/>
-                    <TextBlock x:Name="Price" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Цена:100"/>
-                    <Button Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
-                    <Button Width="100" Height="50" Background="LightGreen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">Buy in credit</Button>
+                    <TextBlock FontSize="20" x:Name="Description" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Description:"/>
+                    <TextBlock x:Name="Price" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Price:100"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="100" Height="50" Background="LightGreen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">Buy in credit</Button>
                 </Grid>
                 
 
@@ -65,7 +65,7 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
 
-                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryTextColor}"><Run Text="Отзывы"/></TextBlock>
+                        <TextBlock Margin="3" Foreground="{DynamicResource PrimaryTextColor}"><Run Text="Reviews"/></TextBlock>
                     </StackPanel>
 
                 </TabItem.Header>

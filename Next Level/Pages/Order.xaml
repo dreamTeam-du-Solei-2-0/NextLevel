@@ -23,7 +23,7 @@
                 </Grid>
 
                 <TextBlock Name="TotalPrice" Text="Price:" Foreground="{DynamicResource PrimaryTextColor}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="210,20,0,0"/>
-                <Button x:Name="back" Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Продолжить покупки" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="back_Click" />
+                <Button x:Name="back" Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Continue Shopping" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="back_Click" />
 
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="50" >
                     <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black"/>
