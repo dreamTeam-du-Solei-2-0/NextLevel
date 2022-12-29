@@ -146,9 +146,9 @@ namespace Next_Level.Classes
                 foreach (var product in products)
                 {
                     if (product.Id == id)
-                        return true;
+                        return false;
                 }
-                return false;
+                return true;
             }
             return true;
         }

@@ -44,7 +44,6 @@ namespace Next_Level.AdminPanelPages
             InitializeComponent();
             basicSettings();
             loadCategories();
-            //loadProducts();
         }
         #region CONSTRUCTOR_ACTIONS
         //подключение кнопок к событиям, загрузка бд
@@ -323,7 +322,7 @@ namespace Next_Level.AdminPanelPages
                     id[i] = random.Next(0, 9);
                     result += id[i];
                 }
-                if (!products.idIsUnique(result))
+                if (products.idIsUnique(result))
                     break;
             }
 
