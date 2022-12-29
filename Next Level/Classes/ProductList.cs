@@ -32,7 +32,7 @@ namespace Next_Level.Classes
             products.Add(product);
             Save();
         }
-        public void removeUser(Product product)
+        public void removeProduct(Product product)
         {
             products.Remove(product);
             Save();

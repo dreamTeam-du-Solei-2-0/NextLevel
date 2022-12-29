@@ -25,6 +25,7 @@ namespace Next_Level.Pages
     {
         IFile file;
         User current_user;
+        ProductList allProducts;
         ProductList cartProducts;
         List<CheckBox> cartElements;
         public Cart()
@@ -33,6 +34,7 @@ namespace Next_Level.Pages
             file = null;
             LoadCurrentUser();
             cartElements = new List<CheckBox>();
+            allProducts = new ProductList();
             cartProducts = new ProductList(NextLevelPath.CART_PATH);
             showProduct();
         }
@@ -73,19 +75,116 @@ namespace Next_Level.Pages
 
 
         #region EVENTS
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (cartElements.Count != 0)
+            {
+                foreach (var element in cartElements)
+                {
+                    if (element.IsChecked == true)
+                    {
+                        var cartProduct = cartProducts.getProductByIdAndCustomer(element.Name, current_user.Login);
+                        var countBox = FindName(element.Name + "Count") as TextBlock;
+                        var product = allProducts.getProductById(element.Name);
+                        allProducts.deleteProduct(product);
+                        product.productCount += int.Parse(countBox.Text);
+                        allProducts.AddNew(product);
+                        cartProducts.removeProduct(cartProduct);
+                        UnregisterName(countBox.Name);
+                    }
+                }
+                showProduct();
+            }
+        }
+
+        private void unselect_Click(object sender, RoutedEventArgs e)
+        {
+            if (cartElements.Count != 0)
+            {
+                foreach (var element in cartElements)
+                    element.IsChecked = false;
+            }
+        }
+
+        private void selectAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (cartElements.Count != 0)
+            {
+                foreach (var element in cartElements)
+                    element.IsChecked = true;
+            }
+        }
 
         private void plusButton(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
 
+            string id = button.Name;
+            string substr = "plus";
+            int position = id.IndexOf(substr);
+            id=id.Remove(position, substr.Length);
+
+            var product = allProducts.getProductById(id);
+            int productCount=product.productCount;
+            productCount--;
+            if (productCount >= 0)
+            {
+                var cartProduct = cartProducts.getProductByIdAndCustomer(id, current_user.Login);
+                var countBox = FindName(id + "Count") as TextBlock;
+                var priceBox = FindName(id + "Price") as TextBlock;
+
+                int cartCount = int.Parse(countBox.Text);
+                ++cartCount;
+
+                allProducts.deleteProduct(product);
+                product.productCount--;
+                allProducts.AddNew(product);
+
+                cartProducts.deleteProduct(cartProduct);
+                cartProduct.currentCount = cartCount;
+                cartProduct.productPrice = cartCount * product.productPrice;
+                cartProducts.AddNew(cartProduct);
+
+                countBox.Text = cartCount.ToString();
+                priceBox.Text = cartProduct.productPrice.ToString();
+            }
         }
 
         private void minusButton(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
 
+            string id = button.Name;
+            string substr = "minus";
+            int position = id.IndexOf(substr);
+            id = id.Remove(position, substr.Length);
+
+            var product = allProducts.getProductById(id);
+            var cartProduct = cartProducts.getProductByIdAndCustomer(id, current_user.Login);
+            var countBox = FindName(id + "Count") as TextBlock;
+            var priceBox = FindName(id + "Price") as TextBlock;
+
+            int cartCount = int.Parse(countBox.Text);
+            --cartCount;
+            if (cartCount != 0)
+            {
+                allProducts.deleteProduct(product);
+                product.productCount ++;
+                allProducts.AddNew(product);
+
+                cartProducts.deleteProduct(cartProduct);
+                cartProduct.currentCount = cartCount;
+                cartProduct.productPrice=product.productPrice*cartCount;
+                cartProducts.AddNew(cartProduct);
+
+                countBox.Text = cartCount.ToString();
+                priceBox.Text = cartProduct.productPrice.ToString();
+            }
         }
 
         #endregion
 
+        #region CREATE_ELEMENTS
         SolidColorBrush SetColor(string hex)
         {
             return (SolidColorBrush)(new BrushConverter().ConvertFrom(hex));
@@ -108,6 +207,9 @@ namespace Next_Level.Pages
         Border createCartElement(Product product, SolidColorBrush gridColor, SolidColorBrush textColor)
         {
             //main_body
+
+            object element;
+
             Border border = new Border();
             border.CornerRadius = new CornerRadius(8);
             border.Height = 150;
@@ -201,6 +303,8 @@ namespace Next_Level.Pages
 
             Button minus = new Button();
             minus.Background = SetColor("#d32f2f");
+            minus.Name = product.Id + "minus";
+            minus.Click += new RoutedEventHandler(minusButton);
             minus.Foreground = Brushes.White;
             minus.BorderThickness = new Thickness(0);
             minus.Height = 30;
@@ -221,6 +325,13 @@ namespace Next_Level.Pages
             textBlock1.FontSize = 20;
             textBlock1.Margin = new Thickness(5);
 
+            textBlock1.Name = product.Id + "Count";
+            element = FindName(textBlock1.Name) as TextBlock;
+            if (element == null)
+            {
+                RegisterName(textBlock1.Name, textBlock1);
+            }
+
             wp.Children.Add(textBlock1);
 
             buttonBorder = new Border();
@@ -231,6 +342,8 @@ namespace Next_Level.Pages
 
             Button plus = new Button();
             plus.Background = SetColor("#15531C");
+            plus.Name = product.Id + "plus";
+            plus.Click += new RoutedEventHandler(plusButton);
             plus.Foreground = Brushes.White;
             plus.BorderThickness = new Thickness(0);
             plus.Height = 30;
@@ -247,6 +360,8 @@ namespace Next_Level.Pages
             grid.Children.Add(wp);
 
             StackPanel sp = new StackPanel();
+
+            //product_price
             TextBlock textBlock2 = new TextBlock();
             textBlock2.Foreground = textColor;
             textBlock2.Text = product.productPrice.ToString();
@@ -254,6 +369,14 @@ namespace Next_Level.Pages
             textBlock2.TextWrapping = TextWrapping.Wrap;
             textBlock2.FontSize = 25;
             textBlock2.Margin = new Thickness(0, 20, 0, 20);
+
+            textBlock2.Name = product.Id + "Price";
+            element = FindName(textBlock2.Name) as TextBlock;
+            if (element == null)
+            {
+                RegisterName(textBlock2.Name, textBlock2);
+            }
+          
 
             sp.Children.Add(textBlock2);
 
@@ -282,39 +405,7 @@ namespace Next_Level.Pages
 
             return border;
         }
+        #endregion
 
-        private void delete_Click(object sender, RoutedEventArgs e)
-        {
-            if (cartElements.Count != 0)
-            {
-                foreach (var element in cartElements)
-                {
-                    if(element.IsChecked==true)
-                    {
-                        var product = cartProducts.getProductByIdAndCustomer(element.Name,current_user.Login);
-                        cartProducts.removeUser(product);
-                    }
-                }
-                showProduct();
-            }
-        }
-
-        private void unselect_Click(object sender, RoutedEventArgs e)
-        {
-            if (cartElements.Count != 0)
-            {
-                foreach (var element in cartElements)
-                    element.IsChecked = false;
-            }
-        }
-
-        private void selectAll_Click(object sender, RoutedEventArgs e)
-        {
-            if(cartElements.Count!=0)
-            {
-                foreach (var element in cartElements)
-                    element.IsChecked = true;
-            }
-        }
     }
 }

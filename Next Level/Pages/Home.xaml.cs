@@ -364,9 +364,24 @@ namespace Next_Level.Pages
             infoBut.Foreground = Brushes.White;
             infoBut.Click += new RoutedEventHandler(button_InfoProduct);
             infoBorder.Child = infoBut;
-            Grid.SetRow(infoBorder, 5);
-            Grid.SetColumn(infoBorder, 1);
+
+            if (product.productCount == 0)
+            {
+                itemsCount.Text = "Product is out";
+                itemsCount.Foreground = Brushes.DarkRed;
+                buyBorder.Visibility = Visibility.Collapsed;
+                Grid.SetRow(infoBorder, 5);
+                Grid.SetColumnSpan(infoBorder, 2);
+            }
+            else
+            {
+                Grid.SetRow(infoBorder, 5);
+                Grid.SetColumn(infoBorder, 1);
+            }
+
             myGrid.Children.Add(infoBorder);
+
+            
 
             //добавляю в рамку сетку
             border.Child = myGrid;
