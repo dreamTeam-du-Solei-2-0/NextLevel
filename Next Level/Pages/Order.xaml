@@ -11,18 +11,41 @@
     <Grid>
         <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
             <Grid>
-
-                <TextBlock x:Name="Description" Width="400" Height="200" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin ="0,20,20,0" Text="Описание товара"></TextBlock>
+                <WrapPanel
+                    Width="250"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin ="150,10,20,0"
+                    Orientation="Vertical">
+                    <TextBlock Name="TotalPrice" 
+                               Text="Price:" 
+                               Foreground="{DynamicResource PrimaryTextColor}" 
+                               Margin ="0,0,20,20" 
+                               FontSize="20"/>
+                    <TextBlock x:Name="countText" 
+                           Foreground="{DynamicResource PrimaryTextColor}" 
+                           Margin ="0,0,20,20" 
+                           Text="Count"
+                           FontSize="20"/>
+                    <TextBlock x:Name="Description" 
+                           Foreground="{DynamicResource PrimaryTextColor}" 
+                           Text="Description"
+                           Margin ="0,0,2,5" 
+                           FontSize="20"
+                           TextWrapping="Wrap"/>
+                           
+                </WrapPanel>
+                
 
                 <Grid x:Name="gridPhoto" Background="Gray" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBlock  Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                <!--<TextBlock  Text="Content" Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>-->
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,50,0,0" Width="100" Height="50">
-                    <TextBox x:Name="Count" BorderThickness="1" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="Count_TextChanged_1" ></TextBox>
+                    <TextBox x:Name="Count" BorderThickness="1" BorderBrush="{DynamicResource PrimaryTextColor}" Foreground="{DynamicResource PrimaryTextColor}" Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="Count_TextChanged_1" ></TextBox>
                     <Button Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="plus" Height="20" VerticalAlignment="Center" Content="+" Click="plus_Click_1" Margin="0,0,80,0"/>
                     <Button  Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" x:Name="minus" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Content="-" Margin="80,0,0,0" Click="minus_Click_1"></Button>
                 </Grid>
 
-                <TextBlock Name="TotalPrice" Text="Price:" Foreground="{DynamicResource PrimaryTextColor}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="210,20,0,0"/>
+                
                 <Button x:Name="back" Style="{DynamicResource RoundedButtonStyle2}" Background="{DynamicResource PrimaryBackgroundColor}" Foreground="{DynamicResource PrimaryTextColor}" Width="200" Height="50" Content="Continue Shopping" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="back_Click" />
 
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="{DynamicResource PrimaryBackgroundColor}" Width="250" Height="50" >

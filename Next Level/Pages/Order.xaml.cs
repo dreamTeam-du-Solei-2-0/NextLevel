@@ -29,7 +29,6 @@ namespace Next_Level.Pages
 
         ProductList _products;
         public static Product product;
-        List<Feedback> feedbacks;
         int count = 0;
         public string _id;
         
@@ -41,8 +40,6 @@ namespace Next_Level.Pages
             LoadProductList();
             LoadProduct(id);
             examinationTextBlock();
-            Description.Text += product.productCount.ToString();
-            
         }
 
         #region LOAD_ALL_DATA
@@ -99,6 +96,7 @@ namespace Next_Level.Pages
                 Description.Text = product.descriptionProduct;
 
             TotalPrice.Text = "Price: " + product.productPrice.ToString();
+            countText.Text = "Count: " + product.productCount.ToString();
         }
 
         //подгружает фото из бд

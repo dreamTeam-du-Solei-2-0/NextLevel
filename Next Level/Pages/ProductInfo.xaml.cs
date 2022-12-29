@@ -104,6 +104,7 @@ namespace Next_Level
                 Description.Text = product.descriptionProduct;
 
             Price.Text = "Price: " + product.productPrice.ToString();
+            Count.Text = "Count: " + product.productCount.ToString();
         }
 
         //подгружает фото из бд

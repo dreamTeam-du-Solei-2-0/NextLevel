@@ -46,9 +46,10 @@
                     </Button>-->
                     <Image x:Name="productImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200"/>
                     <TextBlock FontSize="20" x:Name="Description" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Center" Margin="0,0,0,0" Text="Description:"/>
-                    <TextBlock x:Name="Price" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Price:100"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="100" Height="50" Background="LightGreen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">Buy in credit</Button>
+                    <TextBlock x:Name="Price" Margin="0 10 150 0" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Price:100"/>
+                    <TextBlock x:Name="Count" Margin="0 60 150 0" HorizontalAlignment="Center" Width="100" Height="50" Foreground="{DynamicResource PrimaryTextColor}" FontSize="20" VerticalAlignment="Top" Text="Count:100"/>
+                    <!--<Button Style="{DynamicResource RoundedButtonStyle}" Width="50" Height="50" Background="LightGreen"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,50,0,0">Buy</Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Width="100" Height="50" Background="LightGreen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">Buy in credit</Button>-->
                 </Grid>
                 
 

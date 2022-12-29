@@ -20,9 +20,9 @@
                 
                 <Button x:Name="addProduct" Click="addProductClick" Content="Add product" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
                 <Button x:Name="showProduct" Click="showProductsClick" Content="Show products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
-                <Button x:Name="editProducts" Click="editProductClick" Content="Edit products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
-                <Button x:Name="editCategories" Click="editCategoriesClick" Content="Edit categories" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
-                <Button x:Name="editUser" Click="editUserClick" Content="Edit users" FontSize="20" BorderThickness="0" Height="40" Margin="0 0 0 40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
+                <!--<Button x:Name="editProducts" Click="editProductClick" Content="Edit products" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>-->
+                <!--<Button x:Name="editCategories" Click="editCategoriesClick" Content="Edit categories" FontSize="20" BorderThickness="0" Height="40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>
+                <Button x:Name="editUser" Click="editUserClick" Content="Edit users" FontSize="20" BorderThickness="0" Height="40" Margin="0 0 0 40" Foreground="{DynamicResource SecundaryBlackColor}" Background="{DynamicResource PrimaryBackgroundColor}"/>-->
                 <Button x:Name="logOut" Click="logOutClick" BorderThickness="0" Height="40" Foreground="{DynamicResource PrimaryWhiteColor}" Background="{DynamicResource SecundaryBlackColor}" Content="Log out" FontSize="20"/>
             </StackPanel>
             <!--отображение страниц-->
